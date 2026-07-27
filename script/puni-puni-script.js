@@ -347,6 +347,7 @@ let enemyAttackTimer = 0;
 
 const i18n = {
 	ENG: {
+		start: "Start Game",
 		consumables: "Consumables",
 		creatorLabel: "Escape with PuniPuni was made by",
 		wave: "Wave",
@@ -387,6 +388,7 @@ const i18n = {
 		tooltip: "Escape from Tarkov is a registered trademark of Battlestate Games. This project is not affiliated with, endorsed by, or sponsored by the developer.",
 	},
 	JPN: {
+		start: "スタート",
 		consumables: "消耗品",
 		creatorLabel: "ぷにぷにとの脱出は",
 		leaderboard: "ランキング ",
@@ -1332,15 +1334,16 @@ document.addEventListener("click", function (event) {
 	}
 });
 
-spawnEnemy();
-renderEquipment();
-renderConsumables();
-initHudIcons();
+document.addEventListener("DOMContentLoaded", () => {
+	spawnEnemy();
+	renderEquipment();
+	renderConsumables();
+	initHudIcons();
 
-// Start the loop safely (ensures "lastTime" is synced to start runtime)
-requestAnimationFrame((time) => {
-	lastTime = time;
-	requestAnimationFrame(update);
+	requestAnimationFrame((time) => {
+		lastTime = time;
+		requestAnimationFrame(update);
+	});
 });
 
 const firebaseConfig = {
