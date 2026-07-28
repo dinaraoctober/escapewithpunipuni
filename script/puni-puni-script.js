@@ -1,4 +1,5 @@
 let state = {
+	selectedSprite: 'A',
 	dango: 0,
 	totalDango: 0,
 	wave: 1,
@@ -208,16 +209,16 @@ function setDisabled(el, isDisabled) {
 
 // 1. Logic to hide the start screen and initiate gameplay loops
 function startGame() {
-	const startScreen = document.getElementById("start-screen");
-	startScreen.style.opacity = "0";
+    const startScreen = document.getElementById("start-screen");
+    startScreen.style.opacity = "0";
 
-	setTimeout(() => {
-		startScreen.style.display = "none";
-	}, 500);
+    setTimeout(() => {
+        startScreen.style.display = "none";
+    }, 500);
 
-	// --- ADD THESE TO BOOT THE GAME ---
-	state.isDead = false;
-	spawnEnemy(); // Triggers your enemy spawning mechanism
+    state.isDead = false;
+    renderPlayerSprite(); // <-- Ensures sprite is displayed when the game boots
+    spawnEnemy();
 }
 
 // Update the start screen itself whenever setLang() runs
@@ -326,6 +327,24 @@ function updateUI() {
 			}
 		}
 	}
+}
+
+function setPlayerSprite(spriteKey) {
+    state.selectedSprite = spriteKey;
+    renderPlayerSprite();
+}
+
+// 3. Helper function to render the image inside #player-sprite
+function renderPlayerSprite() {
+    const playerEl = document.getElementById("player-sprite");
+    if (!playerEl) return;
+
+    // Adjust filenames to match your asset paths
+    const spriteUrl = state.selectedSprite === 'A' 
+        ? 'assets/player-a.svg' 
+        : 'assets/player-b.svg';
+
+    playerEl.innerHTML = `<img src="${spriteUrl}" alt="Player Sprite" class="player-sprite-img" />`;
 }
 
 function createProjectile(type, color, startX, startY, endX, endY, onHit) {
@@ -854,16 +873,18 @@ document.addEventListener("click", function (event) {
 	}
 });
 
+// In your DOMContentLoaded listener:
 document.addEventListener("DOMContentLoaded", () => {
-	spawnEnemy();
-	renderEquipment();
-	renderConsumables();
-	initHudIcons();
+    renderPlayerSprite(); // <-- Add this here
+    spawnEnemy();
+    renderEquipment();
+    renderConsumables();
+    initHudIcons();
 
-	requestAnimationFrame((time) => {
-		lastTime = time;
-		requestAnimationFrame(update);
-	});
+    requestAnimationFrame((time) => {
+        lastTime = time;
+        requestAnimationFrame(update);
+    });
 });
 
 const firebaseConfig = {

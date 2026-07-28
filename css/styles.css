@@ -81,6 +81,7 @@ body,
 }
 
 #game-container {
+    margin-top: 20px;
     width: 800px;
     background-color: #2b2d2a;
     box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.8);
