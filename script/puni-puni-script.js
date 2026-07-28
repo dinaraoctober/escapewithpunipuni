@@ -101,6 +101,8 @@ let enemyAttackTimer = 0;
 const i18n = {
 	ENG: {
 		start: "Start Game",
+		spriteA: "Puni Puni A",
+        spriteB: "Puni Puni B",
 		consumables: "Consumables",
 		creatorLabel: "Escape with PuniPuni was made by",
 		wave: "Wave",
@@ -142,6 +144,8 @@ const i18n = {
 	},
 	JPN: {
 		start: "スタート",
+		spriteA: "ぷにぷに A",
+        spriteB: "ぷにぷに B",
 		consumables: "消耗品",
 		creatorLabel: "ぷにぷにとの脱出は",
 		leaderboard: "ランキング ",
@@ -230,6 +234,13 @@ function updateUI() {
 	document.getElementById("btn-start").innerText = currentLang.start || "Start Game";
 
 	const t = i18n[state.lang];
+
+	// Sprite Selector Labels
+    const spriteAEl = document.getElementById("txt-spriteA");
+    if (spriteAEl) spriteAEl.innerText = t.spriteA;
+
+    const spriteBEl = document.getElementById("txt-spriteB");
+    if (spriteBEl) spriteBEl.innerText = t.spriteB;
 
 	const winId = document.getElementById("win-id");
 	if (winId) winId.innerText = t.win;
