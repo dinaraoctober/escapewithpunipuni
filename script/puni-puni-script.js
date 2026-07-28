@@ -45,7 +45,7 @@ const SHOP_ITEMS = {
 		{
 			id: "ak_545",
 			name: "AK-545",
-			cost: `50,
+			cost: 50,
 			icon: '<img src="assets/ak545.svg" alt="AK-545" />',
 			speed: 2,
 		},
