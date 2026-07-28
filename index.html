@@ -1,180 +1,197 @@
-<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="script/puni-puni-script.js" />
-<link rel="stylesheet" href="css/styles.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape with PuniPuni</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <!-- Custom Styles and Scripts -->
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="script/puni-puni-script.js" defer></script>
+</head>
+<body>
 
-<div id="start-screen" class="screen-overlay">
-    <div class="start-content">
-        <h1 class="logo"><img style="fill:#ffffff;" src="assets/logo.svg" />
-        </h1>
+    <div id="start-screen" class="screen-overlay">
+        <div class="start-content">
+            <h1 class="logo"><img style="fill:#ffffff;" src="assets/logo.svg" alt="Puni Puni Logo" /></h1>
 
-        <!-- Navigation Options -->
-        <div class="start-menu">
-            <div class="sprite-select" role="radiogroup" aria-label="Choose your sprite">
-                <label class="sprite-choice-btn">
-                    <input type="radio" name="playerSprite" value="A" checked onchange="setPlayerSprite('A')" />
-                    <img src="assets/player-a.svg" alt="Puni Puni A" />
-                    <span>Sprite A</span>
-                </label>
-                <label class="sprite-choice-btn">
-                    <input type="radio" name="playerSprite" value="B" onchange="setPlayerSprite('B')" />
-                    <img src="assets/player-b.svg" alt="Puni Puni B" />
-                    <span>Sprite B</span>
-                </label>
+            <!-- Navigation Options -->
+            <div class="start-menu">
+                <div class="sprite-select" role="radiogroup" aria-label="Choose your sprite">
+                    <label class="sprite-choice-btn">
+                        <input type="radio" name="playerSprite" value="A" checked onchange="setPlayerSprite('A')" />
+                        <img src="assets/player-a.svg" alt="Puni Puni A" />
+                        <span>Sprite A</span>
+                    </label>
+                    <label class="sprite-choice-btn">
+                        <input type="radio" name="playerSprite" value="B" onchange="setPlayerSprite('B')" />
+                        <img src="assets/player-b.svg" alt="Puni Puni B" />
+                        <span>Sprite B</span>
+                    </label>
+                </div>
+                <button id="btn-start" onclick="startGame()">Start Game</button>
+                <button id="btn-leaderboard" onclick="toggleLeaderboard()">Leaderboard</button>
             </div>
-            <button id="btn-start" onclick="startGame()">Start Game</button>
-            <button id="btn-leaderboard" onclick="toggleLeaderboard()">Leaderboard</button>
+
+            <!-- Language Selector -->
+            <div class="start-lang-select">
+                <button onclick="setLang('ENG')">English</button>
+                <button onclick="setLang('JPN')">日本語</button>
+            </div>
+
+            <div class="tooltip-container" id="tooltip" onclick="this.classList.toggle('active')">
+                ?
+                <span id="tooltip-label" class="tooltip-text">Escape from Tarkov is a registered trademark of Battlestate
+                    Games. This project is not affiliated with, endorsed by, or sponsored by the developer.</span>
+            </div>
+
+            <div id="leaderboard-box" style="display: none;">
+                <div style="display:flex; gap: 10px;">
+                    <h3 id="highscores" style="flex:auto;">Global High Scores</h3>
+                    <button id="closebtn-label2" style="width: 100px; height: 35px; line-height: 10px;" onclick="toggleLeaderboard()">Close</button>
+                </div>
+                <ol id="leaderboard-list">Loading scores...</ol>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-container">
+        <div id="top-bar">
+            <div>
+                <span id="txt-wave">Wave</span>: <span id="ui-wave">1</span> 
+                (<span id="txt-loop">Loop</span>: <span id="ui-loop">1</span>) ║ 
+                <span id="txt-points">Points</span>: <span id="ui-points">0</span> ║ 
+                <span id="txt-deaths">Deaths</span>: <span id="ui-deaths">0</span>
+            </div>
+            <div>
+                <img src="assets/dango.svg" alt="Dango" />
+                <span id="txt-dango">Dango</span>: <span id="ui-dango">0</span> 
+                <span id="grenade-counter" style="display:none;"></span>
+            </div>
         </div>
 
-        <!-- Language Selector -->
-        <div class="start-lang-select">
-            <button onclick="setLang('ENG')">English</button>
-            <button onclick="setLang('JPN')">日本語</button>
+        <div id="battlefield">
+            <div id="background-svg">
+                <img src="assets/background.svg" alt="Background" />
+            </div>
+            <div id="death-screen"></div>
+            <div id="pause-screen">PAUSED</div>
+            <div id="win-screen">
+                <span id="win-id">YOU WIN</span> <br>
+                <span style="font-size: 20px;" id="win-totalPoints">Total Points:</span><span id="final-points">0</span>
+                <div class="save-score">
+                    <input type="text" id="player-name" placeholder="Enter your name" maxlength="12" />
+                    <button id="save-score-btn" onclick="handleSaveScore()">Save Score</button>
+                </div>
+            </div>
+
+            <div id="player-hp-bar" class="health-bar-container fixed-left">
+                <div id="player-hp-fill" class="health-bar-fill"></div>
+                <span id="player-hp-text" class="hp-text">50/50</span>
+            </div>
+            <div id="enemy-hp-bar" class="health-bar-container fixed-right">
+                <div id="enemy-hp-fill" class="health-bar-fill"></div>
+                <span id="enemy-hp-text" class="hp-text">20/20</span>
+            </div>
+
+            <div id="player-sprite" class="sprite"></div>
+            <div id="enemy-sprite" class="sprite" style="right: 150px;"></div>
         </div>
 
+        <div id="bottom-panel">
+            <div class="panel-section">
+                <h3 id="txt-playerStats">Player Stats</h3>
+                <div class="stat-row"><span id="txt-defLabel">Defense</span>: <span id="stat-defence">0</span></div>
+                <div class="stat-row"><span id="txt-atkLabel">ATK</span>: <span id="stat-atk">1</span></div>
+                <div class="stat-row"><span id="txt-spdLabel">SPD</span>: <span id="stat-spd">1</span></div>
+                <div class="stat-row button-row">
+                    <button onclick="toggleShop()"><span id="txt-shpLabel">Shop</span></button>
+                </div>
+                <div class="stat-row button-row pause">
+                    <button id="btn-pause" onclick="togglePause()">Pause</button>
+                </div>
+            </div>
+            
+            <div class="panel-section big-section">
+                <h3 id="txt-consumables">Consumables</h3>
+                <div class="items">
+                    <div class="gear consumables">
+                        <span class="title" id="txt-medkitLabel">Med Kit</span>
+                        <span class="icon" id="icon-medKit"></span>
+                        <span><span class="txt-qtyLabel">Owned</span>: <span class="text" id="qty-medkit"></span></span>
+                    </div>
+                    <div class="gear consumables">
+                        <span class="title" id="txt-bigmedkitLabel">Big Med Kit</span>
+                        <span class="icon" id="icon-bigmedKit"></span>
+                        <span><span class="txt-qtyLabel">Owned</span>: <span class="text" id="qty-bigmedkit"></span></span>
+                    </div>
+                    <div class="gear consumables">
+                        <span class="title" id="txt-regenkitLabel">Regen Kit</span>
+                        <span class="icon" id="icon-regenkit"></span>
+                        <span><span class="txt-qtyLabel">Owned</span>: <span class="text" id="qty-regenkit"></span></span>
+                    </div>
+                    <div class="gear consumables">
+                        <span class="title" id="txt-grenadeLabel">Grenade</span>
+                        <span class="icon" id="icon-grenade"></span>
+                        <span><span class="txt-qtyLabel">Owned</span>: <span class="text" id="qty-grenade"></span></span>
+                    </div>
+                </div>
 
-
-        <div class="tooltip-container" id="tooltip" onclick="this.classList.toggle('active')">
-            ?
-            <span id="tooltip-label" class="tooltip-text">Escape from Tarkov is a registered trademark of Battlestate
-                Games. This project is not affiliated with, endorsed by, or sponsored by the developer.</span>
+                <h3 id="txt-upgrades">Equipment</h3>
+                <div class="items">
+                    <div class="gear armor">
+                        <span class="title" id="txt-armorLabel">Armor</span>
+                        <span id="icon-armorLabel" class="gear-icon"></span>
+                    </div>
+                    <div class="gear gun">
+                        <span class="title" id="txt-gunLabel">Gun</span>
+                        <span id="icon-gunLabel" class="gear-icon"></span>
+                    </div>
+                    <div class="gear bullets">
+                        <span class="title" id="txt-bulletLabel">Bullet</span>
+                        <span id="icon-bulletLabel" class="gear-icon"></span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div id="leaderboard-box" style="display: none;">
+        <div id="shop-screen" style="display: none;">
             <div style="display:flex; gap: 10px;">
-                <h3 id="highscores" style="flex:auto;">Global High Scores</h3><button id="closebtn-label2"
-                    style="width: 100px; height: 35px; line-height: 10px;" onclick="toggleLeaderboard()">Close</button>
+                <h3 id="shptxt-shpLabel" style="flex:auto;">Shop</h3>
+                <button id="closebtn-label" style="width: 100px; height: 35px; line-height: 10px;" onclick="toggleShop()">Close</button>
             </div>
-            <ol id="leaderboard-list">Loading scores...</ol>
-        </div>
-    </div>
-</div>
-
-<div id="game-container">
-    <div id="top-bar">
-        <div><span id="txt-wave">Wave</span>: <span id="ui-wave">1</span> (<span id="txt-loop">Loop</span>: <span
-                id="ui-loop">1</span>) ║ <span id="txt-points">Points</span>: <span id="ui-points">0</span> ║ <span
-                id="txt-deaths">Deaths</span>: <span id="ui-deaths">0</span> </div>
-        <div>
-            <img src="assets/dango.svg" alt="Dango" />
-            <span id="txt-dango">Dango</span>: <span id="ui-dango">0</span> <span id="grenade-counter"
-                style="display:none;">
-            </span>
-        </div>
-    </div>
-
-    <div id="battlefield">
-        <div id="background-svg">
-            <img src="assets/background.svg" alt="Background" />
-        </div>
-        <div id="death-screen"></div>
-        <div id="pause-screen">PAUSED</div>
-        <div id="win-screen">
-            <span id="win-id">YOU WIN</span> <br>
-            <span style="font-size: 20px;" id="win-totalPoints">Total Points:</span><span id="final-points">0</span>
-            <div class="save-score">
-                <input type="text" id="player-name" placeholder="Enter your name" maxlength="12" />
-                <button id="save-score-btn" onclick="handleSaveScore()">Save Score</button>
+            <div class="shop-items">
+                <h4><span id="shptxt-medLabel">Med Kits</span></h4>
+                <div id="consumables-container" class="items consumables-layout"></div>
             </div>
-        </div>
-
-        <div id="player-hp-bar" class="health-bar-container fixed-left">
-            <div id="player-hp-fill" class="health-bar-fill"></div>
-            <span id="player-hp-text" class="hp-text">50/50</span>
-        </div>
-        <div id="enemy-hp-bar" class="health-bar-container fixed-right">
-            <div id="enemy-hp-fill" class="health-bar-fill"></div>
-            <span id="enemy-hp-text" class="hp-text">20/20</span>
-        </div>
-
-        <div id="player-sprite" class="sprite"></div>
-        <div id="enemy-sprite" class="sprite" style="right: 150px;"></div>
-    </div>
-
-    <div id="bottom-panel">
-        <div class="panel-section">
-            <h3 id="txt-playerStats">Player Stats</h3>
-            <div class="stat-row"><span id="txt-defLabel">Defense</span>: <span id="stat-defence">0</span></div>
-            <div class="stat-row"><span id="txt-atkLabel">ATK</span>: <span id="stat-atk">1</span></div>
-            <div class="stat-row"><span id="txt-spdLabel">SPD</span>: <span id="stat-spd">1</span></div>
-            <div class="stat-row button-row "><button onclick="toggleShop()"><span
-                        id="txt-shpLabel">Shop</span></button>
+            <div class="shop-items">
+                <h4><span id="shptxt-gunLabel">Gun</span></h4>
+                <div id="shop-guns" class="items gun"></div>
             </div>
-            <div class="stat-row button-row pause"><button id="btn-pause" onclick="togglePause()">Pause</button></div>
-        </div>
-        <div class="panel-section big-section">
-            <h3 id="txt-consumables">Consumables</h3>
-            <div class="items">
-                <div class="gear consumables">
-                    <span class="title" id="txt-medkitLabel">Med Kit</span>
-                    <span class="icon" id="icon-medKit"></span>
-                    <span><span class="txt-qtyLabel">Owned<span>: <span class="text" id="qty-medkit"></span></span>
-                </div>
-                <div class="gear consumables">
-                    <span class="title" id="txt-bigmedkitLabel">Big Med Kit</span>
-                    <span class="icon" id="icon-bigmedKit"></span>
-                    <span><span class="txt-qtyLabel">Owned<span>: <span class="text" id="qty-bigmedkit"></span></span>
-                </div>
-                <div class="gear consumables">
-                    <span class="title" id="txt-regenkitLabel">Regen Kit</span>
-                    <span class="icon" id="icon-regenkit"></span>
-                    <span><span class="txt-qtyLabel">Owned<span>: <span class="text" id="qty-regenkit"></span></span>
-                </div>
-                <div class="gear consumables">
-                    <span class="title" id="txt-grenadeLabel">Grenade</span>
-                    <span class="icon" id="icon-grenade"></span>
-                    <span><span class="txt-qtyLabel">Owned<span>: <span class="text" id="qty-grenade"></span></span>
-                </div>
+            <div class="shop-items">
+                <h4><span id="shptxt-armorLabel">Armor</span></h4>
+                <div id="shop-armor" class="items armor"></div>
             </div>
-            <h3 id="txt-upgrades">Equipment</h3>
-            <div class="items">
-                <div class="gear armor">
-
-                    <span class="title" id="txt-armorLabel">Armor</span>
-                    <span id="icon-armorLabel" class="gear-icon"></span>
-                </div>
-                <div class="gear gun">
-
-                    <span class="title" id="txt-gunLabel">Gun</span>
-                    <span id="icon-gunLabel" class="gear-icon"></span>
-                </div>
-                <div class="gear bullets">
-
-                    <span class="title" id="txt-bulletLabel">Bullet</span>
-                    <span id="icon-bulletLabel" class="gear-icon"></span>
-                </div>
+            <div class="shop-items">
+                <h4><span id="shptxt-bulletsLabel">Bullets</span></h4>
+                <div id="shop-bullets" class="items bullets"></div>
             </div>
         </div>
     </div>
 
-    <div id="shop-screen" style="display: none;">
-        <div style="display:flex; gap: 10px;">
-            <h3 id="shptxt-shpLabel" style="flex:auto;">Shop</h3><button id="closebtn-label"
-                style="width: 100px; height: 35px; line-height: 10px;" onclick="toggleShop()">Close</button>
-        </div>
-        <div class="shop-items">
-            <h4><span id="shptxt-medLabel">Med Kits</span></h4>
-            <div id="consumables-container" class="items consumables-layout">
-            </div>
-        </div>
-        <div class="shop-items">
-            <h4><span id="shptxt-gunLabel">Gun</span></h4>
-            <div id="shop-guns" class="items gun"></div>
-        </div>
-        <div class="shop-items">
-            <h4><span id="shptxt-armorLabel">Armor</span></h4>
-            <div id="shop-armor" class="items armor"></div>
-        </div>
-        <div class="shop-items">
-            <h4><span id="shptxt-bulletsLabel">Bullets</span></h4>
-            <div id="shop-bullets" class="items bullets"></div>
-        </div>
-    </div>
+    <footer>
+        <p style="font-size:smaller;">
+            <span id="creatorLabel">Escape with PuniPuni was made by</span> 
+            <a href="https://linktr.ee/dinaraart" style="color: GoldenRod;" target="_blank" rel="noopener noreferrer">Dinara Art</a>
+        </p>
+    </footer>
 
-</div>
-
-<footer>
-    <p style="font-size:smaller;"> <span id="creatorLabel">Escape with PuniPuni was made by</span> <a
-            href="https://linktr.ee/dinaraart" style="color: GoldenRod;" target="_blank">Dinara Art</a>
-</footer>
+</body>
+</html>
