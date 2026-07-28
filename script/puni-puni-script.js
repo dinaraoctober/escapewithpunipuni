@@ -1,5 +1,5 @@
 let state = {
-	selectedSprite: 'A',
+	selectedSprite: "A",
 	lang: "ENG",
 	dango: 0,
 	totalDango: 0,
@@ -40,43 +40,43 @@ const SHOP_ITEMS = {
 			name: "PM Pistol",
 			cost: 0,
 			icon: '<img src="assets/pm.svg" alt="PM Pistol" />',
-			speed: 0.5
+			speed: 0.5,
 		},
 		{
 			id: "ak_74",
 			name: "AK-74",
 			cost: 50,
 			icon: '<img src="assets/ak74.svg" alt="AK-74" />',
-			speed: 1
+			speed: 1,
 		},
 		{
 			id: "ak_545",
 			name: "AK-545",
 			cost: 50,
 			icon: '<img src="assets/ak545.svg" alt="AK-545" />',
-			speed: 2
+			speed: 2,
 		},
 		{
 			id: "ak_105",
 			name: "AK-105",
 			cost: 500,
 			icon: '<img src="assets/ak105.svg" alt="AK-105" />',
-			speed: 3
+			speed: 3,
 		},
 		{
 			id: "rpk_16",
 			name: "RPK-16",
 			cost: 1000,
 			icon: '<img src="assets/rpk16.svg" alt="RPK-16" />',
-			speed: 4
+			speed: 4,
 		},
 		{
 			id: "nl545gp",
 			name: "NL545GP",
 			cost: 2000,
 			icon: '<img src="assets/nl545gp.svg" alt="NL545GP" />',
-			speed: 5
-		}
+			speed: 5,
+		},
 	],
 	armors: [
 		{
@@ -84,36 +84,36 @@ const SHOP_ITEMS = {
 			name: "None",
 			cost: 0,
 			icon: '<img src="assets/armor-none.svg" alt="None" />',
-			defense: 0
+			defense: 0,
 		},
 		{
 			id: "kirasa_n",
 			name: "BNTI Kirasa-N",
 			cost: 50,
 			icon: '<img src="assets/armor-kirasa.svg" alt="BNTI Kirasa-N" />',
-			defense: 1
+			defense: 1,
 		},
 		{
 			id: "assault_6b13",
 			name: "6B13 Assault Armor",
 			cost: 500,
 			icon: '<img src="assets/armor-6b13.svg" alt="6B13 Assault Armor" />',
-			defense: 2
+			defense: 2,
 		},
 		{
 			id: "iotv_gen4",
 			name: "IOTV Gen 4",
 			cost: 1000,
 			icon: '<img src="assets/armor-iotv.svg" alt="IOTV Gen 4" />',
-			defense: 3
+			defense: 3,
 		},
 		{
 			id: "redut_t5",
 			name: "Redut-T5",
 			cost: 2000,
 			icon: '<img src="assets/armor-redut.svg" alt="Redut-T5" />',
-			defense: 4
-		}
+			defense: 4,
+		},
 	],
 	bullets: [
 		{
@@ -121,37 +121,39 @@ const SHOP_ITEMS = {
 			name: "FMJ",
 			cost: 0,
 			icon: '<img src="assets/bullet-fmj.svg" alt="FMJ" />',
-			attack: 1
+			attack: 1,
 		},
 		{
 			id: "bullet_bt",
 			name: "BT",
 			cost: 50,
 			icon: '<img src="assets/bullet-bt.svg" alt="BT" />',
-			attack: 5
+			attack: 5,
 		},
 		{
 			id: "bullet_bp",
 			name: "BP",
 			cost: 500,
 			icon: '<img src="assets/bullet-bp.svg" alt="BP" />',
-			attack: 10
+			attack: 10,
 		},
 		{
 			id: "bullet_bs",
 			name: "BS",
 			cost: 1000,
 			icon: '<img src="assets/bullet-bs.svg" alt="BS" />',
-			attack: 20
+			attack: 20,
 		},
 		{
 			id: "bullet_igolnik",
 			name: "PPBS Igolnik",
 			cost: 2000,
 			icon: '<img src="assets/bullet-igolnik.svg" alt="PPBS Igolnik" />',
-			attack: 50
-		}
+			attack: 50,
+		},
 	],
+	armor: [],
+	bullet: [],
 	consumables: [
 		{
 			id: "medkit",
@@ -184,12 +186,12 @@ const SHOP_ITEMS = {
 	],
 };
 
-let enemy = { maxHp: 20, currentHp: 20, atk: 1, isBoss: false, isDead: false };
+let enemy = {maxHp: 20, currentHp: 20, atk: 1, isBoss: false, isDead: false};
 let attackTimer = 0;
 let enemyAttackTimer = 0;
 let lastTime = performance.now();
 const BASE_PLAYER_ATTACK_SPEED = 1.0; // Seconds per attack
-const ENEMY_ATTACK_INTERVAL = 1.5;     // Seconds per enemy attack
+const ENEMY_ATTACK_INTERVAL = 1.5; // Seconds per enemy attack
 const GRENADE_ICON = '<img src="assets/grenade.svg" alt="Grenade" />'; // Add your SVG path here
 
 const i18n = {
@@ -283,7 +285,7 @@ const i18n = {
 };
 
 function setLang(lang) {
-	state.lang = lang;
+	state.lang = (lang || "ENG").toUpperCase();
 	updateUI();
 	renderConsumables();
 	if (state.shopOpen) renderShop();
@@ -305,7 +307,9 @@ function startGame() {
 	if (e) {
 		e.style.opacity = "0";
 		e.style.pointerEvents = "none";
-		setTimeout(() => { e.style.display = "none"; }, 500);
+		setTimeout(() => {
+			e.style.display = "none";
+		}, 500);
 	}
 
 	state.started = true;
@@ -327,12 +331,12 @@ function startGame() {
 // Update the start screen itself whenever setLang() runs
 // Add these new target updates directly into your existing updateUI() function
 function updateUI() {
-	const currentLang = state.lang && i18n[state.lang] ? state.lang : "ENG";
+	const currentLang = state.lang && i18n[state.lang] ? i18n[state.lang] : i18n.ENG;
 
 	// Update main buttons
 	document.getElementById("btn-start").innerText = currentLang.start || "Start Game";
 
-	const t = i18n[state.lang];
+	const t = currentLang;
 
 	// Sprite Selector Labels
 	const spriteAEl = document.getElementById("txt-spriteA");
@@ -450,9 +454,7 @@ function renderPlayerSprite() {
 	if (!playerEl) return;
 
 	// Adjust filenames to match your asset paths
-	const spriteUrl = state.selectedSprite === 'A'
-		? 'assets/player-a.svg'
-		: 'assets/player-b.svg';
+	const spriteUrl = state.selectedSprite === "A" ? "assets/player-a.svg" : "assets/player-b.svg";
 
 	playerEl.innerHTML = `<img src="${spriteUrl}" alt="Player Sprite" class="player-sprite-img" />`;
 }
@@ -470,10 +472,10 @@ function createProjectile(type, color, startX, startY, endX, endY, onHit) {
 	// Animate movement
 	proj.animate(
 		[
-			{ left: startX, top: startY },
-			{ left: endX, top: endY },
+			{left: startX, top: startY},
+			{left: endX, top: endY},
 		],
-		{ duration: 300, fill: "forwards" },
+		{duration: 300, fill: "forwards"},
 	).onfinish = () => {
 		proj.remove();
 		if (onHit) onHit();
@@ -499,7 +501,7 @@ function takeDamage(enemyAtk) {
 		finalDamage = 0; // The enemy missed!
 
 		// Fix language check to strictly align with state.lang
-		const missText = state.lang === "ja" ? "キィィン！" : "P-TING!";
+		const missText = state.lang === "JPN" ? "キィィン！" : "P-TING!";
 		showFloatingText(missText, "player-sprite");
 	} else {
 		finalDamage = Math.max(0.5, finalDamage);
@@ -562,9 +564,9 @@ function performAttack(target) {
 function getGrenadeDamagePercent() {
 	const roll = Math.random() * 100;
 	if (roll < 10) return 0; // 10% chance: 0%
-	if (roll < 30) return 0.4; // 20% chance: 20%
-	if (roll < 70) return 0.4; // 40% chance: 50%
-	if (roll < 90) return 0.4; // 20% chance: 80%
+	if (roll < 30) return 0.4;
+	if (roll < 70) return 0.4;
+	if (roll < 90) return 0.4;
 	return 1.0; // 10% chance: 100%
 }
 
@@ -653,8 +655,7 @@ function spawnEnemy() {
 
 	enemy.maxHp = Math.round(baseHp * difficultyMultiplier);
 	enemy.currentHp = enemy.maxHp;
-	document.getElementById("enemy-sprite").innerHTML =
-		`<img src="${getEnemySpriteUrl(state.loop, enemy.isBoss)}" alt="enemy" class="enemy-sprite-img" />`;
+	document.getElementById("enemy-sprite").innerHTML = `<img src="${getEnemySpriteUrl(state.loop, enemy.isBoss)}" alt="enemy" class="enemy-sprite-img" />`;
 }
 
 let currentLastTime = performance.now();
@@ -664,7 +665,7 @@ function playerDefeated() {
 	state.deaths++;
 	document.getElementById("player-sprite").style.opacity = "0";
 
-	let pointsPenalty = Math.floor((state.points || 0) * 0.30);
+	let pointsPenalty = Math.floor((state.points || 0) * 0.3);
 	state.points = Math.max(0, (state.points || 0) - pointsPenalty);
 
 	document.getElementById("ui-points").innerText = state.totalDango;
@@ -699,8 +700,8 @@ function renderShop() {
 	const t = i18n[state.lang];
 
 	const categories = [
-		{ id: "shop-guns", type: "guns", key: "speed", currentKey: "currentGun" },
-		{ id: "shop-armor", type: "armor", key: "def", currentKey: "currentArmor" },
+		{id: "shop-guns", type: "guns", key: "speed", currentKey: "currentGun"},
+		{id: "shop-armor", type: "armor", shopType: "armors", key: "def", currentKey: "currentArmor"},
 		{
 			id: "shop-bullets",
 			type: "bullet",
@@ -797,17 +798,23 @@ function toggleLeaderboard() {
 }
 
 function renderEquipment() {
-	const arm = SHOP_ITEMS.armor[state.currentArmor];
-	document.getElementById("icon-armorLabel").innerHTML = arm.icon; // Uses the equipped armor's SVG
-	document.getElementById("txt-armorLabel").innerText = `${arm.name}`;
+	const arm = (SHOP_ITEMS.armors && SHOP_ITEMS.armors[state.currentArmor]) || (SHOP_ITEMS.armor && SHOP_ITEMS.armor[state.currentArmor]) || (SHOP_ITEMS.armors && SHOP_ITEMS.armors[0]);
+	if (arm) {
+		document.getElementById("icon-armorLabel").innerHTML = arm.icon; // Uses the equipped armor's SVG
+		document.getElementById("txt-armorLabel").innerText = `${arm.name}`;
+	}
 
-	const gun = SHOP_ITEMS.guns[state.currentGun];
-	document.getElementById("icon-gunLabel").innerHTML = gun.icon; // Uses the equipped gun's SVG
-	document.getElementById("txt-gunLabel").innerText = `${gun.name}`;
+	const gun = SHOP_ITEMS.guns && SHOP_ITEMS.guns[state.currentGun];
+	if (gun) {
+		document.getElementById("icon-gunLabel").innerHTML = gun.icon; // Uses the equipped gun's SVG
+		document.getElementById("txt-gunLabel").innerText = `${gun.name}`;
+	}
 
-	const bul = SHOP_ITEMS.bullets[state.currentBullet];
-	document.getElementById("icon-bulletLabel").innerHTML = bul.icon; // Uses the equipped bullet's SVG
-	document.getElementById("txt-bulletLabel").innerText = `${bul.name}`;
+	const bul = (SHOP_ITEMS.bullets && SHOP_ITEMS.bullets[state.currentBullet]) || (SHOP_ITEMS.bullet && SHOP_ITEMS.bullet[state.currentBullet]);
+	if (bul) {
+		document.getElementById("icon-bulletLabel").innerHTML = bul.icon; // Uses the equipped bullet's SVG
+		document.getElementById("txt-bulletLabel").innerText = `${bul.name}`;
+	}
 }
 
 // Function to handle buying consumables dynamically
@@ -951,24 +958,26 @@ function update(timestamp) {
 }
 
 function buyItem(type, index) {
-	const item = SHOP_ITEMS[type][index];
-	if (state.dango >= item.cost) {
-		state.dango -= item.cost;
+	const itemType = type === "bullet" ? "bullets" : type === "armor" ? "armors" : type;
+	const item = SHOP_ITEMS[itemType][index];
+	if (!item || state.dango < item.cost) return;
 
-		if (type === "guns") {
-			state.ownedGuns.push(index);
-			state.currentGun = index;
-			state.spd = item.speed;
-		} else if (type === "armor") {
-			state.ownedArmor.push(index);
-			state.currentArmor = index;
-			state.def = item.def;
-		} else if (type === "bullet") {
-			state.ownedBullet.push(index);
-			state.currentBullet = index;
-			state.atk = item.atk;
-		}
+	state.dango -= item.cost;
+
+	if (type === "guns") {
+		state.ownedGuns.push(index);
+		state.currentGun = index;
+		state.spd = item.speed;
+	} else if (type === "armor") {
+		state.ownedArmor.push(index);
+		state.currentArmor = index;
+		state.def = item.defense;
+	} else if (type === "bullet") {
+		state.ownedBullet.push(index);
+		state.currentBullet = index;
+		state.atk = item.atk;
 	}
+
 	renderShop();
 	renderEquipment();
 	renderConsumables();
