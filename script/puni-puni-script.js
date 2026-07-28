@@ -37,22 +37,15 @@ const SHOP_ITEMS = {
 	guns: [
 		{
 			id: "default_gun",
-			name: "PM Pistol",
-			cost: 0,
-			icon: '<img src="assets/pm.svg" alt="PM Pistol" />',
-			speed: 0.5,
-		},
-		{
-			id: "ak_74",
 			name: "AK-74",
-			cost: 50,
+			cost: 0,
 			icon: '<img src="assets/ak74.svg" alt="AK-74" />',
 			speed: 1,
 		},
 		{
 			id: "ak_545",
 			name: "AK-545",
-			cost: 50,
+			cost: `50,
 			icon: '<img src="assets/ak545.svg" alt="AK-545" />',
 			speed: 2,
 		},
