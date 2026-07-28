@@ -1,0 +1,699 @@
+/* Hide squarespace shit */
+
+.header-title-logo,
+header {
+    display: none;
+}
+
+.fluid-engine,
+.fe-block,
+.content-wrapper {
+    display: flex !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Tarkov-inspired tactical aesthetic */
+body,
+.content-wrapper {
+    font-family: 'DotGothic16', sans-serif !important;
+    letter-spacing: 2px !important;
+
+    /* Optimization for pixel fonts to keep edges sharp */
+    image-rendering: pixelated;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #232524 !important;
+    color: #d1d5db !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    user-select: none;
+}
+
+
+.gear.consumables .text {
+    text-align: center;
+    margin-top: -7px;
+}
+
+.sprite-select {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.sprite-choice-btn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    border: 2px solid transparent;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: "DotGothic16", sans-serif;
+    color: #ccc;
+    font-size: 13px;
+}
+
+.sprite-choice-btn input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sprite-choice-btn img {
+    width: 64px;
+    height: 64px;
+    display: block;
+}
+
+.sprite-choice-btn:has(input:checked) {
+    border-color: #ffcc00;
+    box-shadow: 0 0 8px #ffcc00;
+    color: #fff;
+}
+
+#game-container {
+    width: 800px;
+    background-color: #2b2d2a;
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #4b5563;
+}
+
+#battlefield {
+    min-height: 300px;
+    height: 300px;
+    background: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+}
+
+#death-screen,
+#pause-screen,
+#win-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #d1d5db;
+}
+
+#win-screen {
+    pointer-events: all !important;
+}
+
+.save-score {
+    text-align: center;
+    border-top: 3px solid white;
+    margin-top: 3px;
+
+}
+
+.save-score input#player-name {
+    font-size: 20px;
+    width: 160px;
+    height: 33px;
+}
+
+
+/* Asset placeholders */
+.sprite {
+    position: absolute;
+    bottom: 30px;
+    width: 80px;
+    height: 80px;
+    transition: opacity 0.5s;
+    z-index: 10;
+    object-fit: contain;
+}
+
+#player-sprite {
+    left: 150px;
+    height: 100px;
+    overflow: visible !important;
+}
+
+#enemy-sprite {
+    right: 150px;
+    height: 120px;
+}
+
+.boss {
+    width: 120px !important;
+    height: 120px !important;
+    bottom: 10px !important;
+}
+
+.health-bar-container {
+    position: absolute;
+    top: 20px;
+    width: 200px;
+    height: 20px;
+    background-color: #1a1a1a;
+    border: 1px solid #4b5563;
+    border-radius: 0;
+    overflow: hidden;
+    z-index: 50;
+}
+
+.hp-text {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.fixed-left {
+    left: 20px;
+}
+
+.fixed-right {
+    right: 20px;
+}
+
+.health-bar-fill {
+    height: 100%;
+    background-color: #556b2f;
+    width: 100%;
+    transition: width 0.2s;
+}
+
+#bottom-panel {
+    display: flex;
+    padding: 20px;
+    background-color: #2b2d2a;
+    border-top: 2px solid #3d403b;
+}
+
+.panel-section {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.panel-section.big-section {
+    flex: 3 !important
+}
+
+h3 {
+    margin-top: 0;
+    color: #a4ac86;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-bottom: 1px solid #556b2f;
+    padding-bottom: 5px;
+}
+
+.stat-row {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 5px;
+    align-items: center;
+    padding: 4px 0;
+    height: 35px;
+    color: #e5e7eb;
+    font-size: 18px;
+}
+
+button {
+    background-color: #556b2f;
+    color: #e5e7eb;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #6b715a;
+    font-family: 'DotGothic16', sans-serif;
+    letter-spacing: 2px;
+}
+
+button:hover {
+    background-color: #4a5e29;
+}
+
+button:disabled {
+    background-color: #2b2d2a;
+    color: #555;
+    border-color: #333;
+    cursor: not-allowed;
+}
+
+.btn-grey {
+    background-color: #6b7280 !important;
+    border-color: #4b5563 !important;
+    border: 1px solid;
+}
+
+.btn-grey:hover {
+    background-color: #4b5563 !important;
+}
+
+#top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+#top-bar div {
+    display: flex;
+    gap: 5px;
+}
+
+#top-bar svg {
+    height: 32px;
+    width: 32px;
+}
+
+#btn-grenade {
+    position: absolute;
+    left: 40px;
+    bottom: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #8b0000;
+    border: 2px solid #fff;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    z-index: 15;
+    display: none;
+}
+
+#btn-grenade svg {
+    height: 32px;
+    width: 32px;
+}
+
+span.txt-qtyLabel {
+    display: contents;
+}
+
+@keyframes floatUpDiagonal {
+    0% {
+        opacity: 0;
+        /* Start rotated (e.g., 15 degrees) and at the origin */
+        transform: translate(0, 0) rotate(15deg);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        /* Move up (negative Y) and to the right/left (positive X), keeping the rotation */
+        transform: translate(30px, -40px) rotate(15deg);
+    }
+}
+
+.floating-text {
+    z-index: 999;
+    pointer-events: none;
+}
+
+.items {
+    display: flex;
+    gap: 10px;
+}
+
+#shop-screen .gear {
+    width: 25%;
+}
+
+.gear button:active {
+    box-shadow: inset 0 4px 8px white, 0 1px 0px white;
+}
+
+.gear button {
+    position: relative;
+    overflow: hidden;
+}
+
+.gear.consumables .cooldown-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    z-index: 2;
+    transition: height 1s linear;
+}
+
+
+.information {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: inherit;
+    justify-content: center;
+    padding: 10px;
+
+}
+
+.gear svg {
+    width: 100px;
+    height: 80px;
+}
+
+.gear.consumables svg {
+    width: 80px;
+}
+
+.gear-info {
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+}
+
+.gear .gear-icon {
+    margin: 13px;
+    display: flex;
+    flex: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.gear button {
+    width: 100% !important;
+    padding: 0;
+    border: 0 !important;
+}
+
+.gear button:disabled {
+    position: relative;
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}
+
+.items {
+    margin-top: 5px;
+}
+
+.gear.consumables {
+    text-align: center;
+    width: 23%;
+}
+
+.gear.consumables .icon {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 10px 20px 0 20px;
+}
+
+.gear.consumables .icon.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.gear.consumables .cooldown-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.panel-section.big-section .gear {
+    height: 147px !important;
+}
+
+.gear,
+.gear button {
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid grey;
+    border-top: none;
+    width: 33%;
+    height: 180px;
+    background: repeating-linear-gradient(45deg,
+            rgba(64, 64, 64, 0.5),
+            rgba(64, 64, 64, 0.5) 10px,
+            transparent 10px,
+            transparent 20px);
+}
+
+.med-kit svg {
+    margin: 0 auto;
+    padding-top: 1px;
+}
+
+.consumables-layout .gear {
+    width: 23.5% !important;
+}
+
+.gear span.title {
+    background: rgb(25, 25, 25);
+    padding-left: 4px;
+    display: block;
+    width: calc(100% - 2px);
+    border-top: 2px #bbb solid;
+    border-bottom: 1px #bbb solid;
+    font-size: small;
+    text-align: left;
+
+}
+
+.logo svg {
+    margin: 20px auto;
+    display: block;
+    height: 100px;
+    width: auto;
+}
+
+#leaderboard-box {
+    border: 3px solid grey;
+    overflow-y: hidden !important;
+    top: -555px !important;
+    width: 740px;
+}
+
+#shop-screen,
+#leaderboard-box {
+    overflow-y: scroll;
+    position: relative;
+    top: -765px;
+    height: 725px;
+    background: #333;
+    padding: 20px;
+    margin-bottom: -765px;
+    z-index: 10000;
+}
+
+/* Fullscreen overlay style */
+.screen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20, 20, 20, 0.95);
+    /* Deep dark background */
+    z-index: 9999;
+    /* Ensures it sits on top of all game elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.start-content {
+    text-align: center;
+    font-family: monospace;
+    /* Matches your current look */
+    color: #fff;
+}
+
+.game-logo {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #ff6b6b;
+    /* Accent color for title */
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.start-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 2.5rem;
+}
+
+/* Button sizing that matches your UI aesthetic */
+.start-menu button,
+.start-lang-select button {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    background-color: #556b2f;
+    /* Dark green theme matching your stats */
+    color: white;
+    border: 1px solid #778899;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.start-menu button:hover,
+.start-lang-select button:hover {
+    background-color: #6b8e23;
+}
+
+.start-lang-select {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.start-lang-select button {
+    padding: 6px 15px;
+    font-size: 0.9rem;
+    background-color: #333;
+}
+
+#shop-screen h3 {
+    margin-bottom: 10px;
+}
+
+#shop-screen h4 {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.logo svg path,
+.logo svg polygon {
+    fill: #fff;
+}
+
+button#btn-grenade {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    left: 20px;
+    position: absolute;
+    padding: 8px;
+    background: firebrick;
+}
+
+.projectile {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    z-index: 10;
+}
+
+
+#txt-upgrades {
+    margin-top: 15px;
+}
+
+.projectile.red {
+    background-color: Tomato;
+}
+
+/* Enemy */
+.projectile.orange {
+    background-color: LemonChiffon;
+}
+
+/* Player */
+
+.tooltip-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #2b2d2a;
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.8);
+    border: 3px solid #4b5563;
+    cursor: help;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background 0.2s;
+}
+
+.tooltip-container:hover,
+.tooltip-container.active {
+    background-color: #000;
+}
+
+/* The tooltip text */
+.tooltip-text {
+    visibility: hidden;
+    width: 300px;
+    background-color: #6b7280;
+    color: #fff;
+    padding: 8px;
+    font-size: 0.85rem;
+    font-weight: normal;
+    border: 3px solid #4b5563;
+
+    /* Position above the icon */
+    position: absolute;
+    bottom: 120%;
+    left: 0;
+    z-index: 1;
+
+    /* Fade in effect */
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Little arrow for the tooltip */
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 15px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #4b5563 transparent transparent transparent;
+}
+
+/* Show tooltip on hover or when 'active' class is present */
+.tooltip-container:hover .tooltip-text,
+.tooltip-container.active .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}

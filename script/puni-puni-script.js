@@ -341,7 +341,7 @@ const SHOP_ITEMS = {
 		},
 	],
 };
-let enemy = {maxHp: 20, currentHp: 20, atk: 1, isBoss: false, isDead: false};
+let enemy = { maxHp: 20, currentHp: 20, atk: 1, isBoss: false, isDead: false };
 let attackTimer = 0;
 let enemyAttackTimer = 0;
 
@@ -589,10 +589,10 @@ function createProjectile(type, color, startX, startY, endX, endY, onHit) {
 	// Animate movement
 	proj.animate(
 		[
-			{left: startX, top: startY},
-			{left: endX, top: endY},
+			{ left: startX, top: startY },
+			{ left: endX, top: endY },
 		],
-		{duration: 300, fill: "forwards"},
+		{ duration: 300, fill: "forwards" },
 	).onfinish = () => {
 		proj.remove();
 		if (onHit) onHit();
@@ -1051,8 +1051,8 @@ function renderShop() {
 	const t = i18n[state.lang];
 
 	const categories = [
-		{id: "shop-guns", type: "guns", key: "speed", currentKey: "currentGun"},
-		{id: "shop-armor", type: "armor", key: "def", currentKey: "currentArmor"},
+		{ id: "shop-guns", type: "guns", key: "speed", currentKey: "currentGun" },
+		{ id: "shop-armor", type: "armor", key: "def", currentKey: "currentArmor" },
 		{
 			id: "shop-bullets",
 			type: "bullet",
