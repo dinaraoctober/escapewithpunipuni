@@ -328,7 +328,6 @@ function startGame() {
 // Add these new target updates directly into your existing updateUI() function
 function updateUI() {
 	const currentLang = state.lang && i18n[state.lang] ? state.lang : "ENG";
-	const currentLang = i18n[state.lang];
 
 	// Update main buttons
 	document.getElementById("btn-start").innerText = currentLang.start || "Start Game";
