@@ -80,6 +80,10 @@ body,
     color: #fff;
 }
 
+player-sprite img {
+    height: 100px;
+}
+
 #game-container {
     margin-top: 20px;
     width: 800px;
@@ -461,7 +465,7 @@ span.txt-qtyLabel {
     justify-items: center;
     display: flex;
     flex-direction: column;
-    border: 2px solid grey;
+    border: 2px solid #bbb;
     border-top: none;
     width: 33%;
     height: 180px;
@@ -485,9 +489,9 @@ span.txt-qtyLabel {
     background: rgb(25, 25, 25);
     padding-left: 4px;
     display: block;
-    width: calc(100% - 2px);
+    width: calc(100% - 4px);
     border-top: 2px #bbb solid;
-    border-bottom: 1px #bbb solid;
+    border-bottom: 2px #bbb solid;
     font-size: small;
     text-align: left;
 
