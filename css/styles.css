@@ -80,7 +80,7 @@ body,
     color: #fff;
 }
 
-player-sprite img {
+#player-sprite img {
     height: 100px;
 }
 
