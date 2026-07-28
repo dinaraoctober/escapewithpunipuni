@@ -69,8 +69,8 @@ body,
 }
 
 .sprite-choice-btn img {
-    width: 64px;
-    height: 64px;
+    width: 140px;
+    height: 150px;
     display: block;
 }
 
@@ -289,7 +289,7 @@ button:disabled {
     gap: 5px;
 }
 
-#top-bar svg {
+#top-bar img {
     height: 32px;
     width: 32px;
 }
@@ -309,7 +309,7 @@ button:disabled {
     display: none;
 }
 
-#btn-grenade svg {
+#btn-grenade img {
     height: 32px;
     width: 32px;
 }
@@ -382,12 +382,12 @@ span.txt-qtyLabel {
 
 }
 
-.gear svg {
+.gear img {
     width: 100px;
     height: 80px;
 }
 
-.gear.consumables svg {
+.gear.consumables img {
     width: 80px;
 }
 
@@ -471,7 +471,7 @@ span.txt-qtyLabel {
             transparent 20px);
 }
 
-.med-kit svg {
+.med-kit img {
     margin: 0 auto;
     padding-top: 1px;
 }
@@ -492,7 +492,7 @@ span.txt-qtyLabel {
 
 }
 
-.logo svg {
+.logo img {
     margin: 20px auto;
     display: block;
     height: 100px;
@@ -594,11 +594,6 @@ span.txt-qtyLabel {
 #shop-screen h4 {
     margin-bottom: 5px;
     margin-top: 5px;
-}
-
-.logo svg path,
-.logo svg polygon {
-    fill: #fff;
 }
 
 button#btn-grenade {
