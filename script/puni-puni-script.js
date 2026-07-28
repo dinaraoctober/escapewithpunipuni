@@ -1,5 +1,6 @@
 let state = {
 	selectedSprite: 'A',
+	lang: "ENG",
 	dango: 0,
 	totalDango: 0,
 	wave: 1,
@@ -34,25 +35,122 @@ let state = {
 
 const SHOP_ITEMS = {
 	guns: [
-		{ name: "AK-74", speed: 1, cost: 50, icon: `<img src="assets/ak74.svg" alt="AK-74" />` },
-		{ name: "AK-545", speed: 2, cost: 50, icon: `<img src="assets/ak545.svg" alt="AK-545" />` },
-		{ name: "AK-105", speed: 3, cost: 500, icon: `<img src="assets/ak105.svg" alt="AK-105" />` },
-		{ name: "RPK-16", speed: 4, cost: 1000, icon: `<img src="assets/rpk16.svg" alt="RPK-16" />` },
-		{ name: "NL545GP", speed: 5, cost: 2000, icon: `<img src="assets/nl545gp.svg" alt="NL545GP" />` },
+		{
+			id: "default_gun",
+			name: "PM Pistol",
+			cost: 0,
+			icon: '<img src="assets/pm.svg" alt="PM Pistol" />',
+			speed: 0.5
+		},
+		{
+			id: "ak_74",
+			name: "AK-74",
+			cost: 50,
+			icon: '<img src="assets/ak74.svg" alt="AK-74" />',
+			speed: 1
+		},
+		{
+			id: "ak_545",
+			name: "AK-545",
+			cost: 50,
+			icon: '<img src="assets/ak545.svg" alt="AK-545" />',
+			speed: 2
+		},
+		{
+			id: "ak_105",
+			name: "AK-105",
+			cost: 500,
+			icon: '<img src="assets/ak105.svg" alt="AK-105" />',
+			speed: 3
+		},
+		{
+			id: "rpk_16",
+			name: "RPK-16",
+			cost: 1000,
+			icon: '<img src="assets/rpk16.svg" alt="RPK-16" />',
+			speed: 4
+		},
+		{
+			id: "nl545gp",
+			name: "NL545GP",
+			cost: 2000,
+			icon: '<img src="assets/nl545gp.svg" alt="NL545GP" />',
+			speed: 5
+		}
 	],
-	armor: [
-		{ name: "None", def: 0, cost: 0, icon: `<img src="assets/armor-none.svg" alt="None" />` },
-		{ name: "BNTI Kirasa-N", def: 1, cost: 50, icon: `<img src="assets/armor-kirasa.svg" alt="Armor" />` },
-		{ name: "6B13 Assault Armor", def: 2, cost: 500, icon: `<img src="assets/armor-6b13.svg" alt="Armor" />` },
-		{ name: "IOTV Gen 4", def: 3, cost: 1000, icon: `<img src="assets/armor-iotv.svg" alt="Armor" />` },
-		{ name: "Redut-T5", def: 4, cost: 2000, icon: `<img src="assets/armor-redut.svg" alt="Armor" />` },
+	armors: [
+		{
+			id: "default_armor",
+			name: "None",
+			cost: 0,
+			icon: '<img src="assets/armor-none.svg" alt="None" />',
+			defense: 0
+		},
+		{
+			id: "kirasa_n",
+			name: "BNTI Kirasa-N",
+			cost: 50,
+			icon: '<img src="assets/armor-kirasa.svg" alt="BNTI Kirasa-N" />',
+			defense: 1
+		},
+		{
+			id: "assault_6b13",
+			name: "6B13 Assault Armor",
+			cost: 500,
+			icon: '<img src="assets/armor-6b13.svg" alt="6B13 Assault Armor" />',
+			defense: 2
+		},
+		{
+			id: "iotv_gen4",
+			name: "IOTV Gen 4",
+			cost: 1000,
+			icon: '<img src="assets/armor-iotv.svg" alt="IOTV Gen 4" />',
+			defense: 3
+		},
+		{
+			id: "redut_t5",
+			name: "Redut-T5",
+			cost: 2000,
+			icon: '<img src="assets/armor-redut.svg" alt="Redut-T5" />',
+			defense: 4
+		}
 	],
-	bullet: [
-		{ name: "FMJ", atk: 1, cost: 0, icon: `<img src="assets/bullet-fmj.svg" alt="FMJ" />` },
-		{ name: "BT", atk: 5, cost: 50, icon: `<img src="assets/bullet-bt.svg" alt="BT" />` },
-		{ name: "BP", atk: 10, cost: 500, icon: `<img src="assets/bullet-bp.svg" alt="BP" />` },
-		{ name: "BS", atk: 20, cost: 1000, icon: `<img src="assets/bullet-bs.svg" alt="BS" />` },
-		{ name: "PPBS Igolnik", atk: 50, cost: 2000, icon: `<img src="assets/bullet-igolnik.svg" alt="PPBS" />` },
+	bullets: [
+		{
+			id: "default_bullet",
+			name: "FMJ",
+			cost: 0,
+			icon: '<img src="assets/bullet-fmj.svg" alt="FMJ" />',
+			attack: 1
+		},
+		{
+			id: "bullet_bt",
+			name: "BT",
+			cost: 50,
+			icon: '<img src="assets/bullet-bt.svg" alt="BT" />',
+			attack: 5
+		},
+		{
+			id: "bullet_bp",
+			name: "BP",
+			cost: 500,
+			icon: '<img src="assets/bullet-bp.svg" alt="BP" />',
+			attack: 10
+		},
+		{
+			id: "bullet_bs",
+			name: "BS",
+			cost: 1000,
+			icon: '<img src="assets/bullet-bs.svg" alt="BS" />',
+			attack: 20
+		},
+		{
+			id: "bullet_igolnik",
+			name: "PPBS Igolnik",
+			cost: 2000,
+			icon: '<img src="assets/bullet-igolnik.svg" alt="PPBS Igolnik" />',
+			attack: 50
+		}
 	],
 	consumables: [
 		{
@@ -98,7 +196,7 @@ const i18n = {
 	ENG: {
 		start: "Start Game",
 		spriteA: "Puni Puni A",
-        spriteB: "Puni Puni B",
+		spriteB: "Puni Puni B",
 		consumables: "Consumables",
 		creatorLabel: "Escape with PuniPuni was made by",
 		wave: "Wave",
@@ -141,7 +239,7 @@ const i18n = {
 	JPN: {
 		start: "スタート",
 		spriteA: "ぷにぷに A",
-        spriteB: "ぷにぷに B",
+		spriteB: "ぷにぷに B",
 		consumables: "消耗品",
 		creatorLabel: "ぷにぷにとの脱出は",
 		leaderboard: "ランキング ",
@@ -202,33 +300,34 @@ function setDisabled(el, isDisabled) {
 }
 
 // 1. Logic to hide the start screen and initiate gameplay loops
-function startGame(){
-    const e = document.getElementById("start-screen");
-    if (e) {
-        e.style.opacity = "0";
-        e.style.pointerEvents = "none";
-        setTimeout(() => { e.style.display = "none"; }, 500);
-    }
+function startGame() {
+	const e = document.getElementById("start-screen");
+	if (e) {
+		e.style.opacity = "0";
+		e.style.pointerEvents = "none";
+		setTimeout(() => { e.style.display = "none"; }, 500);
+	}
 
-    state.started = true;
-    state.manualPaused = false;
-    state.paused = false;
-    state.isDead = false;
-    state.won = false;
-    enemy.isDead = false;
+	state.started = true;
+	state.manualPaused = false;
+	state.paused = false;
+	state.isDead = false;
+	state.won = false;
+	enemy.isDead = false;
 
-    // Reset game loop time tracker to current time
-    lastTime = performance.now();
+	// Reset game loop time tracker to current time
+	lastTime = performance.now();
 
-    renderPlayerSprite();
-    spawnEnemy();
-    checkPauseState();
-    updateUI();
+	renderPlayerSprite();
+	spawnEnemy();
+	checkPauseState();
+	updateUI();
 }
 
 // Update the start screen itself whenever setLang() runs
 // Add these new target updates directly into your existing updateUI() function
 function updateUI() {
+	const currentLang = state.lang && i18n[state.lang] ? state.lang : "ENG";
 	const currentLang = i18n[state.lang];
 
 	// Update main buttons
@@ -237,11 +336,11 @@ function updateUI() {
 	const t = i18n[state.lang];
 
 	// Sprite Selector Labels
-    const spriteAEl = document.getElementById("txt-spriteA");
-    if (spriteAEl) spriteAEl.innerText = t.spriteA;
+	const spriteAEl = document.getElementById("txt-spriteA");
+	if (spriteAEl) spriteAEl.innerText = t.spriteA;
 
-    const spriteBEl = document.getElementById("txt-spriteB");
-    if (spriteBEl) spriteBEl.innerText = t.spriteB;
+	const spriteBEl = document.getElementById("txt-spriteB");
+	if (spriteBEl) spriteBEl.innerText = t.spriteB;
 
 	const winId = document.getElementById("win-id");
 	if (winId) winId.innerText = t.win;
@@ -342,21 +441,21 @@ function updateUI() {
 }
 
 function setPlayerSprite(spriteKey) {
-    state.selectedSprite = spriteKey;
-    renderPlayerSprite();
+	state.selectedSprite = spriteKey;
+	renderPlayerSprite();
 }
 
 // 3. Helper function to render the image inside #player-sprite
 function renderPlayerSprite() {
-    const playerEl = document.getElementById("player-sprite");
-    if (!playerEl) return;
+	const playerEl = document.getElementById("player-sprite");
+	if (!playerEl) return;
 
-    // Adjust filenames to match your asset paths
-    const spriteUrl = state.selectedSprite === 'A' 
-        ? 'assets/player-a.svg' 
-        : 'assets/player-b.svg';
+	// Adjust filenames to match your asset paths
+	const spriteUrl = state.selectedSprite === 'A'
+		? 'assets/player-a.svg'
+		: 'assets/player-b.svg';
 
-    playerEl.innerHTML = `<img src="${spriteUrl}" alt="Player Sprite" class="player-sprite-img" />`;
+	playerEl.innerHTML = `<img src="${spriteUrl}" alt="Player Sprite" class="player-sprite-img" />`;
 }
 
 function createProjectile(type, color, startX, startY, endX, endY, onHit) {
@@ -538,10 +637,10 @@ function triggerWin() {
 }
 
 function getEnemySpriteUrl(loop, isBoss) {
-    if (isBoss) {
-        return `assets/sprite-${loop}-boss.svg`;
-    }
-    return `assets/sprite-${loop}.svg`;
+	if (isBoss) {
+		return `assets/sprite-${loop}-boss.svg`;
+	}
+	return `assets/sprite-${loop}.svg`;
 }
 
 function spawnEnemy() {
@@ -567,7 +666,7 @@ function playerDefeated() {
 	document.getElementById("player-sprite").style.opacity = "0";
 
 	let pointsPenalty = Math.floor((state.points || 0) * 0.30);
-    state.points = Math.max(0, (state.points || 0) - pointsPenalty);
+	state.points = Math.max(0, (state.points || 0) - pointsPenalty);
 
 	document.getElementById("ui-points").innerText = state.totalDango;
 	document.getElementById("death-screen").style.opacity = "1";
@@ -886,18 +985,18 @@ document.addEventListener("click", function (event) {
 
 // In your DOMContentLoaded listener:
 document.addEventListener("DOMContentLoaded", () => {
-    renderPlayerSprite();
-    renderEquipment();
-    renderConsumables();
-    initHudIcons();
+	renderPlayerSprite();
+	renderEquipment();
+	renderConsumables();
+	initHudIcons();
 
-    const startButton = document.getElementById("btn-start");
-    if (startButton) startButton.addEventListener("click", startGame);
+	const startButton = document.getElementById("btn-start");
+	if (startButton) startButton.addEventListener("click", startGame);
 
-    requestAnimationFrame((time) => {
-        lastTime = time;
-        requestAnimationFrame(update);
-    });
+	requestAnimationFrame((time) => {
+		lastTime = time;
+		requestAnimationFrame(update);
+	});
 });
 
 const firebaseConfig = {
