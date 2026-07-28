@@ -538,6 +538,7 @@ span.txt-qtyLabel {
 .start-content {
     text-align: center;
     font-family: monospace;
+    width: 350px;
     /* Matches your current look */
     color: #fff;
 }
