@@ -89,6 +89,10 @@ const SHOP_ITEMS = {
 let enemy = { maxHp: 20, currentHp: 20, atk: 1, isBoss: false, isDead: false };
 let attackTimer = 0;
 let enemyAttackTimer = 0;
+let lastTime = performance.now();
+const BASE_PLAYER_ATTACK_SPEED = 1.0; // Seconds per attack
+const ENEMY_ATTACK_INTERVAL = 1.5;     // Seconds per enemy attack
+const GRENADE_ICON = '<img src="assets/grenade.svg" alt="Grenade" />'; // Add your SVG path here
 
 const i18n = {
 	ENG: {
@@ -198,15 +202,12 @@ function setDisabled(el, isDisabled) {
 }
 
 // 1. Logic to hide the start screen and initiate gameplay loops
-function startGame() {
-    const startScreen = document.getElementById("start-screen");
-    if (startScreen) {
-        startScreen.style.opacity = "0";
-        startScreen.style.pointerEvents = "none";
-
-        setTimeout(() => {
-            startScreen.style.display = "none";
-        }, 500);
+function startGame(){
+    const e = document.getElementById("start-screen");
+    if (e) {
+        e.style.opacity = "0";
+        e.style.pointerEvents = "none";
+        setTimeout(() => { e.style.display = "none"; }, 500);
     }
 
     state.started = true;
@@ -214,8 +215,11 @@ function startGame() {
     state.paused = false;
     state.isDead = false;
     state.won = false;
-
     enemy.isDead = false;
+
+    // Reset game loop time tracker to current time
+    lastTime = performance.now();
+
     renderPlayerSprite();
     spawnEnemy();
     checkPauseState();
