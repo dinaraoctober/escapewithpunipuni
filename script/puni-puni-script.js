@@ -694,12 +694,12 @@ function renderShop() {
 
 	const categories = [
 		{id: "shop-guns", type: "guns", key: "speed", currentKey: "currentGun"},
-		{id: "shop-armor", type: "armor", shopType: "armors", key: "def", currentKey: "currentArmor"},
+		{id: "shop-armor", type: "armor", shopType: "armors", key: "defence", currentKey: "currentArmor"},
 		{
 			id: "shop-bullets",
 			type: "bullet",
 			shopType: "bullets",
-			key: "atk",
+			key: "attack",
 			currentKey: "currentBullet",
 		},
 	];
@@ -964,11 +964,11 @@ function buyItem(type, index) {
 	} else if (type === "armor") {
 		state.ownedArmor.push(index);
 		state.currentArmor = index;
-		state.def = item.defense;
+		state.def = item.defence;
 	} else if (type === "bullet") {
 		state.ownedBullet.push(index);
 		state.currentBullet = index;
-		state.atk = item.atk;
+		state.atk = item.attack;
 	}
 
 	renderShop();
