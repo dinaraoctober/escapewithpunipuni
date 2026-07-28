@@ -29,6 +29,7 @@ let state = {
 	// Game flow
 	started: false,
 	manualPaused: false,
+	won: false,
 };
 
 const SHOP_ITEMS = {
@@ -199,19 +200,26 @@ function setDisabled(el, isDisabled) {
 // 1. Logic to hide the start screen and initiate gameplay loops
 function startGame() {
     const startScreen = document.getElementById("start-screen");
-    startScreen.style.opacity = "0";
+    if (startScreen) {
+        startScreen.style.opacity = "0";
+        startScreen.style.pointerEvents = "none";
 
-    setTimeout(() => {
-        startScreen.style.display = "none";
-    }, 500);
+        setTimeout(() => {
+            startScreen.style.display = "none";
+        }, 500);
+    }
 
     state.started = true;
     state.manualPaused = false;
     state.paused = false;
     state.isDead = false;
+    state.won = false;
 
+    enemy.isDead = false;
     renderPlayerSprite();
     spawnEnemy();
+    checkPauseState();
+    updateUI();
 }
 
 // Update the start screen itself whenever setLang() runs
@@ -878,6 +886,9 @@ document.addEventListener("DOMContentLoaded", () => {
     renderEquipment();
     renderConsumables();
     initHudIcons();
+
+    const startButton = document.getElementById("btn-start");
+    if (startButton) startButton.addEventListener("click", startGame);
 
     requestAnimationFrame((time) => {
         lastTime = time;

@@ -1,178 +1,180 @@
-<svg id="player-sprite" class="sprite" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 42 66">
-			<defs>
-				<style>
-					.st0 {
-						fill: #4c4c4d;
-					}
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="player-sprite" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 42 66">
+  <!-- Generator: Adobe Illustrator 30.6.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 109)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #e7ebf1;
+      }
 
-					.st1 {
-						fill: #e7ebf1;
-					}
+      .st1 {
+        fill: #241f61;
+      }
 
-					.st2 {
-						fill: #f6d9d2;
-					}
+      .st2 {
+        fill: #518aad;
+      }
 
-					.st3 {
-						fill: #241f61;
-					}
+      .st3 {
+        fill: #686c76;
+      }
 
-					.st4 {
-						fill: #b2e0e4;
-					}
+      .st4 {
+        fill: #2d3037;
+      }
 
-					.st5 {
-						fill: #518aad;
-					}
+      .st5 {
+        fill: #fbc4ba;
+      }
 
-					.st6 {
-						fill: #686c76;
-					}
+      .st6 {
+        fill: #66c9d4;
+      }
 
-					.st7 {
-						fill: #2d3037;
-					}
+      .st7 {
+        fill: #7a808c;
+      }
 
-					.st8 {
-						fill: #fbc4ba;
-					}
+      .st8 {
+        fill: #faa429;
+      }
 
-					.st9 {
-						fill: #7a808c;
-					}
+      .st9 {
+        fill: #fff;
+      }
 
-					.st10 {
-						fill: #66c9d4;
-					}
+      .st10 {
+        fill: #49a0a5;
+      }
 
-					.st11 {
-						fill: #faa429;
-					}
+      .st11 {
+        fill: #3e414a;
+      }
 
-					.st12 {
-						fill: #fff;
-					}
+      .st12 {
+        fill: #b2e0e4;
+      }
 
-					.st13 {
-						fill: #3e414a;
-					}
+      .st13 {
+        fill: #575863;
+      }
 
-					.st14 {
-						fill: #2c2d2f;
-					}
+      .st14 {
+        fill: #f6d9d2;
+      }
 
-					.st15 {
-						fill: #575863;
-					}
+      .st15 {
+        fill: #4c4c4d;
+      }
 
-					.st16 {
-						fill: #49a0a5;
-					}
-				</style>
-			</defs>
-			<rect x="40" y="38" width="2" height="2" />
-			<polygon class="st15" points="38 38 36 38 36 40 38 40 40 40 40 38 38 38" />
-			<polygon points="38 38 40 38 40 36 40 34 38 34 38 36 38 38" />
-			<polygon points="36 40 36 42 38 42 40 42 40 40 38 40 36 40" />
-			<polygon class="st7" points="36 36 34 36 34 38 36 38 38 38 38 36 36 36" />
-			<rect class="st9" x="36" y="34" width="2" height="2" />
-			<rect x="36" y="32" width="2" height="2" />
-			<rect x="34" y="42" width="2" height="2" />
-			<rect class="st2" x="34" y="40" width="2" height="2" />
-			<rect class="st2" x="32" y="42" width="2" height="2" />
-			<rect class="st8" x="32" y="40" width="2" height="2" />
-			<polygon points="32 38 32 40 34 40 36 40 36 38 34 38 32 38" />
-			<rect class="st6" x="32" y="36" width="2" height="2" />
-			<polygon points="32 18 32 20 32 22 32 24 32 26 32 28 32 30 32 32 34 32 34 30 34 28 34 26 34 24 34 22 34 20 34 18 34 16 34 14 32 14 32 16 32 18" />
-			<path d="M30,44v-2h2v-2h-12v-4h-4v4h2v2h6v4h-10v2h10v2h2v4h2v-4h4v-4h2v-2h-4ZM30,48h-2v-2h-2v-4h2v4h2v2Z" />
-			<rect class="st7" x="30" y="42" width="2" height="2" />
-			<polygon class="st15" points="30 38 28 38 26 38 24 38 22 38 20 38 20 40 22 40 24 40 26 40 28 40 30 40 32 40 32 38 30 38" />
-			<polygon points="30 34 28 34 26 34 26 36 28 36 30 36 30 38 32 38 32 36 34 36 36 36 36 34 34 34 32 34 32 32 30 32 30 34" />
-			<polygon class="st10" points="30 16 30 18 30 20 30 22 30 24 30 26 30 28 30 30 28 30 28 32 30 32 32 32 32 30 32 28 32 26 32 24 32 22 32 20 32 18 32 16 32 14 30 14 30 16" />
-			<polygon points="30 14 32 14 32 12 32 10 30 10 30 12 30 14" />
-			<rect class="st7" x="28" y="46" width="2" height="2" />
-			<rect class="st16" x="28" y="28" width="2" height="2" />
-			<rect class="st16" x="28" y="12" width="2" height="2" />
-			<rect class="st10" x="28" y="10" width="2" height="2" />
-			<rect class="st2" x="26" y="44" width="2" height="2" />
-			<rect class="st8" x="26" y="42" width="2" height="2" />
-			<polygon class="st16" points="26 32 26 34 28 34 30 34 30 32 28 32 28 30 26 30 26 32" />
-			<rect x="26" y="28" width="2" height="2" />
-			<rect class="st5" x="26" y="24" width="2" height="2" />
-			<rect class="st3" x="26" y="22" width="2" height="2" />
-			<polygon class="st16" points="26 20 28 20 28 18 28 16 26 16 26 18 26 20" />
-			<polygon points="26 14 26 16 28 16 28 18 28 20 26 20 26 22 28 22 28 24 28 26 28 28 30 28 30 26 30 24 30 22 30 20 30 18 30 16 30 14 28 14 28 12 26 12 26 14" />
-			<rect class="st4" x="26" y="10" width="2" height="2" />
-			<polygon class="st14" points="26 50 24 50 22 50 22 48 20 48 20 50 18 50 18 48 16 48 16 50 16 52 18 52 18 54 20 54 22 54 24 54 26 54 26 52 26 50" />
-			<polygon class="st7" points="24 38 26 38 28 38 30 38 30 36 28 36 26 36 24 36 24 38" />
-			<rect class="st9" x="24" y="34" width="2" height="2" />
-			<rect class="st8" x="24" y="24" width="2" height="2" />
-			<polygon points="26 22 24 22 24 20 24 18 22 18 22 20 22 22 22 24 24 24 26 24 26 22" />
-			<polygon class="st10" points="24 20 24 22 26 22 26 20 26 18 26 16 26 14 24 14 22 14 22 16 22 18 24 18 24 20" />
-			<polygon points="26 2 26 0 24 0 22 0 22 2 24 2 26 2" />
-			<polygon class="st2" points="22 62 22 64 24 64 24 62 24 60 24 58 22 58 20 58 20 60 22 60 22 62" />
-			<polygon class="st8" points="24 58 24 56 22 56 20 56 20 58 22 58 24 58" />
-			<polygon points="22 54 20 54 18 54 16 54 14 54 12 54 10 54 10 52 8 52 8 54 8 56 8 58 8 60 10 60 10 58 10 56 12 56 14 56 14 58 14 60 14 62 14 64 12 64 12 62 12 60 10 60 10 62 10 64 10 66 12 66 14 66 16 66 18 66 18 64 16 64 16 62 16 60 16 58 16 56 18 56 18 58 18 60 20 60 20 58 20 56 22 56 24 56 24 58 24 60 24 62 24 64 22 64 22 62 22 60 20 60 20 62 20 64 20 66 22 66 24 66 26 66 28 66 28 64 26 64 26 62 26 60 26 58 26 56 26 54 24 54 22 54" />
-			<rect class="st1" x="22" y="48" width="2" height="2" />
-			<polygon class="st13" points="24 38 24 36 22 36 20 36 20 38 22 38 24 38" />
-			<polygon points="24 36 24 34 26 34 26 32 26 30 24 30 22 30 20 30 18 30 16 30 16 32 14 32 14 34 16 34 18 34 18 32 20 32 22 32 22 34 20 34 20 36 22 36 24 36" />
-			<polygon class="st4" points="24 14 26 14 26 12 24 12 22 12 20 12 20 14 22 14 24 14" />
-			<polygon class="st10" points="24 12 26 12 26 10 24 10 22 10 20 10 20 12 22 12 24 12" />
-			<polygon class="st11" points="24 4 26 4 26 2 24 2 22 2 22 4 24 4" />
-			<polygon class="st14" points="20 44 18 44 16 44 14 44 14 46 16 46 18 46 20 46 22 46 24 46 24 44 24 42 22 42 22 44 20 44" />
-			<polygon class="st8" points="22 34 22 32 20 32 18 32 18 34 20 34 22 34" />
-			<rect class="st8" x="20" y="18" width="2" height="2" />
-			<polygon points="20 18 22 18 22 16 22 14 20 14 20 16 20 18" />
-			<polygon class="st12" points="22 8 24 8 26 8 28 8 28 6 26 6 24 6 22 6 20 6 20 4 18 4 16 4 16 6 18 6 18 8 20 8 22 8" />
-			<rect class="st1" x="18" y="48" width="2" height="2" />
-			<polygon class="st14" points="18 34 16 34 14 34 14 36 16 36 18 36 20 36 20 34 18 34" />
-			<rect class="st5" x="18" y="24" width="2" height="2" />
-			<rect class="st10" x="18" y="22" width="2" height="2" />
-			<polygon class="st8" points="18 18 20 18 20 16 20 14 18 14 18 16 18 18" />
-			<polygon class="st3" points="16 20 16 22 18 22 20 22 20 20 18 20 16 20" />
-			<rect x="16" y="14" width="2" height="2" />
-			<rect x="16" y="6" width="2" height="2" />
-			<rect class="st10" x="14" y="30" width="2" height="2" />
-			<rect x="14" y="28" width="2" height="2" />
-			<polygon class="st2" points="14 22 14 24 14 26 14 28 16 28 16 30 18 30 20 30 22 30 24 30 26 30 26 28 28 28 28 26 26 26 24 26 24 24 22 24 22 22 22 20 20 20 20 22 20 24 20 26 18 26 18 24 18 22 16 22 16 20 18 20 20 20 20 18 18 18 18 16 16 16 16 18 14 18 14 20 14 22" />
-			<rect x="14" y="16" width="2" height="2" />
-			<rect class="st10" x="14" y="14" width="2" height="2" />
-			<polygon points="16 14 16 12 16 10 14 10 14 12 14 14 16 14" />
-			<rect class="st16" x="14" y="6" width="2" height="2" />
-			<polygon points="14 6 16 6 16 4 18 4 20 4 20 6 22 6 24 6 26 6 28 6 28 8 26 8 24 8 22 8 20 8 18 8 18 10 18 12 18 14 20 14 20 12 20 10 22 10 24 10 26 10 28 10 30 10 30 8 32 8 32 6 30 6 30 4 28 4 28 2 26 2 26 4 24 4 22 4 22 2 20 2 18 2 16 2 14 2 12 2 12 4 14 4 14 6" />
-			<polygon class="st2" points="12 62 12 64 14 64 14 62 14 60 14 58 12 58 10 58 10 60 12 60 12 62" />
-			<polygon class="st8" points="14 58 14 56 12 56 10 56 10 58 12 58 14 58" />
-			<rect x="12" y="44" width="2" height="2" />
-			<rect class="st14" x="12" y="42" width="2" height="2" />
-			<polygon class="st0" points="14 34 12 34 12 36 10 36 10 38 10 40 12 40 12 42 14 42 14 44 16 44 18 44 20 44 22 44 22 42 20 42 18 42 18 40 16 40 16 38 16 36 14 36 14 34" />
-			<rect class="st14" x="12" y="32" width="2" height="2" />
-			<rect x="12" y="30" width="2" height="2" />
-			<rect class="st10" x="12" y="28" width="2" height="2" />
-			<polygon points="14 26 14 24 14 22 14 20 14 18 12 18 12 20 12 22 12 24 12 26 12 28 14 28 14 26" />
-			<rect x="12" y="14" width="2" height="2" />
-			<rect class="st4" x="12" y="12" width="2" height="2" />
-			<rect class="st14" x="10" y="52" width="2" height="2" />
-			<polygon class="st0" points="10 46 8 46 8 48 10 48 10 50 10 52 12 52 12 54 14 54 16 54 18 54 18 52 16 52 16 50 16 48 14 48 14 46 12 46 10 46" />
-			<polygon points="12 44 12 42 12 40 10 40 10 38 10 36 10 34 8 34 8 36 6 36 6 34 6 32 4 32 4 34 2 34 2 32 0 32 0 34 0 36 0 38 2 38 2 36 4 36 4 38 6 38 8 38 8 40 8 42 8 44 10 44 12 44" />
-			<rect class="st14" x="10" y="34" width="2" height="2" />
-			<rect x="10" y="32" width="2" height="2" />
-			<polygon class="st16" points="12 32 12 30 10 30 10 28 8 28 8 30 6 30 6 32 8 32 8 34 10 34 10 32 12 32" />
-			<rect x="10" y="28" width="2" height="2" />
-			<rect x="10" y="12" width="2" height="2" />
-			<polygon points="12 6 12 4 10 4 8 4 8 6 10 6 12 6" />
-			<polygon class="st14" points="10 50 10 48 8 48 8 50 8 52 10 52 10 50" />
-			<polygon class="st14" points="10 46 12 46 12 44 10 44 8 44 8 46 10 46" />
-			<polygon points="10 26 10 24 10 22 10 20 8 20 8 22 8 24 8 26 8 28 10 28 10 26" />
-			<rect class="st4" x="8" y="12" width="2" height="2" />
-			<polygon points="8 48 8 46 8 44 6 44 6 46 6 48 6 50 6 52 8 52 8 50 8 48" />
-			<rect class="st16" x="6" y="34" width="2" height="2" />
-			<rect class="st10" x="6" y="32" width="2" height="2" />
-			<polygon class="st16" points="8 24 8 22 8 20 10 20 10 18 8 18 6 18 6 20 6 22 6 24 6 26 6 28 8 28 8 26 8 24" />
-			<rect class="st4" x="6" y="10" width="2" height="2" />
-			<polygon class="st10" points="8 10 8 12 10 12 12 12 14 12 14 10 16 10 16 12 16 14 18 14 18 12 18 10 18 8 16 8 14 8 14 6 14 4 12 4 12 6 10 6 8 6 8 8 6 8 6 10 8 10" />
-			<rect x="6" y="6" width="2" height="2" />
-			<polygon class="st10" points="4 18 4 20 4 22 4 24 4 26 4 28 4 30 4 32 6 32 6 30 8 30 8 28 6 28 6 26 6 24 6 22 6 20 6 18 8 18 10 18 10 20 10 22 10 24 10 26 10 28 12 28 12 26 12 24 12 22 12 20 12 18 14 18 14 16 12 16 12 14 10 14 8 14 8 12 6 12 6 14 4 14 4 16 4 18" />
-			<polygon points="6 12 6 10 6 8 4 8 4 10 4 12 4 14 6 14 6 12" />
-			<rect class="st10" x="2" y="32" width="2" height="2" />
-			<polygon points="4 30 4 28 4 26 4 24 4 22 4 20 4 18 4 16 4 14 2 14 2 16 2 18 2 20 2 22 2 24 2 26 2 28 2 30 2 32 4 32 4 30" />
-		</svg>
+      .st16 {
+        fill: #2c2d2f;
+      }
+    </style>
+  </defs>
+  <rect x="40" y="38" width="2" height="2"/>
+  <polygon class="st13" points="38 38 36 38 36 40 38 40 40 40 40 38 38 38"/>
+  <polygon points="38 38 40 38 40 36 40 34 38 34 38 36 38 38"/>
+  <polygon points="36 40 36 42 38 42 40 42 40 40 38 40 36 40"/>
+  <polygon class="st4" points="36 36 34 36 34 38 36 38 38 38 38 36 36 36"/>
+  <rect class="st7" x="36" y="34" width="2" height="2"/>
+  <rect x="36" y="32" width="2" height="2"/>
+  <rect x="34" y="42" width="2" height="2"/>
+  <rect class="st14" x="34" y="40" width="2" height="2"/>
+  <rect class="st14" x="32" y="42" width="2" height="2"/>
+  <rect class="st5" x="32" y="40" width="2" height="2"/>
+  <polygon points="32 38 32 40 34 40 36 40 36 38 34 38 32 38"/>
+  <rect class="st3" x="32" y="36" width="2" height="2"/>
+  <polygon points="32 18 32 20 32 22 32 24 32 26 32 28 32 30 32 32 34 32 34 30 34 28 34 26 34 24 34 22 34 20 34 18 34 16 34 14 32 14 32 16 32 18"/>
+  <path d="M30,44v-2h2v-2h-12v-4h-4v4h2v2h6v4h-10v2h10v2h2v4h2v-4h4v-4h2v-2h-4ZM30,48h-2v-2h-2v-4h2v4h2v2Z"/>
+  <rect class="st4" x="30" y="42" width="2" height="2"/>
+  <polygon class="st13" points="30 38 28 38 26 38 24 38 22 38 20 38 20 40 22 40 24 40 26 40 28 40 30 40 32 40 32 38 30 38"/>
+  <polygon points="30 34 28 34 26 34 26 36 28 36 30 36 30 38 32 38 32 36 34 36 36 36 36 34 34 34 32 34 32 32 30 32 30 34"/>
+  <polygon class="st6" points="30 16 30 18 30 20 30 22 30 24 30 26 30 28 30 30 28 30 28 32 30 32 32 32 32 30 32 28 32 26 32 24 32 22 32 20 32 18 32 16 32 14 30 14 30 16"/>
+  <polygon points="30 14 32 14 32 12 32 10 30 10 30 12 30 14"/>
+  <rect class="st4" x="28" y="46" width="2" height="2"/>
+  <rect class="st10" x="28" y="28" width="2" height="2"/>
+  <rect class="st10" x="28" y="12" width="2" height="2"/>
+  <rect class="st6" x="28" y="10" width="2" height="2"/>
+  <rect class="st14" x="26" y="44" width="2" height="2"/>
+  <rect class="st5" x="26" y="42" width="2" height="2"/>
+  <polygon class="st10" points="26 32 26 34 28 34 30 34 30 32 28 32 28 30 26 30 26 32"/>
+  <rect x="26" y="28" width="2" height="2"/>
+  <rect class="st2" x="26" y="24" width="2" height="2"/>
+  <rect class="st1" x="26" y="22" width="2" height="2"/>
+  <polygon class="st10" points="26 20 28 20 28 18 28 16 26 16 26 18 26 20"/>
+  <polygon points="26 14 26 16 28 16 28 18 28 20 26 20 26 22 28 22 28 24 28 26 28 28 30 28 30 26 30 24 30 22 30 20 30 18 30 16 30 14 28 14 28 12 26 12 26 14"/>
+  <rect class="st12" x="26" y="10" width="2" height="2"/>
+  <polygon class="st16" points="26 50 24 50 22 50 22 48 20 48 20 50 18 50 18 48 16 48 16 50 16 52 18 52 18 54 20 54 22 54 24 54 26 54 26 52 26 50"/>
+  <polygon class="st4" points="24 38 26 38 28 38 30 38 30 36 28 36 26 36 24 36 24 38"/>
+  <rect class="st7" x="24" y="34" width="2" height="2"/>
+  <rect class="st5" x="24" y="24" width="2" height="2"/>
+  <polygon points="26 22 24 22 24 20 24 18 22 18 22 20 22 22 22 24 24 24 26 24 26 22"/>
+  <polygon class="st6" points="24 20 24 22 26 22 26 20 26 18 26 16 26 14 24 14 22 14 22 16 22 18 24 18 24 20"/>
+  <polygon points="26 2 26 0 24 0 22 0 22 2 24 2 26 2"/>
+  <polygon class="st14" points="22 62 22 64 24 64 24 62 24 60 24 58 22 58 20 58 20 60 22 60 22 62"/>
+  <polygon class="st5" points="24 58 24 56 22 56 20 56 20 58 22 58 24 58"/>
+  <polygon points="22 54 20 54 18 54 16 54 14 54 12 54 10 54 10 52 8 52 8 54 8 56 8 58 8 60 10 60 10 58 10 56 12 56 14 56 14 58 14 60 14 62 14 64 12 64 12 62 12 60 10 60 10 62 10 64 10 66 12 66 14 66 16 66 18 66 18 64 16 64 16 62 16 60 16 58 16 56 18 56 18 58 18 60 20 60 20 58 20 56 22 56 24 56 24 58 24 60 24 62 24 64 22 64 22 62 22 60 20 60 20 62 20 64 20 66 22 66 24 66 26 66 28 66 28 64 26 64 26 62 26 60 26 58 26 56 26 54 24 54 22 54"/>
+  <rect class="st0" x="22" y="48" width="2" height="2"/>
+  <polygon class="st11" points="24 38 24 36 22 36 20 36 20 38 22 38 24 38"/>
+  <polygon points="24 36 24 34 26 34 26 32 26 30 24 30 22 30 20 30 18 30 16 30 16 32 14 32 14 34 16 34 18 34 18 32 20 32 22 32 22 34 20 34 20 36 22 36 24 36"/>
+  <polygon class="st12" points="24 14 26 14 26 12 24 12 22 12 20 12 20 14 22 14 24 14"/>
+  <polygon class="st6" points="24 12 26 12 26 10 24 10 22 10 20 10 20 12 22 12 24 12"/>
+  <polygon class="st8" points="24 4 26 4 26 2 24 2 22 2 22 4 24 4"/>
+  <polygon class="st16" points="20 44 18 44 16 44 14 44 14 46 16 46 18 46 20 46 22 46 24 46 24 44 24 42 22 42 22 44 20 44"/>
+  <polygon class="st5" points="22 34 22 32 20 32 18 32 18 34 20 34 22 34"/>
+  <rect class="st5" x="20" y="18" width="2" height="2"/>
+  <polygon points="20 18 22 18 22 16 22 14 20 14 20 16 20 18"/>
+  <polygon class="st9" points="22 8 24 8 26 8 28 8 28 6 26 6 24 6 22 6 20 6 20 4 18 4 16 4 16 6 18 6 18 8 20 8 22 8"/>
+  <rect class="st0" x="18" y="48" width="2" height="2"/>
+  <polygon class="st16" points="18 34 16 34 14 34 14 36 16 36 18 36 20 36 20 34 18 34"/>
+  <rect class="st2" x="18" y="24" width="2" height="2"/>
+  <rect class="st6" x="18" y="22" width="2" height="2"/>
+  <polygon class="st5" points="18 18 20 18 20 16 20 14 18 14 18 16 18 18"/>
+  <polygon class="st1" points="16 20 16 22 18 22 20 22 20 20 18 20 16 20"/>
+  <rect x="16" y="14" width="2" height="2"/>
+  <rect x="16" y="6" width="2" height="2"/>
+  <rect class="st6" x="14" y="30" width="2" height="2"/>
+  <rect x="14" y="28" width="2" height="2"/>
+  <polygon class="st14" points="14 22 14 24 14 26 14 28 16 28 16 30 18 30 20 30 22 30 24 30 26 30 26 28 28 28 28 26 26 26 24 26 24 24 22 24 22 22 22 20 20 20 20 22 20 24 20 26 18 26 18 24 18 22 16 22 16 20 18 20 20 20 20 18 18 18 18 16 16 16 16 18 14 18 14 20 14 22"/>
+  <rect x="14" y="16" width="2" height="2"/>
+  <rect class="st6" x="14" y="14" width="2" height="2"/>
+  <polygon points="16 14 16 12 16 10 14 10 14 12 14 14 16 14"/>
+  <rect class="st10" x="14" y="6" width="2" height="2"/>
+  <polygon points="14 6 16 6 16 4 18 4 20 4 20 6 22 6 24 6 26 6 28 6 28 8 26 8 24 8 22 8 20 8 18 8 18 10 18 12 18 14 20 14 20 12 20 10 22 10 24 10 26 10 28 10 30 10 30 8 32 8 32 6 30 6 30 4 28 4 28 2 26 2 26 4 24 4 22 4 22 2 20 2 18 2 16 2 14 2 12 2 12 4 14 4 14 6"/>
+  <polygon class="st14" points="12 62 12 64 14 64 14 62 14 60 14 58 12 58 10 58 10 60 12 60 12 62"/>
+  <polygon class="st5" points="14 58 14 56 12 56 10 56 10 58 12 58 14 58"/>
+  <rect x="12" y="44" width="2" height="2"/>
+  <rect class="st16" x="12" y="42" width="2" height="2"/>
+  <polygon class="st15" points="14 34 12 34 12 36 10 36 10 38 10 40 12 40 12 42 14 42 14 44 16 44 18 44 20 44 22 44 22 42 20 42 18 42 18 40 16 40 16 38 16 36 14 36 14 34"/>
+  <rect class="st16" x="12" y="32" width="2" height="2"/>
+  <rect x="12" y="30" width="2" height="2"/>
+  <rect class="st6" x="12" y="28" width="2" height="2"/>
+  <polygon points="14 26 14 24 14 22 14 20 14 18 12 18 12 20 12 22 12 24 12 26 12 28 14 28 14 26"/>
+  <rect x="12" y="14" width="2" height="2"/>
+  <rect class="st12" x="12" y="12" width="2" height="2"/>
+  <rect class="st16" x="10" y="52" width="2" height="2"/>
+  <polygon class="st15" points="10 46 8 46 8 48 10 48 10 50 10 52 12 52 12 54 14 54 16 54 18 54 18 52 16 52 16 50 16 48 14 48 14 46 12 46 10 46"/>
+  <polygon points="12 44 12 42 12 40 10 40 10 38 10 36 10 34 8 34 8 36 6 36 6 34 6 32 4 32 4 34 2 34 2 32 0 32 0 34 0 36 0 38 2 38 2 36 4 36 4 38 6 38 8 38 8 40 8 42 8 44 10 44 12 44"/>
+  <rect class="st16" x="10" y="34" width="2" height="2"/>
+  <rect x="10" y="32" width="2" height="2"/>
+  <polygon class="st10" points="12 32 12 30 10 30 10 28 8 28 8 30 6 30 6 32 8 32 8 34 10 34 10 32 12 32"/>
+  <rect x="10" y="28" width="2" height="2"/>
+  <rect x="10" y="12" width="2" height="2"/>
+  <polygon points="12 6 12 4 10 4 8 4 8 6 10 6 12 6"/>
+  <polygon class="st16" points="10 50 10 48 8 48 8 50 8 52 10 52 10 50"/>
+  <polygon class="st16" points="10 46 12 46 12 44 10 44 8 44 8 46 10 46"/>
+  <polygon points="10 26 10 24 10 22 10 20 8 20 8 22 8 24 8 26 8 28 10 28 10 26"/>
+  <rect class="st12" x="8" y="12" width="2" height="2"/>
+  <polygon points="8 48 8 46 8 44 6 44 6 46 6 48 6 50 6 52 8 52 8 50 8 48"/>
+  <rect class="st10" x="6" y="34" width="2" height="2"/>
+  <rect class="st6" x="6" y="32" width="2" height="2"/>
+  <polygon class="st10" points="8 24 8 22 8 20 10 20 10 18 8 18 6 18 6 20 6 22 6 24 6 26 6 28 8 28 8 26 8 24"/>
+  <rect class="st12" x="6" y="10" width="2" height="2"/>
+  <polygon class="st6" points="8 10 8 12 10 12 12 12 14 12 14 10 16 10 16 12 16 14 18 14 18 12 18 10 18 8 16 8 14 8 14 6 14 4 12 4 12 6 10 6 8 6 8 8 6 8 6 10 8 10"/>
+  <rect x="6" y="6" width="2" height="2"/>
+  <polygon class="st6" points="4 18 4 20 4 22 4 24 4 26 4 28 4 30 4 32 6 32 6 30 8 30 8 28 6 28 6 26 6 24 6 22 6 20 6 18 8 18 10 18 10 20 10 22 10 24 10 26 10 28 12 28 12 26 12 24 12 22 12 20 12 18 14 18 14 16 12 16 12 14 10 14 8 14 8 12 6 12 6 14 4 14 4 16 4 18"/>
+  <polygon points="6 12 6 10 6 8 4 8 4 10 4 12 4 14 6 14 6 12"/>
+  <rect class="st6" x="2" y="32" width="2" height="2"/>
+  <polygon points="4 30 4 28 4 26 4 24 4 22 4 20 4 18 4 16 4 14 2 14 2 16 2 18 2 20 2 22 2 24 2 26 2 28 2 30 2 32 4 32 4 30"/>
+</svg>

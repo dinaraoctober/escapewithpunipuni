@@ -155,7 +155,7 @@ body,
 }
 
 #player-sprite {
-    left: 150px;
+    right: 550px;
     height: 100px;
     overflow: visible !important;
 }
