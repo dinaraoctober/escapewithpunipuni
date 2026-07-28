@@ -704,6 +704,7 @@ function renderShop() {
 		{
 			id: "shop-bullets",
 			type: "bullet",
+			shopType: "bullets",
 			key: "atk",
 			currentKey: "currentBullet",
 		},
@@ -715,7 +716,7 @@ function renderShop() {
 
 		container.innerHTML = "";
 
-		SHOP_ITEMS[cat.type].forEach((item, index) => {
+		SHOP_ITEMS[cat.shopType || cat.type].forEach((item, index) => {
 			if (index === 0) return;
 
 			const stateKey = `owned${cat.type.charAt(0).toUpperCase() + cat.type.slice(1)}`;
@@ -804,7 +805,7 @@ function renderEquipment() {
 	document.getElementById("icon-gunLabel").innerHTML = gun.icon; // Uses the equipped gun's SVG
 	document.getElementById("txt-gunLabel").innerText = `${gun.name}`;
 
-	const bul = SHOP_ITEMS.bullet[state.currentBullet];
+	const bul = SHOP_ITEMS.bullets[state.currentBullet];
 	document.getElementById("icon-bulletLabel").innerHTML = bul.icon; // Uses the equipped bullet's SVG
 	document.getElementById("txt-bulletLabel").innerText = `${bul.name}`;
 }
@@ -1020,7 +1021,7 @@ const db = firebase.database();
 // 4. Game & Leaderboard Logic
 function handleWin(finalScore) {
 	document.getElementById("win-screen").style.display = "block";
-	document.getElementById("final-score-display").textContent = finalScore;
+	document.getElementById("final-points").textContent = finalScore;
 	document.getElementById("save-score-btn").dataset.score = finalScore;
 }
 
