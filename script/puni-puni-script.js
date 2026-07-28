@@ -37,136 +37,60 @@ let state = {
 
 const BASE_PLAYER_ATTACK_SPEED = 2.0;
 const ENEMY_ATTACK_INTERVAL = 2.0;
-const GRENADE_ICON = `<img src="/assets/grenade.svg" alt="Grenade" class="grenade-icon" />`;
+const GRENADE_ICON = `<img src="assets/grenade.svg" alt="Grenade" class="grenade-icon" />`;
 
-// Define the tiers and costs
 const SHOP_ITEMS = {
-	guns: [
-		{
-			name: "AK-74",
-			speed: 1,
-			cost: 50,
-			icon: "assets/ak74.svg",
-		},
-		{
-			name: "AK-545",
-			speed: 2,
-			cost: 50,
-			icon: "assets/ak545.svg",
-		},
-		{
-			name: "AK-105",
-			speed: 3,
-			cost: 500,
-			icon: "assets/ak105.svg",
-		},
-		{
-			name: "RPK-16",
-			speed: 4,
-			cost: 1000,
-			icon: "assets/rpk16.svg",
-		},
-		{
-			name: "NL545GP",
-			speed: 5,
-			cost: 2000,
-			icon: "assets/nl545gp.svg",
-		},
-	],
-	armor: [
-		{
-			name: "None",
-			def: 0,
-			cost: 0,
-			icon: "assets/armor-none.svg",
-		},
-		{
-			name: "BNTI Kirasa-N",
-			def: 1,
-			cost: 50,
-			icon: "assets/armor-kirasa.svg",
-		},
-		{
-			name: "6B13 Assault Armor",
-			def: 2,
-			cost: 500,
-			icon: "assets/armor-6b13.svg",
-		},
-		{
-			name: "IOTV Gen 4",
-			def: 3,
-			cost: 1000,
-			icon: "assets/armor-iotv.svg",
-		},
-		{
-			name: "Redut-T5",
-			def: 4,
-			cost: 2000,
-			icon: "assets/armor-redut.svg",
-		},
-	],
-	bullet: [
-		{
-			name: "FMJ",
-			atk: 1,
-			cost: 0,
-			icon: "assets/bullet-fmj.svg",
-		},
-		{
-			name: "BT",
-			atk: 5,
-			cost: 50,
-			icon: "assets/bullet-bt.svg",
-		},
-		{
-			name: "BP",
-			atk: 10,
-			cost: 500,
-			icon: "assets/bullet-bp.svg",
-		},
-		{
-			name: "BS",
-			atk: 20,
-			cost: 1000,
-			icon: "assets/bullet-bs.svg",
-		},
-		{
-			name: "PPBS Igolnik",
-			atk: 50,
-			cost: 2000,
-			icon: "assets/bullet-igolnik.svg",
-		},
-	],
-	consumables: [
-		{
-			id: "medkit",
-			nameKey: "medLabel",
-			cost: 20,
-			heal: 15,
-			type: "instant",
-			desc: "+15 HP",
-			icon: "assets/medkit.svg",
-		},
-		{
-			id: "bigMedkit",
-			nameKey: "bigMedLabel",
-			cost: 50,
-			heal: 40,
-			type: "instant",
-			desc: "+40 HP",
-			icon: "assets/medkit-big.svg",
-		},
-		{
-			id: "regenkit",
-			nameKey: "regenLabel",
-			cost: 30,
-			heal: 30,
-			duration: 30,
-			type: "regen",
-			desc: "+30 HP / 30s",
-			icon: "assets/medkit-regen.svg",
-		},
-	],
+    guns: [
+        { name: "AK-74", speed: 1, cost: 50, icon: `<img src="assets/ak74.svg" alt="AK-74" />` },
+        { name: "AK-545", speed: 2, cost: 50, icon: `<img src="assets/ak545.svg" alt="AK-545" />` },
+        { name: "AK-105", speed: 3, cost: 500, icon: `<img src="assets/ak105.svg" alt="AK-105" />` },
+        { name: "RPK-16", speed: 4, cost: 1000, icon: `<img src="assets/rpk16.svg" alt="RPK-16" />` },
+        { name: "NL545GP", speed: 5, cost: 2000, icon: `<img src="assets/nl545gp.svg" alt="NL545GP" />` },
+    ],
+    armor: [
+        { name: "None", def: 0, cost: 0, icon: `<img src="assets/armor-none.svg" alt="None" />` },
+        { name: "BNTI Kirasa-N", def: 1, cost: 50, icon: `<img src="assets/armor-kirasa.svg" alt="Armor" />` },
+        { name: "6B13 Assault Armor", def: 2, cost: 500, icon: `<img src="assets/armor-6b13.svg" alt="Armor" />` },
+        { name: "IOTV Gen 4", def: 3, cost: 1000, icon: `<img src="assets/armor-iotv.svg" alt="Armor" />` },
+        { name: "Redut-T5", def: 4, cost: 2000, icon: `<img src="assets/armor-redut.svg" alt="Armor" />` },
+    ],
+    bullet: [
+        { name: "FMJ", atk: 1, cost: 0, icon: `<img src="assets/bullet-fmj.svg" alt="FMJ" />` },
+        { name: "BT", atk: 5, cost: 50, icon: `<img src="assets/bullet-bt.svg" alt="BT" />` },
+        { name: "BP", atk: 10, cost: 500, icon: `<img src="assets/bullet-bp.svg" alt="BP" />` },
+        { name: "BS", atk: 20, cost: 1000, icon: `<img src="assets/bullet-bs.svg" alt="BS" />` },
+        { name: "PPBS Igolnik", atk: 50, cost: 2000, icon: `<img src="assets/bullet-igolnik.svg" alt="PPBS" />` },
+    ],
+    consumables: [
+        {
+            id: "medkit",
+            nameKey: "medLabel",
+            cost: 20,
+            heal: 15,
+            type: "instant",
+            desc: "+15 HP",
+            icon: `<img src="assets/medkit.svg" alt="Medkit" />`,
+        },
+        {
+            id: "bigMedkit",
+            nameKey: "bigMedLabel",
+            cost: 50,
+            heal: 40,
+            type: "instant",
+            desc: "+40 HP",
+            icon: `<img src="assets/medkit-big.svg" alt="Big Medkit" />`,
+        },
+        {
+            id: "regenkit",
+            nameKey: "regenLabel",
+            cost: 30,
+            heal: 30,
+            duration: 30,
+            type: "regen",
+            desc: "+30 HP / 30s",
+            icon: `<img src="assets/medkit-regen.svg" alt="Regenkit" />`,
+        },
+    ],
 };
 
 let enemy = { maxHp: 20, currentHp: 20, atk: 1, isBoss: false, isDead: false };
@@ -580,6 +504,13 @@ function triggerWin() {
 	}
 	const saveBtn = document.getElementById("save-score-btn");
 	if (saveBtn) saveBtn.dataset.score = Math.floor(state.points);
+}
+
+function getEnemySpriteUrl(loop, isBoss) {
+    if (isBoss) {
+        return `assets/sprite-${loop}-boss.svg`;
+    }
+    return `assets/sprite-${loop}.svg`;
 }
 
 function spawnEnemy() {
