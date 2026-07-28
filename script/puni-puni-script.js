@@ -565,9 +565,8 @@ function playerDefeated() {
 	state.deaths++;
 	document.getElementById("player-sprite").style.opacity = "0";
 
-	// Calculate the penalty ONLY from the totalDango points
-	let penalty = Math.floor(state.totalDango / 4);
-	state.totalDango = Math.max(0, state.totalDango - penalty);
+	let pointsPenalty = Math.floor((state.points || 0) * 0.30);
+    state.points = Math.max(0, (state.points || 0) - pointsPenalty);
 
 	document.getElementById("ui-points").innerText = state.totalDango;
 	document.getElementById("death-screen").style.opacity = "1";
