@@ -155,9 +155,10 @@ body,
 }
 
 #player-sprite {
-    right: 550px;
+    right: 570px;
     height: 100px;
     overflow: visible !important;
+    text-align: right;
 }
 
 #enemy-sprite {
