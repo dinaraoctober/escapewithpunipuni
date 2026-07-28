@@ -26,72 +26,63 @@ let state = {
 		bigMedkit: 0,
 		regenkit: 0,
 	},
-	// Shop
-	shopOpen: false,
-	lang: "ENG",
-	costs: {
-		atk: 10,
-		spd: 10,
-		hp: 10,
-	},
+	// Game flow
+	started: false,
+	manualPaused: false,
 };
 
-const BASE_PLAYER_ATTACK_SPEED = 2.0;
-const ENEMY_ATTACK_INTERVAL = 2.0;
-const GRENADE_ICON = `<img src="assets/grenade.svg" alt="Grenade" class="grenade-icon" />`;
-
 const SHOP_ITEMS = {
-    guns: [
-        { name: "AK-74", speed: 1, cost: 50, icon: `<img src="assets/ak74.svg" alt="AK-74" />` },
-        { name: "AK-545", speed: 2, cost: 50, icon: `<img src="assets/ak545.svg" alt="AK-545" />` },
-        { name: "AK-105", speed: 3, cost: 500, icon: `<img src="assets/ak105.svg" alt="AK-105" />` },
-        { name: "RPK-16", speed: 4, cost: 1000, icon: `<img src="assets/rpk16.svg" alt="RPK-16" />` },
-        { name: "NL545GP", speed: 5, cost: 2000, icon: `<img src="assets/nl545gp.svg" alt="NL545GP" />` },
-    ],
-    armor: [
-        { name: "None", def: 0, cost: 0, icon: `<img src="assets/armor-none.svg" alt="None" />` },
-        { name: "BNTI Kirasa-N", def: 1, cost: 50, icon: `<img src="assets/armor-kirasa.svg" alt="Armor" />` },
-        { name: "6B13 Assault Armor", def: 2, cost: 500, icon: `<img src="assets/armor-6b13.svg" alt="Armor" />` },
-        { name: "IOTV Gen 4", def: 3, cost: 1000, icon: `<img src="assets/armor-iotv.svg" alt="Armor" />` },
-        { name: "Redut-T5", def: 4, cost: 2000, icon: `<img src="assets/armor-redut.svg" alt="Armor" />` },
-    ],
-    bullet: [
-        { name: "FMJ", atk: 1, cost: 0, icon: `<img src="assets/bullet-fmj.svg" alt="FMJ" />` },
-        { name: "BT", atk: 5, cost: 50, icon: `<img src="assets/bullet-bt.svg" alt="BT" />` },
-        { name: "BP", atk: 10, cost: 500, icon: `<img src="assets/bullet-bp.svg" alt="BP" />` },
-        { name: "BS", atk: 20, cost: 1000, icon: `<img src="assets/bullet-bs.svg" alt="BS" />` },
-        { name: "PPBS Igolnik", atk: 50, cost: 2000, icon: `<img src="assets/bullet-igolnik.svg" alt="PPBS" />` },
-    ],
-    consumables: [
-        {
-            id: "medkit",
-            nameKey: "medLabel",
-            cost: 20,
-            heal: 15,
-            type: "instant",
-            desc: "+15 HP",
-            icon: `<img src="assets/medkit.svg" alt="Medkit" />`,
-        },
-        {
-            id: "bigMedkit",
-            nameKey: "bigMedLabel",
-            cost: 50,
-            heal: 40,
-            type: "instant",
-            desc: "+40 HP",
-            icon: `<img src="assets/medkit-big.svg" alt="Big Medkit" />`,
-        },
-        {
-            id: "regenkit",
-            nameKey: "regenLabel",
-            cost: 30,
-            heal: 30,
-            duration: 30,
-            type: "regen",
-            desc: "+30 HP / 30s",
-            icon: `<img src="assets/medkit-regen.svg" alt="Regenkit" />`,
-        },
-    ],
+	guns: [
+		{ name: "AK-74", speed: 1, cost: 50, icon: `<img src="assets/ak74.svg" alt="AK-74" />` },
+		{ name: "AK-545", speed: 2, cost: 50, icon: `<img src="assets/ak545.svg" alt="AK-545" />` },
+		{ name: "AK-105", speed: 3, cost: 500, icon: `<img src="assets/ak105.svg" alt="AK-105" />` },
+		{ name: "RPK-16", speed: 4, cost: 1000, icon: `<img src="assets/rpk16.svg" alt="RPK-16" />` },
+		{ name: "NL545GP", speed: 5, cost: 2000, icon: `<img src="assets/nl545gp.svg" alt="NL545GP" />` },
+	],
+	armor: [
+		{ name: "None", def: 0, cost: 0, icon: `<img src="assets/armor-none.svg" alt="None" />` },
+		{ name: "BNTI Kirasa-N", def: 1, cost: 50, icon: `<img src="assets/armor-kirasa.svg" alt="Armor" />` },
+		{ name: "6B13 Assault Armor", def: 2, cost: 500, icon: `<img src="assets/armor-6b13.svg" alt="Armor" />` },
+		{ name: "IOTV Gen 4", def: 3, cost: 1000, icon: `<img src="assets/armor-iotv.svg" alt="Armor" />` },
+		{ name: "Redut-T5", def: 4, cost: 2000, icon: `<img src="assets/armor-redut.svg" alt="Armor" />` },
+	],
+	bullet: [
+		{ name: "FMJ", atk: 1, cost: 0, icon: `<img src="assets/bullet-fmj.svg" alt="FMJ" />` },
+		{ name: "BT", atk: 5, cost: 50, icon: `<img src="assets/bullet-bt.svg" alt="BT" />` },
+		{ name: "BP", atk: 10, cost: 500, icon: `<img src="assets/bullet-bp.svg" alt="BP" />` },
+		{ name: "BS", atk: 20, cost: 1000, icon: `<img src="assets/bullet-bs.svg" alt="BS" />` },
+		{ name: "PPBS Igolnik", atk: 50, cost: 2000, icon: `<img src="assets/bullet-igolnik.svg" alt="PPBS" />` },
+	],
+	consumables: [
+		{
+			id: "medkit",
+			nameKey: "medLabel",
+			cost: 20,
+			heal: 15,
+			type: "instant",
+			desc: "+15 HP",
+			icon: `<img src="assets/medkit.svg" alt="Medkit" />`,
+		},
+		{
+			id: "bigMedkit",
+			nameKey: "bigMedLabel",
+			cost: 50,
+			heal: 40,
+			type: "instant",
+			desc: "+40 HP",
+			icon: `<img src="assets/medkit-big.svg" alt="Big Medkit" />`,
+		},
+		{
+			id: "regenkit",
+			nameKey: "regenLabel",
+			cost: 30,
+			heal: 30,
+			duration: 30,
+			type: "regen",
+			desc: "+30 HP / 30s",
+			icon: `<img src="assets/medkit-regen.svg" alt="Regenkit" />`,
+		},
+	],
 };
 
 let enemy = { maxHp: 20, currentHp: 20, atk: 1, isBoss: false, isDead: false };
@@ -196,12 +187,6 @@ function setLang(lang) {
 	if (state.leaderboardOpen) fetchLeaderboard();
 }
 
-// Start the loop safely
-requestAnimationFrame((time) => {
-	lastTime = time;
-	requestAnimationFrame(update);
-});
-
 // Only touches classList if the value actually changed — avoids 60x/sec DOM churn and flicker
 function setDisabled(el, isDisabled) {
 	if (!el) return;
@@ -220,8 +205,12 @@ function startGame() {
         startScreen.style.display = "none";
     }, 500);
 
+    state.started = true;
+    state.manualPaused = false;
+    state.paused = false;
     state.isDead = false;
-    renderPlayerSprite(); // <-- Ensures sprite is displayed when the game boots
+
+    renderPlayerSprite();
     spawnEnemy();
 }
 
@@ -583,7 +572,7 @@ function playerDefeated() {
 
 // Passive Point Generation Timer
 setInterval(() => {
-	if (!state.isDead && !state.paused && !state.won && !state.shopOpen) {
+	if (state.started && !state.isDead && !state.paused && !state.won && !state.shopOpen) {
 		state.dango += 1;
 		state.totalDango += 1;
 		state.points += 1;
@@ -830,7 +819,7 @@ function update(timestamp) {
 
 	if (dt > 0.1) dt = 0.1;
 
-	if (!state.paused && !state.isDead && !enemy.isDead && !state.won) {
+	if (state.started && !state.paused && !state.isDead && !enemy.isDead && !state.won) {
 		attackTimer += dt * state.spd;
 		if (attackTimer >= BASE_PLAYER_ATTACK_SPEED) {
 			performAttack("enemy", "550px", "100px");
@@ -845,7 +834,7 @@ function update(timestamp) {
 	}
 
 	updateUI();
-	if (state.currentHp <= 0 && !state.isDead) playerDefeated();
+	if (state.started && state.currentHp <= 0 && !state.isDead) playerDefeated();
 
 	requestAnimationFrame(update);
 }
@@ -885,8 +874,7 @@ document.addEventListener("click", function (event) {
 
 // In your DOMContentLoaded listener:
 document.addEventListener("DOMContentLoaded", () => {
-    renderPlayerSprite(); // <-- Add this here
-    spawnEnemy();
+    renderPlayerSprite();
     renderEquipment();
     renderConsumables();
     initHudIcons();
