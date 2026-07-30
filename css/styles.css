@@ -146,23 +146,21 @@ body,
 /* Asset placeholders */
 .sprite {
     position: absolute;
-    bottom: 30px;
-    width: 80px;
-    height: 80px;
     transition: opacity 0.5s;
     z-index: 10;
     object-fit: contain;
 }
 
 #player-sprite {
-    right: 570px;
+    left: 50px;
     height: 100px;
     overflow: visible !important;
     text-align: right;
+    bottom: 15px;
 }
 
 #enemy-sprite {
-    right: 150px;
+    right: 100px;
     height: 120px;
 }
 

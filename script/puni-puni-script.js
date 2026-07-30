@@ -658,14 +658,14 @@ function showFloatingText(text, targetId) {
 function performAttack(target) {
 	if (target === "enemy") {
 		// Player shoots orange towards enemy
-		createProjectile("slash", "orange", "220px", "180px", "600px", "180px", () => {
+		createProjectile("slash", "orange", "120px", "180px", "680px", "180px", () => {
 			enemy.currentHp -= state.atk;
 			if (enemy.currentHp <= 0 && !enemy.isDead) enemyDefeated();
 		});
 	} else {
 		// Enemy shoots red towards player
 		// Inside performAttack, when target === "player"
-		createProjectile("bullet", "red", "575px", "170px", "200px", "170px", () => {
+		createProjectile("bullet", "red", "640px", "170px", "100px", "170px", () => {
 			takeDamage(enemy.atk);
 		});
 	}
