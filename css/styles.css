@@ -179,7 +179,7 @@ body,
     width: 200px;
     height: 20px;
     background-color: #1a1a1a;
-    border: 1px solid #4b5563;
+    border: 2px solid #bbb;
     border-radius: 0;
     overflow: hidden;
     z-index: 50;
