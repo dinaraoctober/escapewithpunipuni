@@ -200,7 +200,7 @@ const i18n = {
 		wave: "Wave",
 		loop: "Loop",
 		dango: "Dango",
-		grenadeLabel: "Grenades",
+		grenadeLabel: "Grenade",
 		medLabel: "Med Kit",
 		bandageLabel: "Bandage",
 		bandageDesc: "Stops bleeding",
