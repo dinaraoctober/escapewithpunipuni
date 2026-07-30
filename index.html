@@ -18,6 +18,21 @@
 </head>
 <body>
 
+    <!-- Background music & SFX -->
+<audio id="bgm" src="assets/puni-mix.mp3" loop preload="auto"></audio>
+<audio id="sfx-dodge" src="assets/dodge.wav" preload="auto"></audio>
+<audio id="sfx-bleed" src="assets/bleed.wav" preload="auto"></audio>
+
+<div class="tooltip-container" id="mute-btn" onclick="toggleMute()" style="left: 70px;">
+    <span id="mute-icon" class="note-icon">♬</span>
+</div>
+<div class="tooltip-container" id="tooltip" onclick="this.classList.toggle('active')">
+    ?
+    <span id="tooltip-label" class="tooltip-text">Escape from Tarkov is a registered trademark of Battlestate
+        Games. This project is not affiliated with, endorsed by, or sponsored by the developer.</span>
+</div>
+
+
     <div id="start-screen" class="screen-overlay">
         <div class="start-content">
             <h1 class="logo"><img style="filter: brightness(0) invert(1);" src="assets/logo.svg" alt="Puni Puni Logo" /></h1>
@@ -44,12 +59,6 @@
             <div class="start-lang-select">
                 <button onclick="setLang('ENG')">English</button>
                 <button onclick="setLang('JPN')">日本語</button>
-            </div>
-
-            <div class="tooltip-container" id="tooltip" onclick="this.classList.toggle('active')">
-                ?
-                <span id="tooltip-label" class="tooltip-text">Escape from Tarkov is a registered trademark of Battlestate
-                    Games. This project is not affiliated with, endorsed by, or sponsored by the developer.</span>
             </div>
 
             <div id="leaderboard-box" style="display: none;">
@@ -128,9 +137,9 @@
                         <span><span class="txt-qtyLabel">Owned</span>: <span class="text" id="qty-medkit"></span></span>
                     </div>
                     <div class="gear consumables">
-                        <span class="title" id="txt-bigmedkitLabel">Big Med Kit</span>
-                        <span class="icon" id="icon-bigmedKit"></span>
-                        <span><span class="txt-qtyLabel">Owned</span>: <span class="text" id="qty-bigmedkit"></span></span>
+                        <span class="title" id="txt-bandageLabel">Bandage</span>
+                        <span class="icon" id="icon-bandage"></span>
+                        <span><span class="txt-qtyLabel">Owned</span>: <span class="text" id="qty-bandage"></span></span>
                     </div>
                     <div class="gear consumables">
                         <span class="title" id="txt-regenkitLabel">Regen Kit</span>
@@ -185,6 +194,8 @@
             </div>
         </div>
     </div>
+
+    
 
     <footer>
         <p style="font-size:smaller;">

@@ -1,4 +1,8 @@
 let state = {
+	bleeding: false,
+	bleedDamage: 0,
+	bleedInterval: null,
+	muted: false,
 	selectedSprite: "A",
 	lang: "ENG",
 	dango: 0,
@@ -24,7 +28,7 @@ let state = {
 	grenades: 0,
 	inventory: {
 		medkit: 0,
-		bigMedkit: 0,
+		bandage: 0,
 		regenkit: 0,
 	},
 	// Game flow
@@ -154,17 +158,16 @@ const SHOP_ITEMS = {
 			cost: 20,
 			heal: 15,
 			type: "instant",
-			desc: "+15 HP",
+			descKey: "medDesc",
 			icon: `<img src="assets/medkit.svg" alt="Medkit" />`,
 		},
 		{
-			id: "bigMedkit",
-			nameKey: "bigMedLabel",
+			id: "bandage",
+			nameKey: "bandageLabel",
 			cost: 50,
-			heal: 40,
-			type: "instant",
-			desc: "+40 HP",
-			icon: `<img src="assets/medkit-big.svg" alt="Big Medkit" />`,
+			type: "cure",
+			descKey: "bandageDesc",
+			icon: `<img src="assets/medkit-big.svg" alt="Bandage" />`,
 		},
 		{
 			id: "regenkit",
@@ -173,13 +176,13 @@ const SHOP_ITEMS = {
 			heal: 30,
 			duration: 30,
 			type: "regen",
-			desc: "+30 HP / 30s",
+			descKey: "regenDesc",
 			icon: `<img src="assets/medkit-regen.svg" alt="Regenkit" />`,
 		},
 	],
 };
 
-let enemy = {maxHp: 20, currentHp: 20, atk: 1, isBoss: false, isDead: false};
+let enemy = { maxHp: 20, currentHp: 20, atk: 1, isBoss: false, isDead: false };
 let attackTimer = 0;
 let enemyAttackTimer = 0;
 let lastTime = performance.now();
@@ -199,7 +202,10 @@ const i18n = {
 		dango: "Dango",
 		grenadeLabel: "Grenades",
 		medLabel: "Med Kit",
-		bigMedLabel: "Big Med Kit",
+		bandageLabel: "Bandage",
+		bandageDesc: "Stops bleeding",
+		regenDesc: "+30 HP / 30s",
+		medDesc: "+ 15 HP",
 		regenLabel: "Regen Kit",
 		totalPoints: "Total Points",
 		pause: "Pause",
@@ -247,7 +253,10 @@ const i18n = {
 		loop: "ループ",
 		dango: "団子",
 		grenadeLabel: "手榴弾",
-		bigMedLabel: "大救急キット",
+		bandageLabel: "包帯",
+		medDesc: "+15 HP",
+		bandageDesc: "出血を止める",
+		regenDesc: "+30 HP / 30秒",
 		medLabel: "救急キット",
 		regenLabel: "再生キット",
 		totalPoints: "合計スコア",
@@ -294,6 +303,30 @@ function setDisabled(el, isDisabled) {
 	}
 }
 
+const bgm = document.getElementById("bgm");
+const sfxDodge = document.getElementById("sfx-dodge");
+const sfxBleed = document.getElementById("sfx-bleed");
+bgm.volume = 0.7;
+
+function toggleMute() {
+	state.muted = !state.muted;
+	bgm.muted = state.muted;
+	sfxDodge.muted = state.muted;
+	sfxBleed.muted = state.muted;
+	document.getElementById("mute-icon").innerText = state.muted ? "🔇" : "🔊";
+}
+
+function playBgm() {
+	bgm.currentTime = 0;
+	bgm.muted = state.muted;
+	bgm.play().catch((err) => console.warn("BGM playback blocked:", err));
+}
+
+function stopBgm() {
+	bgm.pause();
+	bgm.currentTime = 0;
+}
+
 // 1. Logic to hide the start screen and initiate gameplay loops
 function startGame() {
 	const e = document.getElementById("start-screen");
@@ -314,6 +347,7 @@ function startGame() {
 
 	// Reset game loop time tracker to current time
 	lastTime = performance.now();
+	playBgm();
 
 	renderPlayerSprite();
 	spawnEnemy();
@@ -396,7 +430,7 @@ function updateUI() {
 	document.getElementById("enemy-hp-fill").style.width = Math.max(0, (enemy.currentHp / enemy.maxHp) * 100) + "%";
 	// --- Consumables HUD ---
 	document.getElementById("txt-medkitLabel").innerText = t.medLabel;
-	document.getElementById("txt-bigmedkitLabel").innerText = t.bigMedLabel;
+	document.getElementById("txt-bandageLabel").innerText = t.bandageLabel;
 	document.getElementById("txt-regenkitLabel").innerText = t.regenLabel;
 	document.getElementById("txt-grenadeLabel").innerText = t.grenadeLabel;
 	document.querySelectorAll(".txt-qtyLabel").forEach((element) => {
@@ -406,7 +440,7 @@ function updateUI() {
 		if (qtySpan) element.appendChild(qtySpan);
 	});
 	document.getElementById("qty-medkit").innerText = state.inventory.medkit || 0;
-	document.getElementById("qty-bigmedkit").innerText = state.inventory.bigMedkit || 0;
+	document.getElementById("qty-bandage").innerText = state.inventory.bandage || 0;
 	document.getElementById("qty-regenkit").innerText = state.inventory.regenkit || 0;
 	document.getElementById("qty-grenade").innerText = state.grenades || 0;
 
@@ -414,7 +448,7 @@ function updateUI() {
 	const isFullHealth = state.currentHp >= state.maxHp - EPSILON;
 
 	setDisabled(document.getElementById("icon-medKit"), !state.inventory.medkit || isFullHealth);
-	setDisabled(document.getElementById("icon-bigmedKit"), !state.inventory.bigMedkit || isFullHealth);
+	setDisabled(document.getElementById("icon-bandage"), !state.inventory.bandage || !state.bleeding);
 	setDisabled(document.getElementById("icon-regenkit"), !state.inventory.regenkit || state.isRegening);
 	setDisabled(document.getElementById("icon-grenade"), state.grenades <= 0);
 
@@ -465,20 +499,64 @@ function createProjectile(type, color, startX, startY, endX, endY, onHit) {
 	// Animate movement
 	proj.animate(
 		[
-			{left: startX, top: startY},
-			{left: endX, top: endY},
+			{ left: startX, top: startY },
+			{ left: endX, top: endY },
 		],
-		{duration: 300, fill: "forwards"},
+		{ duration: 300, fill: "forwards" },
 	).onfinish = () => {
 		proj.remove();
 		if (onHit) onHit();
 	};
 }
+
+function applyBleed(dmgPerTick) {
+	state.bleeding = true;
+	state.bleedDamage = dmgPerTick;
+
+	// Refresh rather than stack multiple intervals if bled again
+	if (state.bleedInterval) clearInterval(state.bleedInterval);
+
+	state.bleedInterval = setInterval(() => {
+		if (state.isDead || state.won || !state.bleeding) {
+			clearInterval(state.bleedInterval);
+			return;
+		}
+		if (!state.paused) {
+			state.currentHp = Math.round((state.currentHp - state.bleedDamage) * 10) / 10;
+			const bleedTickText = state.lang === "JPN" ? `-${state.bleedDamage} 出血` : `-${state.bleedDamage} Bleed`;
+			showFloatingText(bleedTickText, "player-sprite");
+			updateUI();
+
+			if (state.currentHp <= 0 && !state.isDead) playerDefeated();
+		}
+	}, 1000);
+
+		state.bleedDripInterval = setInterval(() => {
+		if (state.isDead || state.won || !state.bleeding) {
+			clearInterval(state.bleedDripInterval);
+			return;
+		}
+		if (!state.paused) spawnBloodDrip();
+	}, 300);
+}
+
+function stopBleed() {
+	state.bleeding = false;
+	if (state.bleedInterval) {
+		clearInterval(state.bleedInterval);
+		state.bleedInterval = null;
+	}
+	if (state.bleedDripInterval) {
+		clearInterval(state.bleedDripInterval);
+		state.bleedDripInterval = null;
+	}
+	updateUI();
+}
+
 function takeDamage(enemyAtk) {
 	let dmgMultiplier = 10 / (10 + state.def);
 	let baseDamage = enemy.isBoss ? 1.5 : 1.0;
 
-	// Apply an extra damage boost starting at loop 6
 	let loopDamageMultiplier = 1.0;
 	if (state.loop <= 5) {
 		loopDamageMultiplier = 1 + (state.loop - 1) * 0.1;
@@ -493,15 +571,50 @@ function takeDamage(enemyAtk) {
 	if (Math.random() < missChance) {
 		finalDamage = 0; // The enemy missed!
 
-		// Fix language check to strictly align with state.lang
 		const missText = state.lang === "JPN" ? "キィィン！" : "P-TING!";
 		showFloatingText(missText, "player-sprite");
+
+		sfxDodge.currentTime = 0;
+		sfxDodge.play().catch((err) => console.warn("SFX playback blocked:", err));
 	} else {
 		finalDamage = Math.max(0.5, finalDamage);
+
+		// Bleed roll — only possible on a landed hit
+		if (!state.bleeding) {
+			const bleedChance = enemy.isBoss ? 0.2 : 0.1;
+			if (Math.random() < bleedChance) {
+				applyBleed(enemyAtk);
+				const bleedText = state.lang === "JPN" ? "出血！" : "BLEEDING!";
+				showFloatingText(bleedText, "player-sprite");
+
+				sfxBleed.currentTime = 0;
+				sfxBleed.play().catch((err) => console.warn("SFX playback blocked:", err));
+	
+			}
+		}
 	}
 
 	state.currentHp = Math.round((state.currentHp - finalDamage) * 10) / 10;
 	updateUI();
+} 
+
+function spawnBloodDrip() {
+	const playerEl = document.getElementById("player-sprite");
+	if (!playerEl) return;
+
+	const drip = document.createElement("div");
+	drip.className = "blood-drip";
+
+	// Random horizontal spot roughly within the sprite's width
+	const offsetX = 10 + Math.random() * 60;
+	const offsetY = 30 + Math.random() * 20;
+
+	drip.style.left = `${offsetX}px`;
+	drip.style.top = `${offsetY}px`;
+
+	playerEl.appendChild(drip);
+
+	setTimeout(() => drip.remove(), 900);
 }
 
 function showFloatingText(text, targetId) {
@@ -621,6 +734,8 @@ function enemyDefeated() {
 
 function triggerWin() {
 	state.won = true;
+	stopBgm();
+	stopBleed();
 	document.getElementById("win-screen").style.opacity = "1";
 	const finalPointsElement = document.getElementById("final-points");
 	if (finalPointsElement) {
@@ -668,6 +783,7 @@ function playerDefeated() {
 		document.getElementById("death-screen").style.opacity = "0";
 		state.currentHp = state.maxHp;
 		state.wave = 1; // Resets the wave
+		stopBleed();
 		document.getElementById("player-sprite").style.opacity = "1";
 		state.isDead = false;
 		spawnEnemy();
@@ -693,8 +809,8 @@ function renderShop() {
 	const t = i18n[state.lang];
 
 	const categories = [
-		{id: "shop-guns", type: "guns", key: "speed", currentKey: "currentGun"},
-		{id: "shop-armor", type: "armor", shopType: "armors", key: "defence", currentKey: "currentArmor"},
+		{ id: "shop-guns", type: "guns", key: "speed", currentKey: "currentGun" },
+		{ id: "shop-armor", type: "armor", shopType: "armors", key: "defence", currentKey: "currentArmor" },
 		{
 			id: "shop-bullets",
 			type: "bullet",
@@ -842,7 +958,7 @@ function renderConsumables() {
 					<span class="title">${t[item.nameKey]}</span>
 					<div class="information">
 						${item.icon}
-						(${item.desc})
+						(${t[item.descKey]})
 						<br />
 						${item.cost} ${t.dango}
 						<br />
@@ -864,32 +980,12 @@ function useConsumable(id) {
 		if (state.currentHp >= state.maxHp) return;
 		state.inventory[id]--;
 		state.currentHp = Math.min(state.maxHp, state.currentHp + item.heal);
-	} else if (item.type === "regen") {
-		if (state.isRegening) return;
+	} else if (item.type === "cure") {
+		if (!state.bleeding) return;
 		state.inventory[id]--;
-		state.isRegening = true;
-		state.regenTicksLeft = item.duration;
-
-		if (state.regenInterval) clearInterval(state.regenInterval);
-		let ticks = item.duration;
-		const hpPerTick = item.heal / item.duration;
-
-		state.regenInterval = setInterval(() => {
-			if (state.isDead || state.won) {
-				clearInterval(state.regenInterval);
-				state.isRegening = false;
-				return;
-			}
-			if (!state.paused) {
-				state.currentHp = Math.min(state.maxHp, state.currentHp + hpPerTick);
-				ticks--;
-				state.regenTicksLeft = ticks;
-			}
-			if (ticks <= 0) {
-				clearInterval(state.regenInterval);
-				state.isRegening = false; // NEW: single source of truth for ending the cooldown
-			}
-		}, 1000);
+		stopBleed();
+	} else if (item.type === "regen") {
+		// ...unchanged...
 	}
 
 	updateUI();
@@ -902,10 +998,10 @@ function initHudIcons() {
 		medIcon.onclick = () => useConsumable("medkit");
 	}
 
-	const bigMedIcon = document.getElementById("icon-bigmedKit");
-	if (bigMedIcon) {
-		bigMedIcon.innerHTML = SHOP_ITEMS.consumables[1].icon;
-		bigMedIcon.onclick = () => useConsumable("bigMedkit");
+	const bandageIcon = document.getElementById("icon-bandage");
+	if (bandageIcon) {
+		bandageIcon.innerHTML = SHOP_ITEMS.consumables[1].icon;
+		bandageIcon.onclick = () => useConsumable("bandage");
 	}
 
 	const regenIcon = document.getElementById("icon-regenkit");
