@@ -216,7 +216,7 @@ const i18n = {
 		upgrades: "Equipment",
 		atkLabel: "Attack",
 		spdLabel: "Speed",
-		defLabel: "defence",
+		defLabel: "Defence",
 		points: "Points",
 		deaths: "Deaths",
 		shpLabel: "Shop",
