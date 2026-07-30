@@ -164,7 +164,7 @@ const SHOP_ITEMS = {
 		{
 			id: "bandage",
 			nameKey: "bandageLabel",
-			cost: 50,
+			cost: 30,
 			type: "cure",
 			descKey: "bandageDesc",
 			icon: `<img src="assets/medkit-big.svg" alt="Bandage" />`,
@@ -172,7 +172,7 @@ const SHOP_ITEMS = {
 		{
 			id: "regenkit",
 			nameKey: "regenLabel",
-			cost: 30,
+			cost: 40,
 			heal: 30,
 			duration: 30,
 			type: "regen",
@@ -313,7 +313,6 @@ function toggleMute() {
 	bgm.muted = state.muted;
 	sfxDodge.muted = state.muted;
 	sfxBleed.muted = state.muted;
-	document.getElementById("mute-icon").innerText = state.muted ? "🔇" : "🔊";
 }
 
 function playBgm() {
@@ -523,8 +522,6 @@ function applyBleed(dmgPerTick) {
 		}
 		if (!state.paused) {
 			state.currentHp = Math.round((state.currentHp - state.bleedDamage) * 10) / 10;
-			const bleedTickText = state.lang === "JPN" ? `-${state.bleedDamage} 出血` : `-${state.bleedDamage} Bleed`;
-			showFloatingText(bleedTickText, "player-sprite");
 			updateUI();
 
 			if (state.currentHp <= 0 && !state.isDead) playerDefeated();
@@ -654,14 +651,14 @@ function showFloatingText(text, targetId) {
 function performAttack(target) {
 	if (target === "enemy") {
 		// Player shoots orange towards enemy
-		createProjectile("slash", "orange", "220px", "230px", "600px", "230px", () => {
+		createProjectile("slash", "orange", "220px", "180px", "600px", "180px", () => {
 			enemy.currentHp -= state.atk;
 			if (enemy.currentHp <= 0 && !enemy.isDead) enemyDefeated();
 		});
 	} else {
 		// Enemy shoots red towards player
 		// Inside performAttack, when target === "player"
-		createProjectile("bullet", "red", "575px", "220px", "200px", "220px", () => {
+		createProjectile("bullet", "red", "575px", "170px", "200px", "170px", () => {
 			takeDamage(enemy.atk);
 		});
 	}

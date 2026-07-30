@@ -96,8 +96,8 @@ body,
 }
 
 #battlefield {
-    min-height: 300px;
-    height: 300px;
+    min-height: 250px;
+    height: 250px;
     background: #1a1a1a;
     position: relative;
     overflow: hidden;
@@ -799,8 +799,8 @@ button#btn-grenade {
 
 .blood-drip {
     position: absolute;
-    width: 2px;
-    height: 2px;
+    width: 4px;
+    height: 4px;
     background-color: #a10000;
     z-index: 12;
     pointer-events: none;
