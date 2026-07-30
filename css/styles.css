@@ -266,6 +266,10 @@ h3 {
     transform: translateY(-50%) rotate(-45deg);
 }
 
+#mute-btn {
+    left: 75px;
+}
+
 button {
     background-color: #556b2f;
     color: #e5e7eb;

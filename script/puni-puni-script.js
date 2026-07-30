@@ -310,9 +310,16 @@ bgm.volume = 0.7;
 
 function toggleMute() {
 	state.muted = !state.muted;
+
+	const noteIcon = document.querySelector(".note-icon");
+    if (noteIcon) {
+        noteIcon.classList.toggle("is-muted", state.muted);
+    }
+	
 	bgm.muted = state.muted;
 	sfxDodge.muted = state.muted;
 	sfxBleed.muted = state.muted;
+	
 }
 
 function playBgm() {
@@ -578,7 +585,7 @@ function takeDamage(enemyAtk) {
 
 		// Bleed roll — only possible on a landed hit
 		if (!state.bleeding) {
-			const bleedChance = enemy.isBoss ? 0.2 : 0.1;
+			const bleedChance = enemy.isBoss ? 0.15 : 0.05; // 15% for bosses, 5% for regular enemies	
 			if (Math.random() < bleedChance) {
 				applyBleed(enemyAtk);
 				const bleedText = state.lang === "JPN" ? "出血！" : "BLEEDING!";
