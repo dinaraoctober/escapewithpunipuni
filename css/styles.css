@@ -164,6 +164,7 @@ body,
 #enemy-sprite {
     right: 100px;
     height: 120px;
+    bottom: 30px;
 }
 
 .boss {
