@@ -828,15 +828,35 @@ button#btn-grenade {
         zoom: 0.5;
     }
 
+    .button-row {
+    margin-top: 30px !important;
+}
+
+.button-row button {
+    font-size: 33px;    
+}   
+
+.stat-row {
+    height: auto;
+}
+
+#shop-screen, #leaderboard-box {
+    width: 100%;
+    max-width: 95%;
+    height: auto;
+    max-height: 95%;
+    overflow-y: auto;
+}
+
     .gear.consumables,
     #shop-screen .gear,
-    .consumables-layout .gear {
+    .consumables-layout .gear,
+    .gear {
         width: 100% !important;
     }
 
-    .sprite-select {
-        flex-direction: column;
-        align-items: center;
+    .logo {
+        height: 90px;
     }
 
     #top-bar {
