@@ -295,6 +295,10 @@ button:disabled {
     cursor: not-allowed;
 }
 
+button:disabled .information {
+    color: white;
+}
+
 .btn-grey {
     background-color: #6b7280 !important;
     border-color: #4b5563 !important;

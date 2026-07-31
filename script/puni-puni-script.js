@@ -939,7 +939,7 @@ function buyConsumable(index) {
 	state.inventory[item.id] = (state.inventory[item.id] || 0) + 1;
 
 	updateUI();
-	renderConsumables();
+	renderShop();
 }
 
 // Dynamically builds the consumables HTML on the page
@@ -989,10 +989,42 @@ function useConsumable(id) {
 		state.inventory[id]--;
 		stopBleed();
 	} else if (item.type === "regen") {
-		// ...unchanged...
+		if (state.isRegening) return; // don't stack regens
+		state.inventory[id]--;
+		startRegen(item);
 	}
 
 	updateUI();
+}
+
+function startRegen(item) {
+	state.isRegening = true;
+	state.regenTicksLeft = item.duration;
+
+	if (state.regenInterval) clearInterval(state.regenInterval);
+
+	const healPerTick = item.heal / item.duration;
+
+	state.regenInterval = setInterval(() => {
+		if (state.isDead || state.won) {
+			clearInterval(state.regenInterval);
+			state.regenInterval = null;
+			state.isRegening = false;
+			updateUI();
+			return;
+		}
+		if (state.paused) return;
+
+		state.regenTicksLeft--;
+		state.currentHp = Math.min(state.maxHp, Math.round((state.currentHp + healPerTick) * 10) / 10);
+
+		if (state.regenTicksLeft <= 0) {
+			clearInterval(state.regenInterval);
+			state.regenInterval = null;
+			state.isRegening = false;
+		}
+		updateUI();
+	}, 1000);
 }
 
 function initHudIcons() {
