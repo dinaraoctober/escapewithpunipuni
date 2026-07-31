@@ -28,7 +28,7 @@ let state = {
 	grenades: 0,
 	inventory: {
 		medkit: 0,
-		bandage: 0,
+		zagustin: 0,
 		regenkit: 0,
 	},
 	// Game flow
@@ -162,12 +162,12 @@ const SHOP_ITEMS = {
 			icon: `<img src="assets/medkit.svg" alt="Medkit" />`,
 		},
 		{
-			id: "bandage",
-			nameKey: "bandageLabel",
+			id: "zagustin",
+			nameKey: "zagustinLabel",
 			cost: 30,
 			type: "cure",
-			descKey: "bandageDesc",
-			icon: `<img src="assets/medkit-big.svg" alt="Bandage" />`,
+			descKey: "zagustinDesc",
+			icon: `<img src="assets/zagustin.svg" alt="zagustin" />`,
 		},
 		{
 			id: "regenkit",
@@ -177,7 +177,7 @@ const SHOP_ITEMS = {
 			duration: 30,
 			type: "regen",
 			descKey: "regenDesc",
-			icon: `<img src="assets/medkit-regen.svg" alt="Regenkit" />`,
+			icon: `<img src="assets/propital.svg" alt="Regenkit" />`,
 		},
 	],
 };
@@ -201,12 +201,12 @@ const i18n = {
 		loop: "Loop",
 		dango: "Dango",
 		grenadeLabel: "Grenade",
-		medLabel: "Med Kit",
-		bandageLabel: "Bandage",
-		bandageDesc: "Stops bleeding",
+		medLabel: "Grizzly Medical Kit",
+		zagustinLabel: "Zagustin",
+		zagustinDesc: "Stops bleeding",
 		regenDesc: "+30 HP / 30s",
 		medDesc: "+ 15 HP",
-		regenLabel: "Regen Kit",
+		regenLabel: "Propital",
 		totalPoints: "Total Points",
 		pause: "Pause",
 		resume: "Resume",
@@ -253,12 +253,12 @@ const i18n = {
 		loop: "ループ",
 		dango: "団子",
 		grenadeLabel: "手榴弾",
-		bandageLabel: "包帯",
+		zagustinLabel: "ザグスティン",
 		medDesc: "+15 HP",
-		bandageDesc: "出血を止める",
+		zagustinDesc: "出血を止める",
 		regenDesc: "+30 HP / 30秒",
-		medLabel: "救急キット",
-		regenLabel: "再生キット",
+		medLabel: "グリズリー救急キット",
+		regenLabel: "プロピタル",
 		totalPoints: "合計スコア",
 		pause: "一時停止",
 		resume: "再開",
@@ -436,7 +436,7 @@ function updateUI() {
 	document.getElementById("enemy-hp-fill").style.width = Math.max(0, (enemy.currentHp / enemy.maxHp) * 100) + "%";
 	// --- Consumables HUD ---
 	document.getElementById("txt-medkitLabel").innerText = t.medLabel;
-	document.getElementById("txt-bandageLabel").innerText = t.bandageLabel;
+	document.getElementById("txt-zagustinLabel").innerText = t.zagustinLabel;
 	document.getElementById("txt-regenkitLabel").innerText = t.regenLabel;
 	document.getElementById("txt-grenadeLabel").innerText = t.grenadeLabel;
 	document.querySelectorAll(".txt-qtyLabel").forEach((element) => {
@@ -446,7 +446,7 @@ function updateUI() {
 		if (qtySpan) element.appendChild(qtySpan);
 	});
 	document.getElementById("qty-medkit").innerText = state.inventory.medkit || 0;
-	document.getElementById("qty-bandage").innerText = state.inventory.bandage || 0;
+	document.getElementById("qty-zagustin").innerText = state.inventory.zagustin || 0;
 	document.getElementById("qty-regenkit").innerText = state.inventory.regenkit || 0;
 	document.getElementById("qty-grenade").innerText = state.grenades || 0;
 
@@ -454,7 +454,7 @@ function updateUI() {
 	const isFullHealth = state.currentHp >= state.maxHp - EPSILON;
 
 	setDisabled(document.getElementById("icon-medKit"), !state.inventory.medkit || isFullHealth);
-	setDisabled(document.getElementById("icon-bandage"), !state.inventory.bandage || !state.bleeding);
+	setDisabled(document.getElementById("icon-zagustin"), !state.inventory.zagustin || !state.bleeding);
 	setDisabled(document.getElementById("icon-regenkit"), !state.inventory.regenkit || state.isRegening);
 	setDisabled(document.getElementById("icon-grenade"), state.grenades <= 0);
 
@@ -1061,10 +1061,10 @@ function initHudIcons() {
 		medIcon.onclick = () => useConsumable("medkit");
 	}
 
-	const bandageIcon = document.getElementById("icon-bandage");
-	if (bandageIcon) {
-		bandageIcon.innerHTML = SHOP_ITEMS.consumables[1].icon;
-		bandageIcon.onclick = () => useConsumable("bandage");
+	const zagustinIcon = document.getElementById("icon-zagustin");
+	if (zagustinIcon) {
+		zagustinIcon.innerHTML = SHOP_ITEMS.consumables[1].icon;
+		zagustinIcon.onclick = () => useConsumable("zagustin");
 	}
 
 	const regenIcon = document.getElementById("icon-regenkit");

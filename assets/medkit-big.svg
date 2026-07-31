@@ -1,6 +1,0 @@
-<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-    <rect x="4" y="8" width="24" height="20" rx="2" fill="FireBrick"/>
-    <rect x="11" y="2" width="10" height="6" fill="darkred"/>
-    <rect x="14" y="13" width="4" height="10" fill="white"/>
-    <rect x="11" y="16" width="10" height="4" fill="white"/>
-</svg>
