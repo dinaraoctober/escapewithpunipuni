@@ -819,11 +819,11 @@ button#btn-grenade {
 @keyframes bloodDripFall {
     0% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(15px);
     }
     100% {
         opacity: 0;
-        transform: translateY(36px);
+        transform: translateY(50px);
     }
 }
 
