@@ -544,6 +544,30 @@ function applyBleed(dmgPerTick) {
 	}, 300);
 }
 
+function startBleedImmunity(seconds) {
+    state.bleedImmune = true;
+    state.bleedImmuneTicksLeft = seconds;
+
+    if (state.bleedImmuneInterval) clearInterval(state.bleedImmuneInterval);
+
+    state.bleedImmuneInterval = setInterval(() => {
+        if (state.isDead || state.won) {
+            clearInterval(state.bleedImmuneInterval);
+            state.bleedImmuneInterval = null;
+            state.bleedImmune = false;
+            return;
+        }
+        if (state.paused) return;
+
+        state.bleedImmuneTicksLeft--;
+        if (state.bleedImmuneTicksLeft <= 0) {
+            clearInterval(state.bleedImmuneInterval);
+            state.bleedImmuneInterval = null;
+            state.bleedImmune = false;
+        }
+    }, 1000);
+}
+
 function stopBleed() {
 	state.bleeding = false;
 	if (state.bleedInterval) {
@@ -584,7 +608,7 @@ function takeDamage(enemyAtk) {
 		finalDamage = Math.max(0.5, finalDamage);
 
 		// Bleed roll — only possible on a landed hit
-		if (!state.bleeding) {
+		if (!state.bleeding && !state.bleedImmune) {
 			const bleedChance = enemy.isBoss ? 0.3 : 0.01; // 3% for bosses, 1% for regular enemies	
 			if (Math.random() < bleedChance) {
 				applyBleed(enemyAtk);
@@ -788,6 +812,8 @@ function playerDefeated() {
 		state.currentHp = state.maxHp;
 		state.wave = 1; // Resets the wave
 		stopBleed();
+		if (state.bleedImmuneInterval) clearInterval(state.bleedImmuneInterval);
+		state.bleedImmune = false;
 		document.getElementById("player-sprite").style.opacity = "1";
 		state.isDead = false;
 		spawnEnemy();
@@ -988,6 +1014,7 @@ function useConsumable(id) {
 		if (!state.bleeding) return;
 		state.inventory[id]--;
 		stopBleed();
+		startBleedImmunity(15);
 	} else if (item.type === "regen") {
 		if (state.isRegening) return; // don't stack regens
 		state.inventory[id]--;
