@@ -149,8 +149,6 @@ const SHOP_ITEMS = {
 			attack: 50,
 		},
 	],
-	armor: [],
-	bullet: [],
 	consumables: [
 		{
 			id: "medkit",
@@ -192,6 +190,8 @@ const GRENADE_ICON = '<img src="assets/grenade.svg" alt="Grenade" />'; // Add yo
 
 const i18n = {
 	ENG: {
+		ownedStatus: "Owned",
+		downgradeStatus: "Downgrade",
 		start: "Start Game",
 		spriteA: "Puni Puni A",
 		spriteB: "Puni Puni B",
@@ -238,6 +238,8 @@ const i18n = {
 		tooltip: "Escape from Tarkov is a registered trademark of Battlestate Games. This project is not affiliated with, endorsed by, or sponsored by the developer.",
 	},
 	JPN: {
+		ownedStatus: "所持済み",
+		downgradeStatus: "ダウングレード",
 		start: "スタート",
 		spriteA: "ぷにぷに A",
 		spriteB: "ぷにぷに B",
@@ -835,25 +837,24 @@ function capitalize(s) {
 }
 
 function renderShop() {
-	// Get the dictionary for the active language
 	const t = i18n[state.lang];
+
+	// map shop stat keys to existing translation keys
+	const statLabelKey = {
+		speed: "spdLabel",
+		defence: "defLabel",
+		attack: "atkLabel",
+	};
 
 	const categories = [
 		{ id: "shop-guns", type: "guns", key: "speed", currentKey: "currentGun" },
 		{ id: "shop-armor", type: "armor", shopType: "armors", key: "defence", currentKey: "currentArmor" },
-		{
-			id: "shop-bullets",
-			type: "bullet",
-			shopType: "bullets",
-			key: "attack",
-			currentKey: "currentBullet",
-		},
+		{ id: "shop-bullets", type: "bullet", shopType: "bullets", key: "attack", currentKey: "currentBullet" },
 	];
 
 	categories.forEach((cat) => {
 		const container = document.getElementById(cat.id);
 		if (!container) return;
-
 		container.innerHTML = "";
 
 		SHOP_ITEMS[cat.shopType || cat.type].forEach((item, index) => {
@@ -861,24 +862,20 @@ function renderShop() {
 
 			const stateKey = `owned${cat.type.charAt(0).toUpperCase() + cat.type.slice(1)}`;
 			const ownedList = state[stateKey] || [];
-
 			const currentIndex = state[cat.currentKey] || 0;
 			const isOwned = ownedList.includes(index);
-
 			const maxOwnedIndex = ownedList.length > 0 ? Math.max(...ownedList) : 0;
 			const highestReference = Math.max(currentIndex, maxOwnedIndex);
-
 			const isDowngrade = !isOwned && index < highestReference;
 			const canAfford = state.dango >= item.cost;
 			const isDisabled = isOwned || isDowngrade || !canAfford;
 
 			let statusText;
 			if (isOwned) {
-				statusText = "Owned"; // Or map to a translation key if you want to translate "Owned" as well!
+				statusText = t.ownedStatus;
 			} else if (isDowngrade) {
-				statusText = "Downgrade";
+				statusText = t.downgradeStatus;
 			} else {
-				// Change this line to use the translation dictionary:
 				statusText = item.cost + " " + t.dango;
 			}
 
@@ -891,7 +888,7 @@ function renderShop() {
                         <span class="title">${item.name}</span>
                         <div class="information">
                             ${item.icon}
-                            (${item[cat.key]} ${cat.key.toUpperCase()})<br />
+                            (${item[cat.key]} ${t[statLabelKey[cat.key]]})<br />
                             ${statusText}
                         </div>
                     </div>
