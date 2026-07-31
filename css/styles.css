@@ -330,6 +330,11 @@ button:disabled .information {
     width: 50px;
 }
 
+ol#leaderboard-list {
+    text-align: left;
+    font-size: 16px;
+}
+
 span.txt-qtyLabel {
     display: contents;
 }
