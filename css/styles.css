@@ -325,24 +325,9 @@ button:disabled .information {
     width: 32px;
 }
 
-#btn-grenade {
-    position: absolute;
-    left: 40px;
-    bottom: 30px;
-    width: 50px;
+#icon-grenade img {
     height: 50px;
-    background-color: #8b0000;
-    border: 2px solid #fff;
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
-    z-index: 15;
-    display: none;
-}
-
-#btn-grenade img {
-    height: 32px;
-    width: 32px;
+    width: 50px;
 }
 
 span.txt-qtyLabel {
