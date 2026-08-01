@@ -310,18 +310,46 @@ const sfxDodge = document.getElementById("sfx-dodge");
 const sfxBleed = document.getElementById("sfx-bleed");
 bgm.volume = 0.7;
 
+function toggleVolumePanel(event) {
+	event.stopPropagation();
+	document.getElementById("mute-btn").classList.toggle("active");
+}
+
+function setVolume(value) {
+	const vol = value / 100;
+	bgm.volume = vol;
+	sfxDodge.volume = vol;
+	sfxBleed.volume = vol;
+
+	if (vol > 0 && state.muted) {
+		state.muted = false;
+		syncMuteUI();
+	}
+	if (vol === 0 && !state.muted) {
+		state.muted = true;
+		syncMuteUI();
+	}
+}
+
 function toggleMute() {
 	state.muted = !state.muted;
+	syncMuteUI();
+}
 
-	const noteIcon = document.querySelector(".note-icon");
-    if (noteIcon) {
-        noteIcon.classList.toggle("is-muted", state.muted);
-    }
-	
+function syncMuteUI() {
+	const noteIcon = document.getElementById("mute-icon");
+	if (noteIcon) {
+		noteIcon.classList.toggle("is-muted", state.muted);
+	}
+
 	bgm.muted = state.muted;
 	sfxDodge.muted = state.muted;
 	sfxBleed.muted = state.muted;
-	
+
+	const muteToggleBtn = document.getElementById("volume-mute-toggle");
+	if (muteToggleBtn) {
+		muteToggleBtn.textContent = state.muted ? "🔇" : "🔊";
+	}
 }
 
 function playBgm() {
@@ -334,6 +362,18 @@ function stopBgm() {
 	bgm.pause();
 	bgm.currentTime = 0;
 }
+
+document.addEventListener("click", function (event) {
+	const tooltip = document.getElementById("tooltip");
+	if (tooltip && !tooltip.contains(event.target)) {
+		tooltip.classList.remove("active");
+	}
+
+	const muteBtn = document.getElementById("mute-btn");
+	if (muteBtn && !muteBtn.contains(event.target)) {
+		muteBtn.classList.remove("active");
+	}
+});
 
 // 1. Logic to hide the start screen and initiate gameplay loops
 function startGame() {

@@ -23,8 +23,22 @@
 <audio id="sfx-dodge" src="assets/dodge.wav" preload="auto"></audio>
 <audio id="sfx-bleed" src="assets/bleed.wav" preload="auto"></audio>
 
-<div class="tooltip-container" id="mute-btn" onclick="toggleMute()">
+<div class="tooltip-container volume-container" id="mute-btn" onclick="toggleVolumePanel(event)">
     <span id="mute-icon" class="note-icon">♬</span>
+    <div class="volume-popup" id="volume-popup">
+        <input
+            type="range"
+            id="volume-slider"
+            min="0"
+            max="100"
+            value="70"
+            oninput="setVolume(this.value)"
+            onclick="event.stopPropagation()"
+        />
+        <button class="volume-mute-toggle" id="volume-mute-toggle" onclick="event.stopPropagation(); toggleMute()">
+            <span id="mute-icon" class="note-icon">♬</span>
+        </button>
+    </div>        
 </div>
 <div class="tooltip-container" id="tooltip" onclick="this.classList.toggle('active')">
     ?

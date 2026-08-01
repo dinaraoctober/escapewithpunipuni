@@ -611,11 +611,11 @@ span.txt-qtyLabel {
 #shop-screen {
     overflow-y: scroll;
     position: relative;
-    top: -765px;
+    top: -715px;
     height: 725px;
     background: #333;
     padding: 20px;
-    margin-bottom: -765px;
+    margin-bottom: -715px;
     z-index: 10000;
 }
 
@@ -730,6 +730,75 @@ button#btn-grenade {
 }
 
 /* Player */
+
+/* Popup panel — same visual language as .tooltip-text */
+.volume-popup {
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 160px;
+    background-color: #6b7280;
+    color: #fff;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    font-weight: normal;
+    border: 3px solid #4b5563;
+
+    position: absolute;
+    bottom: 120%;
+    left: 0;
+    z-index: 1;
+
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.volume-popup::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 15px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #4b5563 transparent transparent transparent;
+}
+
+.tooltip-container.active .volume-popup {
+    visibility: visible;
+    opacity: 1;
+}
+
+.volume-popup input[type="range"] {
+    flex: 1;
+    accent-color: #556b2f;
+    cursor: pointer;
+}
+
+.volume-mute-toggle {
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Strike-through when muted — targets the span directly, matches your original selector */
+.note-icon.is-muted::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -4px;
+    width: calc(100% + 8px);
+    height: 2px;
+    background-color: #fff;
+    transform: translateY(-50%) rotate(-45deg);
+}
+
 
 .tooltip-container {
     position: fixed;
