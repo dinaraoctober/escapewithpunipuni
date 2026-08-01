@@ -459,9 +459,9 @@ const HP_BAR_IDS = {
 };
 
 const LOW_HP_THRESHOLD = {
-	player: 50,
-	pmc: 25,
-	boss: 25,
+	player: 20,
+	pmc: 20,
+	boss: 20,
 };
 
 function updateHealthBar(target, current, max) {
