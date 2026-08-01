@@ -228,6 +228,7 @@ const i18n = {
 		armorLabel: "Armor",
 		bulletLabel: "Bullet",
 		mdlshpLabel: "Shop",
+		mdlmedLabel: "Medical",
 		mdlgunLabel: "Gun",
 		mdlarmorLabel: "Armor",
 		mdlbulletLabel: "Bullet",
@@ -283,6 +284,7 @@ const i18n = {
 		bulletLabel: "弾丸",
 		medLabel: "救急キット",
 		mdlshpLabel: "店",
+		mdlmedLabel: "医療品",
 		mdlgunLabel: "銃",
 		mdlarmorLabel: "鎧",
 		mdlbulletLabel: "弾丸",
@@ -397,6 +399,8 @@ function stopBgm() {
 
 document.addEventListener("DOMContentLoaded", () => {
 	updateSliderFill(state.volume);
+	const slider = document.getElementById("volume-slider");
+	if (slider) updateSliderFill(slider.value);
 });
 
 document.addEventListener("click", (e) => {
@@ -530,7 +534,7 @@ function updateUI() {
 	document.getElementById("txt-shpLabel").innerText = t.shpLabel;
 	document.getElementById("shptxt-shpLabel").innerText = t.mdlshpLabel;
 	document.getElementById("closebtn-label").innerText = t.mdlcloseLabel;
-	document.getElementById("shptxt-medLabel").innerText = t.medLabel;
+	document.getElementById("shptxt-medLabel").innerText = t.mdlmedLabel;
 	document.getElementById("shptxt-armorLabel").innerText = t.mdlarmorLabel;
 	document.getElementById("shptxt-gunLabel").innerText = t.mdlgunLabel;
 	document.getElementById("shptxt-bulletsLabel").innerText = t.mdlbulletLabel;
