@@ -5,7 +5,6 @@ let state = {
 	bleeding: false,
 	bleedDamage: 0,
 	bleedInterval: null,
-	muted: false,
 	selectedSprite: "A",
 	lang: "ENG",
 	dango: 0,
@@ -330,9 +329,9 @@ function updateSliderFill(value) {
 
 function toggleVolumePanel(event) {
 	event.stopPropagation();
-	const popup = document.getElementById("volume-popup");
-	if (popup) {
-		popup.classList.toggle("active");
+	const muteBtn = document.getElementById("mute-btn");
+	if (muteBtn) {
+		muteBtn.classList.toggle("active");
 	}
 }
 
@@ -362,12 +361,25 @@ function toggleMute() {
 	if (state.muted) {
 		state.savedVolume = state.volume > 0 ? state.volume : 70;
 		if (slider) slider.value = 0;
-		setVolume(0);
+
+		state.volume = 0;
+		if (bgm) bgm.volume = 0;
+		if (sfxDodge) sfxDodge.volume = 0;
+		if (sfxBleed) sfxBleed.volume = 0;
+		updateSliderFill(0);
 	} else {
 		const restoreVol = state.savedVolume > 0 ? state.savedVolume : 70;
 		if (slider) slider.value = restoreVol;
-		setVolume(restoreVol);
+
+		state.volume = restoreVol;
+		const vol = restoreVol / 100;
+		if (bgm) bgm.volume = vol;
+		if (sfxDodge) sfxDodge.volume = vol;
+		if (sfxBleed) sfxBleed.volume = vol;
+		updateSliderFill(restoreVol);
 	}
+
+	syncMuteUI();
 }
 
 function syncMuteUI() {
@@ -399,15 +411,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const slider = document.getElementById("volume-slider");
 	if (slider) updateSliderFill(slider.value);
 });
-
-document.addEventListener("click", (e) => {
-	const mainBtn = document.getElementById("mute-btn");
-	const popup = document.getElementById("volume-popup");
-	if (mainBtn && popup && !mainBtn.contains(e.target)) {
-		popup.classList.remove("active");
-	}
-});
-
 
 document.addEventListener("click", function (event) {
 	const tooltip = document.getElementById("tooltip");
