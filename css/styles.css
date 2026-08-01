@@ -33,7 +33,6 @@ body,
     user-select: none;
 }
 
-
 .gear.consumables .text {
     text-align: center;
     margin-top: -7px;
@@ -83,6 +82,20 @@ body,
 
 #player-sprite img {
     height: 100px;
+}
+
+.health-bar-fill.bleeding {
+    background: linear-gradient(to bottom, #d93838 0%, #a82e2e 60%, #6e1c1c 100%);
+    animation: bleedPulse 1s ease-in-out infinite;
+}
+
+@keyframes bleedPulse {
+    0%, 100% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.35);
+    }
 }
 
 #game-container {
@@ -358,11 +371,10 @@ input[type="range"]#volume-slider {
     cursor: pointer;
     border: 2px solid #4b5563;
     box-sizing: border-box;
-    /* background is set dynamically by updateSliderFill() in JS */
+
 }
 
-/* WebKit (Chrome/Safari/Edge) — track must stay transparent so the
-   input's own background (the JS gradient) is what's visible */
+
 input[type="range"]#volume-slider::-webkit-slider-runnable-track {
     -webkit-appearance: none;
     width: 100%;

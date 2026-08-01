@@ -464,7 +464,7 @@ const LOW_HP_THRESHOLD = {
 	boss: 20,
 };
 
-function updateHealthBar(target, current, max) {
+function updateHealthBar(target, current, max, isBleeding = false) {
 	const ids = HP_BAR_IDS[target];
 	if (!ids) return;
 
@@ -477,14 +477,16 @@ function updateHealthBar(target, current, max) {
 
 	fill.style.width = percentage + "%";
 
-	// Trail lags behind for the "damage ghost" effect
 	setTimeout(() => {
 		trail.style.width = percentage + "%";
 	}, 120);
 
 	text.textContent = `${Math.max(0, Math.floor(current))} / ${max}`;
 
-	fill.classList.toggle("low", percentage <= LOW_HP_THRESHOLD[target]);
+	fill.classList.toggle("bleeding", isBleeding);
+	// Only apply the low-HP red state when not already showing the bleed state,
+	// so the pulse animation doesn't get overridden by the static low-HP gradient
+	fill.classList.toggle("low", !isBleeding && percentage <= LOW_HP_THRESHOLD[target]);
 }
 
 // Update the start screen itself whenever setLang() runs
@@ -553,14 +555,13 @@ function updateUI() {
 	document.getElementById("stat-atk").innerText = state.atk;
 	document.getElementById("stat-spd").innerText = state.spd;
 	document.getElementById("stat-defence").innerText = state.def;
-	updateHealthBar("player", state.currentHp, state.maxHp);
+	updateHealthBar("player", state.currentHp, state.maxHp, state.bleeding);
 
 	if (enemy.isBoss) {
 		updateHealthBar("boss", enemy.currentHp, enemy.maxHp);
 	} else {
 		updateHealthBar("pmc", enemy.currentHp, enemy.maxHp);
 	}
-
 	document.getElementById("enemy-hp-bar").style.display = enemy.isBoss ? "none" : "block";
 	document.getElementById("boss-hp-bar").style.display = enemy.isBoss ? "block" : "none";
 
