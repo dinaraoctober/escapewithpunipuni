@@ -195,7 +195,7 @@ body,
 .health-bar-container {
     position: absolute;
     top: 15px;
-    width: 300px;
+    width: 180px;
     height: 28px;
     background-color: #bbbbbb;
     padding: 3px;
