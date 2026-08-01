@@ -311,6 +311,14 @@ const sfxDodge = document.getElementById("sfx-dodge");
 const sfxBleed = document.getElementById("sfx-bleed");
 bgm.volume = 0.7;
 
+        function updateSliderFill(value) {
+            const slider = document.getElementById("volume-slider");
+            if (slider) {
+                // Creates a crisp squared color fill on the left of the thumb
+                slider.style.background = `linear-gradient(to right, #556b2f 0%, #556b2f ${value}%, #232524 ${value}%, #232524 100%)`;
+            }
+        }
+
 function toggleVolumePanel(event) {
 	event.stopPropagation();
 	document.getElementById("mute-btn").classList.toggle("active");
@@ -338,20 +346,17 @@ function toggleMute() {
 }
 
 function syncMuteUI() {
-	const noteIcon = document.getElementById("mute-icon");
-	if (noteIcon) {
-		noteIcon.classList.toggle("is-muted", state.muted);
-	}
+	// Update all note icons using class toggle instead of innerHTML string replacements
+	const noteIcons = document.querySelectorAll(".note-icon");
+	noteIcons.forEach(icon => {
+		icon.classList.toggle("is-muted", state.muted);
+	});
 
 	bgm.muted = state.muted;
 	sfxDodge.muted = state.muted;
 	sfxBleed.muted = state.muted;
-
-	const muteToggleBtn = document.getElementById("volume-mute-toggle");
-	if (muteToggleBtn) {
-		muteToggleBtn.textContent = state.muted ? "🔇" : "🔊";
-	}
 }
+
 
 function playBgm() {
 	bgm.currentTime = 0;

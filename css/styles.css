@@ -78,7 +78,7 @@ body,
 .sprite-choice-btn:has(input:checked) {
     border-color: #ffcc00;
     box-shadow: 2px 2px 0px #d99b1d;
-    color: #fff;
+    color: #d1d5db;
 }
 
 #player-sprite img {
@@ -122,8 +122,11 @@ body,
     justify-content: center;
     align-items: center;
     font-size: 30px;
-    font-weight: bold;
     color: #d1d5db;
+}
+
+#final-points {
+    font-weight: bold;
 }
 
 #win-screen {
@@ -339,13 +342,52 @@ h3 {
     left: -4px;
     width: calc(100% + 8px);
     height: 2px;
-    background-color: #fff;
+    background-color: #d1d5db;
     transform: translateY(-50%) rotate(-45deg);
 }
 
 #mute-btn {
     left: 75px;
 }
+
+input[type="range"]#volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 13px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]#volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background-color: #556b2f;
+            border: 2px solid #d1d5db;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #000000;
+            transition: background-color 0.15s ease;
+        }
+
+        input[type="range"]#volume-slider::-webkit-slider-thumb:hover {
+            background-color: #4a5e29;
+        }
+
+        input[type="range"]#volume-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background-color: #556b2f;
+            border: 2px solid #d1d5db;
+            border-radius: 0;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #000000;
+        }
+
+        input[type="range"]#volume-slider::-moz-range-thumb:hover {
+            background-color: #4a5e29;
+        }
 
 button {
     background-color: #556b2f;
@@ -648,7 +690,7 @@ span.txt-qtyLabel {
     font-family: monospace;
     width: 350px;
     /* Matches your current look */
-    color: #fff;
+    color: #d1d5db;
 }
 
 .game-logo {
@@ -746,7 +788,7 @@ button#btn-grenade {
     gap: 10px;
     width: 160px;
     background-color: #6b7280;
-    color: #fff;
+    color: #d1d5db;
     padding: 10px 12px;
     font-size: 0.85rem;
     font-weight: normal;
@@ -788,7 +830,7 @@ button#btn-grenade {
     padding: 0;
     background: transparent;
     border: none;
-    color: #fff;
+    color: #d1d5db;
     font-size: 1rem;
     cursor: pointer;
     flex-shrink: 0;
@@ -802,7 +844,7 @@ button#btn-grenade {
     left: -4px;
     width: calc(100% + 8px);
     height: 2px;
-    background-color: #fff;
+    background-color: #d1d5db;
     transform: translateY(-50%) rotate(-45deg);
 }
 
@@ -836,7 +878,7 @@ button#btn-grenade {
     visibility: hidden;
     width: 300px;
     background-color: #6b7280;
-    color: #fff;
+    color: #d1d5db;
     padding: 8px;
     font-size: 0.85rem;
     font-weight: normal;
