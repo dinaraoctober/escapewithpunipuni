@@ -1,4 +1,7 @@
 let state = {
+	muted: false,
+	volume: 70,
+	savedVolume: 70,
 	bleeding: false,
 	bleedDamage: 0,
 	bleedInterval: null,
@@ -310,12 +313,6 @@ function setDisabled(el, isDisabled) {
 		el.classList.toggle("disabled", isDisabled);
 	}
 }
-
-const state = {
-	muted: false,
-	volume: 70,
-	savedVolume: 70
-};
 
 // DOM audio element references
 const bgm = document.getElementById("bgm");
@@ -1402,6 +1399,8 @@ async function fetchLeaderboard() {
 function returnToStartScreen() {
 	const preservedLang = state.lang;
 	const preservedMuted = state.muted;
+	const preservedVolume = state.volume;
+	const preservedSavedVolume = state.savedVolume;
 
 	// Clear any running intervals tied to the old state before replacing it
 	if (state.bleedInterval) clearInterval(state.bleedInterval);
@@ -1437,6 +1436,13 @@ function returnToStartScreen() {
 	renderEquipment();
 	renderConsumables();
 	syncMuteUI();
+
+	const slider = document.getElementById("volume-slider");
+	if (slider) {
+		slider.value = state.volume;
+		updateSliderFill(state.volume);
+	}
+
 	updateUI();
 }
 
