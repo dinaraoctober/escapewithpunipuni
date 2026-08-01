@@ -36,6 +36,9 @@ let state = {
 	manualPaused: false,
 	won: false,
 };
+
+let regenTokenCounter = 0;
+
 const INITIAL_STATE = structuredClone(state);
 
 const SHOP_ITEMS = {
@@ -306,35 +309,48 @@ function setDisabled(el, isDisabled) {
 	}
 }
 
+const state = {
+	muted: false,
+	volume: 70,
+	savedVolume: 70
+};
+
+// DOM audio element references
 const bgm = document.getElementById("bgm");
 const sfxDodge = document.getElementById("sfx-dodge");
 const sfxBleed = document.getElementById("sfx-bleed");
-bgm.volume = 0.7;
 
-        function updateSliderFill(value) {
-            const slider = document.getElementById("volume-slider");
-            if (slider) {
-                // Creates a crisp squared color fill on the left of the thumb
-                slider.style.background = `linear-gradient(to right, #556b2f 0%, #556b2f ${value}%, #232524 ${value}%, #232524 100%)`;
-            }
-        }
+if (bgm) bgm.volume = 0.7;
+
+function updateSliderFill(value) {
+	const slider = document.getElementById("volume-slider");
+	if (slider) {
+		slider.style.background = `linear-gradient(to right, #556b2f 0%, #556b2f ${value}%, #232524 ${value}%, #232524 100%)`;
+	}
+}
 
 function toggleVolumePanel(event) {
 	event.stopPropagation();
-	document.getElementById("mute-btn").classList.toggle("active");
+	const popup = document.getElementById("volume-popup");
+	if (popup) {
+		popup.classList.toggle("active");
+	}
 }
 
 function setVolume(value) {
-	const vol = value / 100;
-	bgm.volume = vol;
-	sfxDodge.volume = vol;
-	sfxBleed.volume = vol;
+	const vol = parseFloat(value) / 100;
+	state.volume = parseInt(value, 10);
+
+	if (bgm) bgm.volume = vol;
+	if (sfxDodge) sfxDodge.volume = vol;
+	if (sfxBleed) sfxBleed.volume = vol;
+
+	updateSliderFill(state.volume);
 
 	if (vol > 0 && state.muted) {
 		state.muted = false;
 		syncMuteUI();
-	}
-	if (vol === 0 && !state.muted) {
+	} else if (vol === 0 && !state.muted) {
 		state.muted = true;
 		syncMuteUI();
 	}
@@ -342,32 +358,55 @@ function setVolume(value) {
 
 function toggleMute() {
 	state.muted = !state.muted;
-	syncMuteUI();
+	const slider = document.getElementById("volume-slider");
+
+	if (state.muted) {
+		state.savedVolume = state.volume > 0 ? state.volume : 70;
+		if (slider) slider.value = 0;
+		setVolume(0);
+	} else {
+		const restoreVol = state.savedVolume > 0 ? state.savedVolume : 70;
+		if (slider) slider.value = restoreVol;
+		setVolume(restoreVol);
+	}
 }
 
 function syncMuteUI() {
-	// Update all note icons using class toggle instead of innerHTML string replacements
 	const noteIcons = document.querySelectorAll(".note-icon");
 	noteIcons.forEach(icon => {
 		icon.classList.toggle("is-muted", state.muted);
 	});
 
-	bgm.muted = state.muted;
-	sfxDodge.muted = state.muted;
-	sfxBleed.muted = state.muted;
+	if (bgm) bgm.muted = state.muted;
+	if (sfxDodge) sfxDodge.muted = state.muted;
+	if (sfxBleed) sfxBleed.muted = state.muted;
 }
 
-
 function playBgm() {
+	if (!bgm) return;
 	bgm.currentTime = 0;
 	bgm.muted = state.muted;
 	bgm.play().catch((err) => console.warn("BGM playback blocked:", err));
 }
 
 function stopBgm() {
+	if (!bgm) return;
 	bgm.pause();
 	bgm.currentTime = 0;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+	updateSliderFill(state.volume);
+});
+
+document.addEventListener("click", (e) => {
+	const mainBtn = document.getElementById("mute-btn");
+	const popup = document.getElementById("volume-popup");
+	if (mainBtn && popup && !mainBtn.contains(e.target)) {
+		popup.classList.remove("active");
+	}
+});
+
 
 document.addEventListener("click", function (event) {
 	const tooltip = document.getElementById("tooltip");
@@ -411,8 +450,8 @@ function startGame() {
 
 const HP_BAR_IDS = {
 	player: { bar: "player-hp-bar", fill: "player-hp-fill", trail: "player-hp-trail", text: "player-hp-text" },
-	pmc:    { bar: "enemy-hp-bar",  fill: "pmc-fill",        trail: "pmc-trail",       text: "pmc-text" },
-	boss:   { bar: "boss-hp-bar",   fill: "boss-fill",        trail: "boss-trail",      text: "boss-text" },
+	pmc: { bar: "enemy-hp-bar", fill: "pmc-fill", trail: "pmc-trail", text: "pmc-text" },
+	boss: { bar: "boss-hp-bar", fill: "boss-fill", trail: "boss-trail", text: "boss-text" },
 };
 
 const LOW_HP_THRESHOLD = {
@@ -512,14 +551,14 @@ function updateUI() {
 	document.getElementById("stat-defence").innerText = state.def;
 	updateHealthBar("player", state.currentHp, state.maxHp);
 
-if (enemy.isBoss) {
-	updateHealthBar("boss", enemy.currentHp, enemy.maxHp);
-} else {
-	updateHealthBar("pmc", enemy.currentHp, enemy.maxHp);
-}
+	if (enemy.isBoss) {
+		updateHealthBar("boss", enemy.currentHp, enemy.maxHp);
+	} else {
+		updateHealthBar("pmc", enemy.currentHp, enemy.maxHp);
+	}
 
-document.getElementById("enemy-hp-bar").style.display = enemy.isBoss ? "none" : "block";
-document.getElementById("boss-hp-bar").style.display = enemy.isBoss ? "block" : "none";
+	document.getElementById("enemy-hp-bar").style.display = enemy.isBoss ? "none" : "block";
+	document.getElementById("boss-hp-bar").style.display = enemy.isBoss ? "block" : "none";
 
 	// --- Consumables HUD ---
 	document.getElementById("txt-medkitLabel").innerText = t.medLabel;
@@ -622,7 +661,7 @@ function applyBleed(dmgPerTick) {
 		}
 	}, 1000);
 
-		state.bleedDripInterval = setInterval(() => {
+	state.bleedDripInterval = setInterval(() => {
 		if (state.isDead || state.won || !state.bleeding) {
 			clearInterval(state.bleedDripInterval);
 			return;
@@ -632,27 +671,27 @@ function applyBleed(dmgPerTick) {
 }
 
 function startBleedImmunity(seconds) {
-    state.bleedImmune = true;
-    state.bleedImmuneTicksLeft = seconds;
+	state.bleedImmune = true;
+	state.bleedImmuneTicksLeft = seconds;
 
-    if (state.bleedImmuneInterval) clearInterval(state.bleedImmuneInterval);
+	if (state.bleedImmuneInterval) clearInterval(state.bleedImmuneInterval);
 
-    state.bleedImmuneInterval = setInterval(() => {
-        if (state.isDead || state.won) {
-            clearInterval(state.bleedImmuneInterval);
-            state.bleedImmuneInterval = null;
-            state.bleedImmune = false;
-            return;
-        }
-        if (state.paused) return;
+	state.bleedImmuneInterval = setInterval(() => {
+		if (state.isDead || state.won) {
+			clearInterval(state.bleedImmuneInterval);
+			state.bleedImmuneInterval = null;
+			state.bleedImmune = false;
+			return;
+		}
+		if (state.paused) return;
 
-        state.bleedImmuneTicksLeft--;
-        if (state.bleedImmuneTicksLeft <= 0) {
-            clearInterval(state.bleedImmuneInterval);
-            state.bleedImmuneInterval = null;
-            state.bleedImmune = false;
-        }
-    }, 1000);
+		state.bleedImmuneTicksLeft--;
+		if (state.bleedImmuneTicksLeft <= 0) {
+			clearInterval(state.bleedImmuneInterval);
+			state.bleedImmuneInterval = null;
+			state.bleedImmune = false;
+		}
+	}, 1000);
 }
 
 function stopBleed() {
@@ -664,6 +703,16 @@ function stopBleed() {
 	if (state.bleedDripInterval) {
 		clearInterval(state.bleedDripInterval);
 		state.bleedDripInterval = null;
+	}
+	updateUI();
+}
+
+function stopRegen() {
+	state.isRegening = false;
+	state.regenTicksLeft = 0;
+	if (state.regenInterval) {
+		clearInterval(state.regenInterval);
+		state.regenInterval = null;
 	}
 	updateUI();
 }
@@ -704,14 +753,14 @@ function takeDamage(enemyAtk) {
 
 				sfxBleed.currentTime = 0;
 				sfxBleed.play().catch((err) => console.warn("SFX playback blocked:", err));
-	
+
 			}
 		}
 	}
 
 	state.currentHp = Math.round((state.currentHp - finalDamage) * 10) / 10;
 	updateUI();
-} 
+}
 
 function spawnBloodDrip() {
 	const playerEl = document.getElementById("player-sprite");
@@ -815,8 +864,8 @@ function throwGrenade() {
 		document.getElementById("enemy-hp-bar").classList.add("shake");
 		setTimeout(() => document.getElementById("enemy-hp-bar").classList.remove("shake"), 200);
 		const shakeTarget = document.getElementById(enemy.isBoss ? "boss-hp-bar" : "enemy-hp-bar");
-			shakeTarget.classList.add("shake");
-			setTimeout(() => shakeTarget.classList.remove("shake"), 200);
+		shakeTarget.classList.add("shake");
+		setTimeout(() => shakeTarget.classList.remove("shake"), 200);
 
 		if (enemy.currentHp <= 0 && !enemy.isDead) enemyDefeated();
 	}
@@ -854,6 +903,7 @@ function triggerWin() {
 	state.won = true;
 	stopBgm();
 	stopBleed();
+	stopRegen();
 	document.getElementById("win-screen").style.opacity = "1";
 	const finalPointsElement = document.getElementById("final-points");
 	if (finalPointsElement) {
@@ -889,6 +939,8 @@ let currentLastTime = performance.now();
 function playerDefeated() {
 	state.isDead = true;
 	state.deaths++;
+	state.regenToken = ++regenTokenCounter;
+	state.isRegening = false;
 	document.getElementById("player-sprite").style.opacity = "0";
 
 	let pointsPenalty = Math.floor((state.points || 0) * 0.3);
@@ -902,6 +954,7 @@ function playerDefeated() {
 		state.currentHp = state.maxHp;
 		state.wave = 1; // Resets the wave
 		stopBleed();
+		stopRegen();
 		if (state.bleedImmuneInterval) clearInterval(state.bleedImmuneInterval);
 		state.bleedImmune = false;
 		document.getElementById("player-sprite").style.opacity = "1";
@@ -1113,14 +1166,24 @@ function startRegen(item) {
 	state.isRegening = true;
 	state.regenTicksLeft = item.duration;
 
+	const myToken = ++regenTokenCounter;
+	state.regenToken = myToken;
+
 	if (state.regenInterval) clearInterval(state.regenInterval);
 
 	const healPerTick = item.heal / item.duration;
+	let intervalId;
 
-	state.regenInterval = setInterval(() => {
+	intervalId = setInterval(() => {
+		// Ghost check — a newer regen replaced this one, or state was reset. Stop touching shared state.
+		if (state.regenToken !== myToken) {
+			clearInterval(intervalId);
+			return;
+		}
+
 		if (state.isDead || state.won) {
-			clearInterval(state.regenInterval);
-			state.regenInterval = null;
+			clearInterval(intervalId);
+			if (state.regenInterval === intervalId) state.regenInterval = null;
 			state.isRegening = false;
 			updateUI();
 			return;
@@ -1131,12 +1194,14 @@ function startRegen(item) {
 		state.currentHp = Math.min(state.maxHp, Math.round((state.currentHp + healPerTick) * 10) / 10);
 
 		if (state.regenTicksLeft <= 0) {
-			clearInterval(state.regenInterval);
-			state.regenInterval = null;
+			clearInterval(intervalId);
+			if (state.regenInterval === intervalId) state.regenInterval = null;
 			state.isRegening = false;
 		}
 		updateUI();
 	}, 1000);
+
+	state.regenInterval = intervalId;
 }
 
 function initHudIcons() {
@@ -1341,6 +1406,7 @@ function returnToStartScreen() {
 	if (state.regenInterval) clearInterval(state.regenInterval);
 
 	state = structuredClone(INITIAL_STATE);
+	state.regenToken = ++regenTokenCounter;
 	state.lang = preservedLang;
 	state.muted = preservedMuted;
 
