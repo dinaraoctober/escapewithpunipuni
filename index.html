@@ -102,13 +102,27 @@
             </div>
 
             <div id="player-hp-bar" class="health-bar-container fixed-left">
-                <div id="player-hp-fill" class="health-bar-fill"></div>
-                <span id="player-hp-text" class="hp-text">50/50</span>
+                <div class="health-bar-inner">
+                    <div class="health-bar-damage-trail" id="player-hp-trail"></div>
+                    <div class="health-bar-fill" id="player-hp-fill"></div>
+                    <span class="health-bar-text" id="player-hp-text"></span>
+                </div>
             </div>
+
             <div id="enemy-hp-bar" class="health-bar-container fixed-right">
-                <div id="enemy-hp-fill" class="health-bar-fill"></div>
-                <span id="enemy-hp-text" class="hp-text">20/20</span>
+                <div class="health-bar-inner">
+                    <div class="health-bar-damage-trail" id="pmc-trail"></div>
+                    <div class="health-bar-fill" id="pmc-fill"></div>
+                    <span class="health-bar-text" id="pmc-text"></span>
+                </div>
             </div>
+        <div id="boss-hp-bar" class="health-bar-container fixed-right">
+            <div class="health-bar-inner">
+                <div class="health-bar-damage-trail" id="boss-trail"></div>
+                <div class="health-bar-fill" id="boss-fill"></div>
+                <span class="health-bar-text" id="boss-text"></span>
+            </div>
+        </div>
 
             <div id="player-sprite" class="sprite"></div>
             <div id="enemy-sprite" class="sprite"></div>

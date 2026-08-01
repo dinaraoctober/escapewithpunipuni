@@ -55,11 +55,12 @@ body,
     border: 2px solid transparent;
     background: rgba(255, 255, 255, 0.05);
     padding: 8px 12px;
-    border-radius: 8px;
     cursor: pointer;
     font-family: "DotGothic16", sans-serif;
     color: #ccc;
-    font-size: 13px;
+    font-size: 14px;
+    border-radius: 0;
+    ;
 }
 
 .sprite-choice-btn input[type="radio"] {
@@ -76,7 +77,7 @@ body,
 
 .sprite-choice-btn:has(input:checked) {
     border-color: #ffcc00;
-    box-shadow: 0 0 8px #ffcc00;
+    box-shadow: 2px 2px 0px #d99b1d;
     color: #fff;
 }
 
@@ -173,31 +174,99 @@ body,
     bottom: 10px !important;
 }
 
+
+
+#boss-hp-bar.health-bar-container {
+    background-color: #ffcc00;
+
+    /* 8-Bit Pixelated Metallic Border Frame */
+    box-shadow:
+        -3px 0 0 0 #000,
+        3px 0 0 0 #000,
+        0 -3px 0 0 #000,
+        0 3px 0 0 #000,
+        -3px -3px 0 0 #ffcc00,
+        3px -3px 0 0 #ffcc00,
+        -3px 3px 0 0 #ffcc00,
+        3px 3px 0 0 #ffcc00,
+        0 0 0 2px #cccccc;
+}
+
 .health-bar-container {
-    position: absolute;
-    top: 20px;
-    width: 200px;
-    height: 20px;
-    background-color: #1a1a1a;
-    border: 2px solid #bbb;
-    border-radius: 0;
+    position: relative;
+    width: 100%;
+    height: 28px;
+    background-color: #bbbbbb;
+    padding: 3px;
+
+    /* 8-Bit Pixelated Metallic Border Frame */
+    box-shadow:
+        -3px 0 0 0 #000,
+        3px 0 0 0 #000,
+        0 -3px 0 0 #000,
+        0 3px 0 0 #000,
+        -3px -3px 0 0 #bbbbbb,
+        3px -3px 0 0 #bbbbbb,
+        -3px 3px 0 0 #bbbbbb,
+        3px 3px 0 0 #bbbbbb,
+        0 0 0 2px #cccccc;
+}
+
+.health-bar-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #0a0d12;
     overflow: hidden;
-    z-index: 50;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+.health-bar-fill {
+    height: 100%;
+    background: linear-gradient(to bottom, #6b8e23 0%, #556b2f 60%, #3e4f22 100%);
+    width: 100%;
+    transition: width 0.25s ease-out, background 0.3s;
+    position: relative;
+}
+
+/* Top shine highlight strip on fill */
+.health-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.health-bar-damage-trail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #8b0000;
+    width: 100%;
+    transition: width 0.6s ease-out;
+}
+
+
+/* Low HP state */
+.health-bar-fill.low {
+    background: linear-gradient(to bottom, #d93838 0%, #a82e2e 60%, #6e1c1c 100%);
 }
 
 .hp-text {
     position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
     font-size: 16px;
-    font-weight: bold;
-    line-height: 20px;
-    color: white;
-    text-shadow: 1px 1px 1px black;
-    z-index: 6;
+    text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
     pointer-events: none;
+    white-space: nowrap;
+    z-index: 10;
 }
 
 .fixed-left {
@@ -539,7 +608,7 @@ span.txt-qtyLabel {
 }
 
 
-#shop-screen{
+#shop-screen {
     overflow-y: scroll;
     position: relative;
     top: -765px;
@@ -600,7 +669,7 @@ span.txt-qtyLabel {
     color: white;
     border: 1px solid #778899;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 0;
 }
 
 .start-menu button:hover,
@@ -810,6 +879,7 @@ button#btn-grenade {
         opacity: 1;
         transform: translateY(15px);
     }
+
     100% {
         opacity: 0;
         transform: translateY(50px);
@@ -822,24 +892,25 @@ button#btn-grenade {
     }
 
     .button-row {
-    margin-top: 30px !important;
-}
+        margin-top: 30px !important;
+    }
 
-.button-row button {
-    font-size: 33px;    
-}   
+    .button-row button {
+        font-size: 33px;
+    }
 
-.stat-row {
-    height: auto;
-}
+    .stat-row {
+        height: auto;
+    }
 
-#shop-screen, #leaderboard-box {
-    width: 100%;
-    max-width: 95%;
-    height: auto;
-    max-height: 95%;
-    overflow-y: auto;
-}
+    #shop-screen,
+    #leaderboard-box {
+        width: 100%;
+        max-width: 95%;
+        height: auto;
+        max-height: 95%;
+        overflow-y: auto;
+    }
 
     .gear.consumables,
     #shop-screen .gear,
@@ -848,7 +919,7 @@ button#btn-grenade {
         width: 100% !important;
     }
 
-    .logo img{
+    .logo img {
         height: 90px;
     }
 

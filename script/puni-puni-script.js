@@ -363,6 +363,41 @@ function startGame() {
 	updateUI();
 }
 
+const HP_BAR_IDS = {
+	player: { bar: "player-hp-bar", fill: "player-hp-fill", trail: "player-hp-trail", text: "player-hp-text" },
+	pmc:    { bar: "enemy-hp-bar",  fill: "pmc-fill",        trail: "pmc-trail",       text: "pmc-text" },
+	boss:   { bar: "boss-hp-bar",   fill: "boss-fill",        trail: "boss-trail",      text: "boss-text" },
+};
+
+const LOW_HP_THRESHOLD = {
+	player: 50,
+	pmc: 25,
+	boss: 25,
+};
+
+function updateHealthBar(target, current, max) {
+	const ids = HP_BAR_IDS[target];
+	if (!ids) return;
+
+	const fill = document.getElementById(ids.fill);
+	const trail = document.getElementById(ids.trail);
+	const text = document.getElementById(ids.text);
+	if (!fill || !trail || !text) return;
+
+	const percentage = Math.max(0, Math.min(100, (current / max) * 100));
+
+	fill.style.width = percentage + "%";
+
+	// Trail lags behind for the "damage ghost" effect
+	setTimeout(() => {
+		trail.style.width = percentage + "%";
+	}, 120);
+
+	text.textContent = `${Math.max(0, Math.floor(current))} / ${max}`;
+
+	fill.classList.toggle("low", percentage <= LOW_HP_THRESHOLD[target]);
+}
+
 // Update the start screen itself whenever setLang() runs
 // Add these new target updates directly into your existing updateUI() function
 function updateUI() {
@@ -429,13 +464,17 @@ function updateUI() {
 	document.getElementById("stat-atk").innerText = state.atk;
 	document.getElementById("stat-spd").innerText = state.spd;
 	document.getElementById("stat-defence").innerText = state.def;
-	document.getElementById("player-hp-text").innerText = Math.max(0, Math.floor(state.currentHp)) + "/" + state.maxHp;
-	document.getElementById("enemy-hp-text").innerText = Math.max(0, Math.floor(enemy.currentHp)) + "/" + enemy.maxHp;
-	document.getElementById("player-hp-fill").style.width = Math.max(0, (state.currentHp / state.maxHp) * 100) + "%";
-	document.getElementById("enemy-hp-fill").style.width = Math.max(0, (enemy.currentHp / enemy.maxHp) * 100) + "%";
+	updateHealthBar("player", state.currentHp, state.maxHp);
 
-	document.getElementById("player-hp-fill").style.width = Math.max(0, (state.currentHp / state.maxHp) * 100) + "%";
-	document.getElementById("enemy-hp-fill").style.width = Math.max(0, (enemy.currentHp / enemy.maxHp) * 100) + "%";
+if (enemy.isBoss) {
+	updateHealthBar("boss", enemy.currentHp, enemy.maxHp);
+} else {
+	updateHealthBar("pmc", enemy.currentHp, enemy.maxHp);
+}
+
+document.getElementById("enemy-hp-bar").style.display = enemy.isBoss ? "none" : "block";
+document.getElementById("boss-hp-bar").style.display = enemy.isBoss ? "block" : "none";
+
 	// --- Consumables HUD ---
 	document.getElementById("txt-medkitLabel").innerText = t.medLabel;
 	document.getElementById("txt-zagustinLabel").innerText = t.zagustinLabel;
@@ -729,6 +768,9 @@ function throwGrenade() {
 
 		document.getElementById("enemy-hp-bar").classList.add("shake");
 		setTimeout(() => document.getElementById("enemy-hp-bar").classList.remove("shake"), 200);
+		const shakeTarget = document.getElementById(enemy.isBoss ? "boss-hp-bar" : "enemy-hp-bar");
+			shakeTarget.classList.add("shake");
+			setTimeout(() => shakeTarget.classList.remove("shake"), 200);
 
 		if (enemy.currentHp <= 0 && !enemy.isDead) enemyDefeated();
 	}
