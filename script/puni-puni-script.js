@@ -36,6 +36,7 @@ let state = {
 	manualPaused: false,
 	won: false,
 };
+const INITIAL_STATE = structuredClone(state);
 
 const SHOP_ITEMS = {
 	guns: [
@@ -1273,24 +1274,23 @@ async function handleSaveScore() {
 	const scoreButton = document.getElementById("save-score-btn");
 	const score = parseInt(scoreButton.dataset.score, 10) || 0;
 
-	// Hide the input screen immediately
 	document.getElementById("win-screen").style.display = "none";
 	nameInput.value = "";
 
 	try {
-		// Save the score to the Firestore database
 		await db.ref("leaderboard").push({
 			name: name,
 			score: score,
 			timestamp: firebase.database.ServerValue.TIMESTAMP,
 		});
 
-		// Refresh the leaderboard list
-		fetchLeaderboard();
+		await fetchLeaderboard();
 	} catch (error) {
 		console.error("Error saving score to Firebase: ", error);
 		alert("Could not save score. Check console.");
 	}
+
+	returnToStartScreen();
 }
 
 // Fetch the top 10 scores from the cloud
@@ -1324,6 +1324,48 @@ async function fetchLeaderboard() {
 		list.innerHTML = `<li>${t.failedScores}</li>`;
 	}
 }
+
+function returnToStartScreen() {
+	const preservedLang = state.lang;
+	const preservedMuted = state.muted;
+
+	// Clear any running intervals tied to the old state before replacing it
+	if (state.bleedInterval) clearInterval(state.bleedInterval);
+	if (state.bleedDripInterval) clearInterval(state.bleedDripInterval);
+	if (state.bleedImmuneInterval) clearInterval(state.bleedImmuneInterval);
+	if (state.regenInterval) clearInterval(state.regenInterval);
+
+	state = structuredClone(INITIAL_STATE);
+	state.lang = preservedLang;
+	state.muted = preservedMuted;
+
+	enemy = { maxHp: 20, currentHp: 20, atk: 1, isBoss: false, isDead: false };
+	attackTimer = 0;
+	enemyAttackTimer = 0;
+
+	stopBgm();
+
+	document.getElementById("win-screen").style.opacity = "0";
+	document.getElementById("player-sprite").style.opacity = "1";
+	document.getElementById("enemy-sprite").style.opacity = "1";
+
+	const startScreen = document.getElementById("start-screen");
+	if (startScreen) {
+		startScreen.style.display = "flex";
+		void startScreen.offsetWidth; // force reflow so opacity transition replays
+		startScreen.style.opacity = "1";
+		startScreen.style.pointerEvents = "all";
+	}
+
+	// Re-render everything that depends on equipment/inventory, since those were just wiped
+	renderPlayerSprite();
+	renderEquipment();
+	renderConsumables();
+	syncMuteUI();
+	updateUI();
+}
+
+
 
 // Fetch the global leaderboard as soon as the page loads
 document.addEventListener("DOMContentLoaded", () => {
