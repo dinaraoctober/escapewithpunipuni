@@ -174,7 +174,26 @@ body,
     bottom: 10px !important;
 }
 
+span#icon-medKit {
+    padding-top: 7px;
+}
 
+#icon-medKit img {
+    height: 65px;
+}
+
+span#icon-grenade {
+    padding: 25px 20px 15px 20px;
+}
+
+.health-bar-text {
+    position: fixed;
+    margin-top: -26px;
+    text-shadow: 2px 2px 0 black;
+    font-weight: bold;
+    text-align: center;
+    width: 180px;
+}
 
 #boss-hp-bar.health-bar-container {
     background-color: #ffcc00;
