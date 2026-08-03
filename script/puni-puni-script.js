@@ -218,7 +218,7 @@ const i18n = {
 		resume: "Resume",
 		paused: "PAUSED",
 		win: "YOU WIN!",
-		playerStats: "Player Stats",
+		playerStats: "Puni Puni Stats",
 		upgrades: "Equipment",
 		atkLabel: "Attack",
 		spdLabel: "Speed",
@@ -273,7 +273,7 @@ const i18n = {
 		resume: "再開",
 		paused: "一時停止中",
 		win: "勝利!",
-		playerStats: "ステータス",
+		playerStats: "ぷにぷに統計",
 		upgrades: "装備",
 		atkLabel: "攻撃力",
 		spdLabel: "速度",
@@ -879,10 +879,12 @@ function throwGrenade() {
 function enemyDefeated() {
 	enemy.isDead = true;
 	document.getElementById("enemy-sprite").style.opacity = "0";
-	if (enemy.isBoss) {
-		state.grenades++;
-		state.hasDefeatedBoss = true;
-	}
+if (enemy.isBoss) {
+	state.grenades++;
+	state.hasDefeatedBoss = true;
+	const grenadeText = state.lang === "JPN" ? "+1 手榴弾" : "+1 Grenade";
+	showFloatingText(grenadeText, "player-sprite");
+}
 	let reward = (enemy.isBoss ? 200 : 5) * state.loop;
 	state.dango += reward;
 	state.totalDango += reward;
