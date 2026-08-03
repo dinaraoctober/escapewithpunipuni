@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 82">
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 90">
   <defs>
     <style>
       .cls-1 {
-        fill: #7f7f7f;
+        fill: #725a4e;
       }
 
       .cls-2 {
-        fill: #30302f;
+        fill: #736153;
       }
 
       .cls-3 {
-        fill: #787878;
+        fill: #30302f;
       }
 
       .cls-4 {
-        fill: #84c5d8;
+        fill: #7f8080;
       }
 
       .cls-5 {
-        fill: #bababa;
+        fill: #555860;
       }
 
       .cls-6 {
-        fill: #d3a99f;
+        fill: #e4e1d1;
       }
 
       .cls-7 {
-        fill: #44372e;
+        fill: #45382e;
       }
 
       .cls-8 {
@@ -35,15 +35,15 @@
       }
 
       .cls-9 {
-        fill: #e5e1d1;
+        fill: #d3aaa0;
       }
 
       .cls-10 {
-        fill: #726052;
+        fill: #c7c2ae;
       }
 
       .cls-11 {
-        fill: #c7c2ae;
+        fill: #010101;
       }
 
       .cls-12 {
@@ -51,118 +51,122 @@
       }
 
       .cls-13 {
-        fill: #71594d;
+        fill: #797979;
       }
 
       .cls-14 {
-        fill: #54575f;
+        fill: #bbb;
       }
 
       .cls-15 {
         fill: #998074;
       }
+
+      .cls-16 {
+        fill: #85c5d8;
+      }
     </style>
   </defs>
-  <path d="M60,24h-2v2h2v2h-6v-2h-2v-2h6v-2h-4v-2h2v-6h-4v-6h-2v12h2v2h-2v2h-2v2h-8v-2h-4v-6h-2v-6h2v-2h-2v-2h-2v10h-12v4h-6v2H2v2h12v2H2v2h14v2h4v2h2v-2h2v6h6v2h2v4h-2v2h4v4h2v-8h2v2h4v-2h-2v-2h-6v-2h-2v-4h-2v2h-4v-4h2v-2h4v-2h-4v-2h-4v2h2v2h-8v-2h-2v-4h4v2h4v-2h2v-2h-4v-2h8v2h2v-2h2v4h-4v-2h-2v4h6v2h4v2h-6v4h2v-2h6v-4h4v4h-4v2h4v2h4v-2h-2v-6h6v2h-2v2h-2v2h4v-2h2v-2h6v4h-2v2h-2v2h-2v2h4v-2h2v4h-2v10h-4v2h-8v-10h-4v2h2v8h-6v-4h-2v6h-2v6h-2v8h-2v6h-2v2h10v2h-10v-2h-2v4h14v-8h2v-4h-2v2h-2v4h-6v-4h2v-8h2v-6h4v-2h16v2h2v10h2v8h-8v6h10v-16h-2v-10h-2v-2h2v-10h2v-20h-2ZM52,16h2v2h-2v-2ZM60,80h-6v-2h6v2Z"/>
-  <rect class="cls-9" x="58" y="74" width="2" height="2"/>
-  <polygon class="cls-8" points="58 72 56 72 54 72 54 74 56 74 58 74 60 74 60 72 60 70 58 70 58 72"/>
-  <polygon class="cls-7" points="58 34 60 34 60 32 60 30 58 30 58 32 58 34"/>
-  <rect class="cls-7" x="58" y="26" width="2" height="2"/>
-  <polygon class="cls-7" points="56 78 54 78 54 80 56 80 58 80 60 80 60 78 58 78 56 78"/>
-  <rect class="cls-9" x="56" y="66" width="2" height="2"/>
-  <rect class="cls-7" x="56" y="34" width="2" height="2"/>
-  <polygon points="56 10 56 12 56 14 58 14 58 12 58 10 58 8 58 6 56 6 56 8 56 10"/>
-  <polygon class="cls-11" points="56 76 58 76 58 74 56 74 54 74 54 72 56 72 58 72 58 70 60 70 60 68 58 68 56 68 54 68 52 68 52 70 52 72 52 74 52 76 54 76 56 76"/>
-  <polygon class="cls-8" points="54 64 52 64 52 66 52 68 54 68 56 68 56 66 58 66 58 64 56 64 54 64"/>
-  <polygon class="cls-11" points="54 62 52 62 52 64 54 64 56 64 58 64 58 62 56 62 54 62"/>
-  <polygon class="cls-9" points="54 60 52 60 52 62 54 62 56 62 58 62 58 60 56 60 54 60"/>
-  <polygon class="cls-10" points="56 50 56 48 56 46 56 44 54 44 54 46 52 46 52 48 50 48 48 48 46 48 46 50 46 52 46 54 48 54 50 54 52 54 54 54 54 52 54 50 56 50"/>
-  <rect class="cls-7" x="54" y="36" width="2" height="2"/>
-  <polygon class="cls-10" points="54 24 52 24 52 26 54 26 54 28 56 28 58 28 58 26 58 24 56 24 54 24"/>
-  <polygon class="cls-13" points="54 12 52 12 52 14 54 14 56 14 56 12 54 12"/>
-  <rect class="cls-13" x="54" y="6" width="2" height="2"/>
-  <rect x="54" y="4" width="2" height="2"/>
-  <polygon class="cls-7" points="52 42 52 44 50 44 48 44 46 44 46 46 46 48 48 48 50 48 52 48 52 46 54 46 54 44 56 44 56 46 56 48 56 50 54 50 54 52 56 52 58 52 58 50 58 48 58 46 58 44 58 42 60 42 60 40 60 38 58 38 58 40 56 40 54 40 54 42 52 42"/>
-  <rect class="cls-6" x="52" y="16" width="2" height="2"/>
-  <rect class="cls-13" x="52" y="4" width="2" height="2"/>
-  <rect x="52" y="2" width="2" height="2"/>
-  <polygon points="52 72 52 70 50 70 50 68 50 66 48 66 48 64 48 62 46 62 46 60 44 60 44 62 44 64 44 66 44 68 46 68 48 68 48 70 48 72 50 72 50 74 50 76 52 76 52 74 52 72"/>
-  <polygon class="cls-9" points="52 64 52 62 50 62 50 64 48 64 48 66 50 66 50 68 50 70 52 70 52 68 52 66 52 64"/>
-  <polygon points="50 40 50 42 48 42 46 42 46 44 48 44 50 44 52 44 52 42 54 42 54 40 52 40 50 40"/>
-  <polygon class="cls-7" points="50 38 50 40 52 40 54 40 54 38 52 38 50 38"/>
-  <rect class="cls-7" x="50" y="28" width="2" height="2"/>
-  <rect class="cls-13" x="50" y="2" width="2" height="2"/>
-  <polygon class="cls-8" points="50 62 52 62 52 60 50 60 48 60 46 60 46 62 48 62 48 64 50 64 50 62"/>
-  <polygon class="cls-11" points="48 58 46 58 46 60 48 60 50 60 52 60 54 60 56 60 58 60 58 58 56 58 56 56 54 56 52 56 50 56 50 58 48 58"/>
-  <rect class="cls-7" x="48" y="40" width="2" height="2"/>
-  <polygon class="cls-10" points="50 32 50 30 50 28 48 28 46 28 46 30 46 32 48 32 50 32"/>
-  <polygon points="48 6 46 6 46 8 48 8 50 8 50 6 48 6"/>
-  <rect class="cls-7" x="46" y="32" width="2" height="2"/>
-  <path class="cls-12" d="M48,10h-10v2h-2v2h4v4h-2v-2h-2v-2h-2v4h2v6h4v-2h4v2h-4v2h8v-2h2v-2h2v-2h-2v-8h-2v-2ZM48,16h-2v2h-2v-4h4v2Z"/>
-  <polygon class="cls-6" points="46 8 46 10 48 10 48 12 50 12 50 10 50 8 48 8 46 8"/>
-  <polygon class="cls-7" points="46 44 46 42 44 42 44 40 42 40 40 40 40 42 42 42 42 44 44 44 46 44"/>
-  <polygon points="44 14 44 16 44 18 46 18 46 16 48 16 48 14 46 14 44 14"/>
-  <rect class="cls-13" x="44" y="6" width="2" height="2"/>
-  <rect x="42" y="68" width="2" height="2"/>
-  <polygon class="cls-8" points="44 64 42 64 42 66 40 66 40 68 38 68 38 70 40 70 42 70 42 68 44 68 44 66 44 64"/>
-  <rect class="cls-9" x="42" y="62" width="2" height="2"/>
-  <polygon class="cls-11" points="44 58 44 56 42 56 40 56 40 58 42 58 44 58"/>
-  <polygon class="cls-10" points="44 40 44 42 46 42 48 42 48 40 50 40 50 38 52 38 54 38 54 36 56 36 56 34 58 34 58 32 58 30 56 30 54 30 54 32 52 32 52 34 50 34 48 34 48 36 46 36 44 36 44 34 42 34 40 34 40 32 38 32 36 32 34 32 34 34 34 36 36 36 36 38 38 38 38 40 40 40 42 40 44 40"/>
-  <rect class="cls-7" x="42" y="30" width="2" height="2"/>
-  <polygon points="44 24 44 22 42 22 40 22 40 24 42 24 44 24"/>
-  <polygon class="cls-8" points="42 60 44 60 46 60 46 58 48 58 50 58 50 56 48 56 46 56 44 56 44 58 42 58 40 58 40 60 42 60"/>
-  <polygon class="cls-10" points="42 30 44 30 44 28 42 28 40 28 40 30 40 32 42 32 42 30"/>
-  <polygon points="40 10 42 10 44 10 46 10 46 8 44 8 42 8 42 6 40 6 38 6 38 8 40 8 40 10"/>
-  <polygon points="42 2 44 2 46 2 48 2 50 2 52 2 52 0 50 0 48 0 46 0 44 0 42 0 40 0 38 0 38 2 40 2 42 2"/>
-  <polygon class="cls-11" points="40 64 42 64 42 62 44 62 44 60 42 60 40 60 38 60 36 60 36 62 36 64 38 64 40 64"/>
-  <polygon class="cls-9" points="40 60 40 58 38 58 36 58 36 60 38 60 40 60"/>
-  <polygon class="cls-10" points="38 52 38 54 40 54 42 54 44 54 44 52 44 50 44 48 42 48 40 48 40 46 38 46 36 46 36 48 36 50 38 50 38 52"/>
-  <polygon class="cls-7" points="40 46 40 48 42 48 44 48 44 46 42 46 42 44 40 44 38 44 38 42 36 42 36 44 36 46 38 46 40 46"/>
-  <rect class="cls-6" x="38" y="8" width="2" height="2"/>
-  <polygon class="cls-11" points="36 70 34 70 34 72 34 74 36 74 38 74 38 72 40 72 40 70 38 70 36 70"/>
-  <polygon class="cls-9" points="38 70 38 68 36 68 34 68 34 70 36 70 38 70"/>
-  <polygon class="cls-11" points="38 68 40 68 40 66 38 66 36 66 34 66 34 68 36 68 38 68"/>
-  <polygon class="cls-9" points="38 66 40 66 42 66 42 64 40 64 38 64 36 64 34 64 34 66 36 66 38 66"/>
-  <polygon class="cls-7" points="36 38 36 36 34 36 34 34 32 34 32 36 32 38 34 38 34 40 36 40 38 40 38 38 36 38"/>
-  <polygon points="38 16 38 18 40 18 40 16 40 14 38 14 36 14 36 16 38 16"/>
-  <rect class="cls-6" x="36" y="10" width="2" height="2"/>
-  <rect x="36" y="8" width="2" height="2"/>
-  <polygon class="cls-15" points="36 8 38 8 38 6 40 6 42 6 42 8 44 8 44 6 46 6 48 6 50 6 50 8 52 8 52 10 52 12 54 12 56 12 56 10 56 8 54 8 54 6 52 6 52 4 50 4 50 2 48 2 46 2 44 2 42 2 40 2 38 2 38 4 36 4 36 6 36 8"/>
-  <rect x="36" y="2" width="2" height="2"/>
-  <polygon class="cls-8" points="34 74 34 72 32 72 32 74 32 76 34 76 36 76 38 76 38 74 36 74 34 74"/>
-  <polygon class="cls-2" points="36 30 38 30 38 28 36 28 34 28 32 28 32 30 34 30 36 30"/>
-  <rect class="cls-6" x="34" y="12" width="2" height="2"/>
-  <rect class="cls-15" x="34" y="8" width="2" height="2"/>
-  <polygon points="36 6 36 4 34 4 34 6 34 8 36 8 36 6"/>
-  <rect class="cls-5" x="32" y="26" width="2" height="2"/>
-  <rect class="cls-2" x="32" y="22" width="2" height="2"/>
-  <rect class="cls-3" x="32" y="20" width="2" height="2"/>
-  <polygon class="cls-7" points="30 44 32 44 32 42 32 40 30 40 30 42 30 44"/>
-  <polygon class="cls-12" points="32 30 30 30 28 30 28 32 26 32 26 34 26 36 28 36 30 36 30 34 32 34 32 32 32 30"/>
-  <rect class="cls-3" x="30" y="26" width="2" height="2"/>
-  <rect class="cls-3" x="30" y="22" width="2" height="2"/>
-  <polygon class="cls-7" points="30 80 32 80 34 80 36 80 38 80 38 78 36 78 34 78 32 78 30 78 28 78 28 80 30 80"/>
-  <polygon class="cls-7" points="28 44 26 44 24 44 24 46 26 46 28 46 30 46 30 44 28 44"/>
-  <rect class="cls-5" x="28" y="26" width="2" height="2"/>
-  <polygon class="cls-5" points="30 22 30 20 28 20 26 20 26 22 28 22 30 22"/>
-  <polygon points="26 46 24 46 24 48 26 48 28 48 30 48 30 46 28 46 26 46"/>
-  <rect class="cls-2" x="26" y="24" width="2" height="2"/>
-  <rect class="cls-3" x="26" y="22" width="2" height="2"/>
-  <polygon class="cls-10" points="24 40 24 42 24 44 26 44 28 44 30 44 30 42 30 40 30 38 28 38 26 38 26 40 24 40"/>
-  <rect class="cls-7" x="24" y="38" width="2" height="2"/>
-  <rect class="cls-5" x="24" y="24" width="2" height="2"/>
-  <rect class="cls-2" x="24" y="20" width="2" height="2"/>
-  <polygon points="24 42 24 40 24 38 22 38 20 38 20 40 22 40 22 42 22 44 22 46 24 46 24 44 24 42"/>
-  <polygon class="cls-3" points="24 38 24 36 22 36 22 34 20 34 20 36 20 38 22 38 24 38"/>
-  <polygon class="cls-14" points="24 36 24 34 24 32 22 32 22 34 22 36 24 36"/>
-  <rect class="cls-4" x="22" y="20" width="2" height="2"/>
-  <polygon class="cls-3" points="20 28 18 28 18 30 20 30 22 30 24 30 26 30 26 28 24 28 22 28 20 28"/>
-  <polygon class="cls-2" points="20 26 20 28 22 28 24 28 24 26 22 26 20 26"/>
-  <polygon points="20 34 18 34 18 36 18 38 20 38 20 36 20 34"/>
-  <rect class="cls-1" x="18" y="26" width="2" height="2"/>
-  <polygon class="cls-5" points="20 26 20 24 18 24 16 24 16 26 18 26 20 26"/>
-  <rect class="cls-3" x="16" y="26" width="2" height="2"/>
-  <polygon class="cls-2" points="10 28 12 28 14 28 14 26 12 26 10 26 8 26 8 28 10 28"/>
-  <polygon class="cls-3" points="6 28 8 28 8 26 6 26 4 26 2 26 2 28 4 28 6 28"/>
-  <rect y="26" width="2" height="2"/>
+  <path class="cls-11" d="M68,32h-2v2h2v2h-6v-2h-2v-2h6v-2h-4v-2h2v-6h-4v-6h-2v12h2v2h-2v2h-2v2h-8v-2h-4v-6h-2v-6h2v-2h-2v-2h-2v10h-12v4h-6v2h-12v2h12v2h-12v2h14v2h4v2h2v-2h2v6h6v2h2v4h-2v2h4v4h2v-8h2v2h4v-2h-2v-2h-6v-2h-2v-4h-2v2h-4v-4h2v-2h4v-2h-4v-2h-4v2h2v2h-8v-2h-2v-4h4v2h4v-2h2v-2h-4v-2h8v2h2v-2h2v4h-4v-2h-2v4h6v2h4v2h-6v4h2v-2h6v-4h4v4h-4v2h4v2h4v-2h-2v-6h6v2h-2v2h-2v2h4v-2h2v-2h6v4h-2v2h-2v2h-2v2h4v-2h2v4h-2v10h-4v2h-8v-10h-4v2h2v8h-6v-4h-2v6h-2v6h-2v8h-2v6h-2v2h10v2h-10v-2h-2v4h14v-8h2v-4h-2v2h-2v4h-6v-4h2v-8h2v-6h4v-2h16v2h2v10h2v8h-8v6h10v-16h-2v-10h-2v-2h2v-10h2v-20h-2ZM60,24h2v2h-2v-2ZM68,88h-6v-2h6v2Z"/>
+  <rect class="cls-6" x="66" y="82" width="2" height="2"/>
+  <polygon class="cls-8" points="66 80 64 80 62 80 62 82 64 82 66 82 68 82 68 80 68 78 66 78 66 80"/>
+  <polygon class="cls-7" points="66 42 68 42 68 40 68 38 66 38 66 40 66 42"/>
+  <rect class="cls-7" x="66" y="34" width="2" height="2"/>
+  <polygon class="cls-7" points="64 86 62 86 62 88 64 88 66 88 68 88 68 86 66 86 64 86"/>
+  <rect class="cls-6" x="64" y="74" width="2" height="2"/>
+  <rect class="cls-7" x="64" y="42" width="2" height="2"/>
+  <polygon class="cls-11" points="64 18 64 20 64 22 66 22 66 20 66 18 66 16 66 14 64 14 64 16 64 18"/>
+  <polygon class="cls-10" points="64 84 66 84 66 82 64 82 62 82 62 80 64 80 66 80 66 78 68 78 68 76 66 76 64 76 62 76 60 76 60 78 60 80 60 82 60 84 62 84 64 84"/>
+  <polygon class="cls-8" points="62 72 60 72 60 74 60 76 62 76 64 76 64 74 66 74 66 72 64 72 62 72"/>
+  <polygon class="cls-10" points="62 70 60 70 60 72 62 72 64 72 66 72 66 70 64 70 62 70"/>
+  <polygon class="cls-6" points="62 68 60 68 60 70 62 70 64 70 66 70 66 68 64 68 62 68"/>
+  <polygon class="cls-2" points="64 58 64 56 64 54 64 52 62 52 62 54 60 54 60 56 58 56 56 56 54 56 54 58 54 60 54 62 56 62 58 62 60 62 62 62 62 60 62 58 64 58"/>
+  <rect class="cls-7" x="62" y="44" width="2" height="2"/>
+  <polygon class="cls-2" points="62 32 60 32 60 34 62 34 62 36 64 36 66 36 66 34 66 32 64 32 62 32"/>
+  <polygon class="cls-1" points="62 20 60 20 60 22 62 22 64 22 64 20 62 20"/>
+  <rect class="cls-1" x="62" y="14" width="2" height="2"/>
+  <rect class="cls-11" x="62" y="12" width="2" height="2"/>
+  <polygon class="cls-7" points="60 50 60 52 58 52 56 52 54 52 54 54 54 56 56 56 58 56 60 56 60 54 62 54 62 52 64 52 64 54 64 56 64 58 62 58 62 60 64 60 66 60 66 58 66 56 66 54 66 52 66 50 68 50 68 48 68 46 66 46 66 48 64 48 62 48 62 50 60 50"/>
+  <rect class="cls-9" x="60" y="24" width="2" height="2"/>
+  <rect class="cls-1" x="60" y="12" width="2" height="2"/>
+  <rect class="cls-11" x="60" y="10" width="2" height="2"/>
+  <polygon class="cls-11" points="60 80 60 78 58 78 58 76 58 74 56 74 56 72 56 70 54 70 54 68 52 68 52 70 52 72 52 74 52 76 54 76 56 76 56 78 56 80 58 80 58 82 58 84 60 84 60 82 60 80"/>
+  <polygon class="cls-6" points="60 72 60 70 58 70 58 72 56 72 56 74 58 74 58 76 58 78 60 78 60 76 60 74 60 72"/>
+  <polygon class="cls-11" points="58 48 58 50 56 50 54 50 54 52 56 52 58 52 60 52 60 50 62 50 62 48 60 48 58 48"/>
+  <polygon class="cls-7" points="58 46 58 48 60 48 62 48 62 46 60 46 58 46"/>
+  <rect class="cls-7" x="58" y="36" width="2" height="2"/>
+  <rect class="cls-1" x="58" y="10" width="2" height="2"/>
+  <polygon class="cls-8" points="58 70 60 70 60 68 58 68 56 68 54 68 54 70 56 70 56 72 58 72 58 70"/>
+  <polygon class="cls-10" points="56 66 54 66 54 68 56 68 58 68 60 68 62 68 64 68 66 68 66 66 64 66 64 64 62 64 60 64 58 64 58 66 56 66"/>
+  <rect class="cls-7" x="56" y="48" width="2" height="2"/>
+  <polygon class="cls-2" points="58 40 58 38 58 36 56 36 54 36 54 38 54 40 56 40 58 40"/>
+  <polygon class="cls-11" points="56 14 54 14 54 16 56 16 58 16 58 14 56 14"/>
+  <rect class="cls-7" x="54" y="40" width="2" height="2"/>
+  <path class="cls-12" d="M56,18h-10v2h-2v2h4v4h-2v-2h-2v-2h-2v4h2v6h4v-2h4v2h-4v2h8v-2h2v-2h2v-2h-2v-8h-2v-2ZM56,24h-2v2h-2v-4h4v2Z"/>
+  <polygon class="cls-9" points="54 16 54 18 56 18 56 20 58 20 58 18 58 16 56 16 54 16"/>
+  <polygon class="cls-7" points="54 52 54 50 52 50 52 48 50 48 48 48 48 50 50 50 50 52 52 52 54 52"/>
+  <polygon class="cls-11" points="52 22 52 24 52 26 54 26 54 24 56 24 56 22 54 22 52 22"/>
+  <rect class="cls-1" x="52" y="14" width="2" height="2"/>
+  <rect class="cls-11" x="50" y="76" width="2" height="2"/>
+  <polygon class="cls-8" points="52 72 50 72 50 74 48 74 48 76 46 76 46 78 48 78 50 78 50 76 52 76 52 74 52 72"/>
+  <rect class="cls-6" x="50" y="70" width="2" height="2"/>
+  <polygon class="cls-10" points="52 66 52 64 50 64 48 64 48 66 50 66 52 66"/>
+  <polygon class="cls-2" points="52 48 52 50 54 50 56 50 56 48 58 48 58 46 60 46 62 46 62 44 64 44 64 42 66 42 66 40 66 38 64 38 62 38 62 40 60 40 60 42 58 42 56 42 56 44 54 44 52 44 52 42 50 42 48 42 48 40 46 40 44 40 42 40 42 42 42 44 44 44 44 46 46 46 46 48 48 48 50 48 52 48"/>
+  <rect class="cls-7" x="50" y="38" width="2" height="2"/>
+  <polygon class="cls-11" points="52 32 52 30 50 30 48 30 48 32 50 32 52 32"/>
+  <polygon class="cls-8" points="50 68 52 68 54 68 54 66 56 66 58 66 58 64 56 64 54 64 52 64 52 66 50 66 48 66 48 68 50 68"/>
+  <polygon class="cls-2" points="50 38 52 38 52 36 50 36 48 36 48 38 48 40 50 40 50 38"/>
+  <polygon class="cls-11" points="48 18 50 18 52 18 54 18 54 16 52 16 50 16 50 14 48 14 46 14 46 16 48 16 48 18"/>
+  <polygon class="cls-11" points="50 10 52 10 54 10 56 10 58 10 60 10 60 8 58 8 56 8 54 8 52 8 50 8 48 8 46 8 46 10 48 10 50 10"/>
+  <polygon class="cls-10" points="48 72 50 72 50 70 52 70 52 68 50 68 48 68 46 68 44 68 44 70 44 72 46 72 48 72"/>
+  <polygon class="cls-6" points="48 68 48 66 46 66 44 66 44 68 46 68 48 68"/>
+  <polygon class="cls-2" points="46 60 46 62 48 62 50 62 52 62 52 60 52 58 52 56 50 56 48 56 48 54 46 54 44 54 44 56 44 58 46 58 46 60"/>
+  <polygon class="cls-7" points="48 54 48 56 50 56 52 56 52 54 50 54 50 52 48 52 46 52 46 50 44 50 44 52 44 54 46 54 48 54"/>
+  <rect class="cls-9" x="46" y="16" width="2" height="2"/>
+  <polygon class="cls-10" points="44 78 42 78 42 80 42 82 44 82 46 82 46 80 48 80 48 78 46 78 44 78"/>
+  <polygon class="cls-6" points="46 78 46 76 44 76 42 76 42 78 44 78 46 78"/>
+  <polygon class="cls-10" points="46 76 48 76 48 74 46 74 44 74 42 74 42 76 44 76 46 76"/>
+  <polygon class="cls-6" points="46 74 48 74 50 74 50 72 48 72 46 72 44 72 42 72 42 74 44 74 46 74"/>
+  <polygon class="cls-7" points="44 46 44 44 42 44 42 42 40 42 40 44 40 46 42 46 42 48 44 48 46 48 46 46 44 46"/>
+  <polygon class="cls-11" points="46 24 46 26 48 26 48 24 48 22 46 22 44 22 44 24 46 24"/>
+  <rect class="cls-9" x="44" y="18" width="2" height="2"/>
+  <rect class="cls-11" x="44" y="16" width="2" height="2"/>
+  <polygon class="cls-15" points="44 16 46 16 46 14 48 14 50 14 50 16 52 16 52 14 54 14 56 14 58 14 58 16 60 16 60 18 60 20 62 20 64 20 64 18 64 16 62 16 62 14 60 14 60 12 58 12 58 10 56 10 54 10 52 10 50 10 48 10 46 10 46 12 44 12 44 14 44 16"/>
+  <rect class="cls-11" x="44" y="10" width="2" height="2"/>
+  <polygon class="cls-8" points="42 82 42 80 40 80 40 82 40 84 42 84 44 84 46 84 46 82 44 82 42 82"/>
+  <polygon class="cls-3" points="44 38 46 38 46 36 44 36 42 36 40 36 40 38 42 38 44 38"/>
+  <rect class="cls-9" x="42" y="20" width="2" height="2"/>
+  <rect class="cls-15" x="42" y="16" width="2" height="2"/>
+  <polygon class="cls-11" points="44 14 44 12 42 12 42 14 42 16 44 16 44 14"/>
+  <rect class="cls-14" x="40" y="34" width="2" height="2"/>
+  <rect class="cls-3" x="40" y="30" width="2" height="2"/>
+  <rect class="cls-13" x="40" y="28" width="2" height="2"/>
+  <polygon class="cls-7" points="38 52 40 52 40 50 40 48 38 48 38 50 38 52"/>
+  <polygon class="cls-12" points="40 38 38 38 36 38 36 40 34 40 34 42 34 44 36 44 38 44 38 42 40 42 40 40 40 38"/>
+  <rect class="cls-13" x="38" y="34" width="2" height="2"/>
+  <rect class="cls-13" x="38" y="30" width="2" height="2"/>
+  <polygon class="cls-7" points="38 88 40 88 42 88 44 88 46 88 46 86 44 86 42 86 40 86 38 86 36 86 36 88 38 88"/>
+  <polygon class="cls-7" points="36 52 34 52 32 52 32 54 34 54 36 54 38 54 38 52 36 52"/>
+  <rect class="cls-14" x="36" y="34" width="2" height="2"/>
+  <polygon class="cls-14" points="38 30 38 28 36 28 34 28 34 30 36 30 38 30"/>
+  <polygon class="cls-11" points="34 54 32 54 32 56 34 56 36 56 38 56 38 54 36 54 34 54"/>
+  <rect class="cls-3" x="34" y="32" width="2" height="2"/>
+  <rect class="cls-13" x="34" y="30" width="2" height="2"/>
+  <polygon class="cls-2" points="32 48 32 50 32 52 34 52 36 52 38 52 38 50 38 48 38 46 36 46 34 46 34 48 32 48"/>
+  <rect class="cls-7" x="32" y="46" width="2" height="2"/>
+  <rect class="cls-14" x="32" y="32" width="2" height="2"/>
+  <rect class="cls-3" x="32" y="28" width="2" height="2"/>
+  <polygon class="cls-11" points="32 50 32 48 32 46 30 46 28 46 28 48 30 48 30 50 30 52 30 54 32 54 32 52 32 50"/>
+  <polygon class="cls-13" points="32 46 32 44 30 44 30 42 28 42 28 44 28 46 30 46 32 46"/>
+  <polygon class="cls-5" points="32 44 32 42 32 40 30 40 30 42 30 44 32 44"/>
+  <rect class="cls-16" x="30" y="28" width="2" height="2"/>
+  <polygon class="cls-13" points="28 36 26 36 26 38 28 38 30 38 32 38 34 38 34 36 32 36 30 36 28 36"/>
+  <polygon class="cls-3" points="28 34 28 36 30 36 32 36 32 34 30 34 28 34"/>
+  <polygon class="cls-11" points="28 42 26 42 26 44 26 46 28 46 28 44 28 42"/>
+  <rect class="cls-4" x="26" y="34" width="2" height="2"/>
+  <polygon class="cls-14" points="28 34 28 32 26 32 24 32 24 34 26 34 28 34"/>
+  <rect class="cls-13" x="24" y="34" width="2" height="2"/>
+  <polygon class="cls-3" points="18 36 20 36 22 36 22 34 20 34 18 34 16 34 16 36 18 36"/>
+  <polygon class="cls-13" points="14 36 16 36 16 34 14 34 12 34 10 34 10 36 12 36 14 36"/>
+  <rect class="cls-11" x="8" y="34" width="2" height="2"/>
 </svg>
